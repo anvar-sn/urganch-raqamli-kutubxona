@@ -1,0 +1,59 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Bilim sinovlari — UrDU Akademik Litseyi{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>Bilim sinovlari</h1>
+  <p>Fanlar bo‘yicha test savollarini yechib, bilimlaringizni sinang</p>
+</section>
+
+{% if user.is_authenticated and user.role == 'teacher' or user.is_authenticated and user.role == 'librarian' or user.is_staff %}
+  <div class="quiz-create-link" style="max-width:1280px;margin:0 auto 20px;padding:0 20px;">
+    <a class="lib-btn-primary-sm" href="{% url 'create_quiz' %}" style="display:inline-flex;align-items:center;gap:6px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      <span>Yangi test yaratish</span>
+    </a>
+  </div>
+{% endif %}
+
+<section class="quiz-grid">
+  {% for quiz in quizzes %}
+    <article class="quiz-card">
+      <div class="quiz-icon">
+        <svg class="lib-icon-medal" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="6"></circle>
+          <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+        </svg>
+      </div>
+      <p class="subject">{{ quiz.subject|default:'Umumiy bilim' }}</p>
+      <h2>{{ quiz.title }}</h2>
+      <p>{{ quiz.description|default:'Ushbu test orqali bilimlaringizni mustahkamlang.' }}</p>
+      <div class="quiz-meta">
+        <span style="display:inline-flex;align-items:center;gap:5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          {{ quiz.num_questions }} ta savol
+        </span>
+        <span>Qulay vaqtda topshiring</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:auto;">
+        <a class="button" style="flex:1;text-align:center;" href="{% url 'take_quiz' quiz.pk %}">Testni boshlash →</a>
+        {% if user.is_authenticated and user.role == 'teacher' or user.is_authenticated and user.role == 'librarian' or user.is_staff or user.is_superuser %}
+          <form method="post" action="{% url 'delete_quiz' quiz.pk %}" style="margin:0;" onsubmit="return confirm('«{{ quiz.title|escapejs }}» testini o‘chirishga ishonchingiz komilmi?');">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% url 'quiz_list' %}">
+            <button type="submit" class="adm-btn-xs is-danger" style="height:40px;padding:0 12px;" title="Testni o‘chirish">O‘chirish</button>
+          </form>
+        {% endif %}
+      </div>
+    </article>
+  {% empty %}
+    <div class="empty">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary);margin-bottom:12px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <h3>Testlar tez orada qo‘shiladi</h3>
+      <p>Administrator testlar yaratib, e’lon qilgach, ular shu yerda ko‘rinadi.</p>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}

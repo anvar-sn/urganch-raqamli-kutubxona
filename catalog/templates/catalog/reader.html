@@ -1,0 +1,398 @@
+{% load static %}<!doctype html>
+<html lang="uz" data-prime-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+  <title>{{ book.title }} | Mutolaa zali</title>
+  <link rel="icon" type="image/png" href="{% static 'catalog/images/favicon.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .reader-app {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1e293b;
+      position: relative;
+    }
+
+    /* Top Toolbar */
+    .reader-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 14px;
+      background: #002347;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      z-index: 30;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    .reader-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1 1 200px;
+    }
+
+    .reader-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      text-decoration: none;
+      padding: 6px 11px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .reader-back-btn:hover { background: rgba(255,255,255,0.22); }
+
+    .reader-title-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .reader-author-text {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      margin-left: 6px;
+    }
+
+    /* Center Controls: Page Nav */
+    .reader-nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .reader-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      user-select: none;
+    }
+    .reader-btn:hover:not(:disabled) {
+      background: rgba(255,255,255,0.22);
+      color: #ffffff;
+    }
+    .reader-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .reader-page-box {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 8px;
+      padding: 2px 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .reader-page-box input {
+      width: 46px;
+      padding: 3px 4px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.15);
+      color: #ffffff;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Themes / Contrast */
+    .reader-modes {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.25);
+      border-radius: 8px;
+      padding: 2px;
+      border: 1px solid rgba(255,255,255,0.15);
+      gap: 2px;
+    }
+    .contrast-btn {
+      padding: 4px 9px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+    .contrast-btn:hover { color: #ffffff; }
+    .contrast-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    /* Zoom & Fullscreen */
+    .reader-zoom-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .reader-zoom-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      min-width: 40px;
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .reader-download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 11px;
+      border-radius: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .reader-download-link:hover { background: #0369a1; }
+
+    /* Continuous Vertical Viewer Stage */
+    .pdf-stage {
+      flex: 1;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: auto;
+      padding: 18px 16px 40px;
+      position: relative;
+      background: #334155;
+      scroll-behavior: auto;
+    }
+
+    .pdf-pages-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin: 0 auto;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    .pdf-page-slot {
+      position: relative;
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pdf-page-slot canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .pdf-page-stub {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+    .pdf-page-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.55);
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      pointer-events: none;
+    }
+
+    .pdf-stage[data-reader-theme="night"],
+    [data-reader-theme="night"] .pdf-stage {
+      background: #090e17 !important;
+    }
+    [data-reader-theme="night"] .pdf-page-slot {
+      background: #141b29;
+    }
+    [data-reader-theme="night"] .pdf-page-slot canvas {
+      filter: invert(0.92) hue-rotate(180deg) contrast(1.08);
+    }
+
+    .pdf-stage[data-reader-theme="sepia"],
+    [data-reader-theme="sepia"] .pdf-stage {
+      background: #e8dec8 !important;
+    }
+    [data-reader-theme="sepia"] .pdf-page-slot canvas {
+      filter: sepia(0.38) contrast(0.96);
+    }
+
+    #pdf-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(15, 23, 42, 0.9);
+      color: #ffffff;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      z-index: 25;
+    }
+    #pdf-loading[hidden] { display: none !important; }
+
+    .reader-progress-line {
+      height: 3px;
+      width: 100%;
+      background: rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+    .reader-progress-fill {
+      height: 100%;
+      background: #0284c7;
+      transition: width 0.25s ease;
+    }
+
+    body.is-embedded .reader-back-btn,
+    body.is-embedded .reader-download-link {
+      display: none !important;
+    }
+  </style>
+</head>
+<body id="reader-container" data-reader-theme="standard">
+  <div class="reader-app">
+
+    <div class="reader-bar">
+      <div class="reader-info">
+        <a class="reader-back-btn" href="{% url 'book_detail' book.pk %}" title="Kitob sahifasiga qaytish">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          <span>Orqaga</span>
+        </a>
+        <div class="reader-title-text" title="{{ book.title }}">
+          {{ book.title }}
+          <span class="reader-author-text">· {{ book.author }}</span>
+        </div>
+      </div>
+
+      <div class="reader-nav-controls">
+        <button id="prev-page" class="reader-btn" type="button" title="Oldingi sahifa">←</button>
+        <div class="reader-page-box">
+          <input id="page-number" type="number" min="1" value="{{ progress.current_page|default:1 }}" aria-label="Sahifa">
+          <span id="page-total">/ …</span>
+        </div>
+        <button id="next-page" class="reader-btn" type="button" title="Keyingi sahifa">→</button>
+      </div>
+
+      <div class="reader-modes" role="group" aria-label="Mutolaa rejimi">
+        <button type="button" class="contrast-btn active" data-contrast="standard">Standart</button>
+        <button type="button" class="contrast-btn" data-contrast="sepia">Sepiya</button>
+        <button type="button" class="contrast-btn" data-contrast="night">Tungi</button>
+      </div>
+
+      <div class="reader-zoom-group">
+        <button id="zoom-out" class="reader-btn" type="button" title="Kichraytirish">−</button>
+        <span id="zoom-label" class="reader-zoom-label">100%</span>
+        <button id="zoom-in" class="reader-btn" type="button" title="Kattalashtirish">+</button>
+        <button id="fullscreen-btn" class="reader-btn" type="button" title="To‘liq ekran">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+      </div>
+
+      <a class="reader-download-link" href="{% url 'download_book_file' book.pk %}" title="Yuklab olish">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Yuklab olish</span>
+      </a>
+    </div>
+
+    <!-- Hidden elements for compatibility -->
+    <div style="display:none;">
+      <span id="page-label">Sahifa {{ progress.current_page|default:1 }}</span>
+      <span id="save-status">Saqlanmoqda</span>
+      <div class="progress-track"><span id="reader-progress-bar" style="width:{{ progress.percent|default:0 }}%"></span></div>
+    </div>
+
+    <div class="reader-progress-line">
+      <div class="reader-progress-fill" id="reader-progress-fill" style="width:{{ progress.percent|default:0 }}%;"></div>
+    </div>
+
+    <div id="pdf-error" hidden style="padding:20px;margin:20px;border-radius:12px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);text-align:center;">
+      <p style="margin:0 0 12px;font-weight:600;color:#fca5a5;">PDF hujjatini yuklashda uzilish yuz berdi. Quyidagi havola orqali ochib ko‘rishingiz mumkin:</p>
+      <a href="{% url 'download_book_file' book.pk %}" class="reader-download-link" target="_blank" rel="noopener">Faylni yuklab olish</a>
+    </div>
+
+    <div id="pdf-loading">Kitob sahifalari yuklanmoqda…</div>
+
+    <div class="pdf-stage" id="pdf-stage" data-reader-theme="standard">
+      <div class="pdf-pages-stack" id="pdf-pages-stack"></div>
+    </div>
+
+  </div>
+
+  <script>
+    if (window.self !== window.top) {
+      document.body.classList.add('is-embedded');
+    }
+    window.readerConfig = {
+      pdfUrl: "{{ pdf_source_url|default:''|escapejs }}" || "{% url 'book_pdf_file' book.pk %}",
+      startPage: {{ progress.current_page|default:1 }},
+      saveUrl: "{% url 'save_progress' book.pk %}",
+      csrf: "{{ csrf_token }}"
+    };
+  </script>
+  <script src="{% static 'catalog/reader.js' %}?v=continuous_scroll_v4" defer></script>
+</body>
+</html>

@@ -1,0 +1,571 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if show_auth_portal %}
+    UrDU Akademik Litseyi — Raqamli Kutubxona
+  {% else %}
+    Darsliklar va Fond — Urganch Davlat Akademik Litseyi
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if show_auth_portal %}
+<div class="uzedu-auth-layout" style="width:100% !important;max-width:100% !important;min-height:100vh;min-height:100dvh;position:relative;overflow:hidden;background:#002c4d;margin:0;padding:0;">
+  
+  <!-- Exact background image with -scale-x-100 and object-cover (from lib.uzedu.uz DevTools) -->
+  <div class="pointer-events-none absolute inset-0 size-full" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:0;">
+    <img src="{% static 'catalog/images/sign_in_books.webp' %}" alt="" class="sign-in-books-img pointer-events-none absolute inset-0 size-full -scale-x-100 object-cover" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:25% 50%;transform:scaleX(-1);filter:brightness(0.92) contrast(1.08);">
+    <div class="sign-in-shade pointer-events-none absolute inset-0"></div>
+  </div>
+
+  <!-- Header (sign-in-frame) with z-50 -->
+  <header class="sign-in-frame relative z-50 flex items-center justify-between gap-4 px-4 pt-4 sm:px-8 lg:absolute lg:inset-x-0 lg:top-0 lg:pt-5" style="max-width:1440px;margin:0 auto;width:100%;box-sizing:border-box;">
+    <a href="{% url 'home' %}" class="uzedu-brand" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div class="uzedu-brand-logo-wrap" style="width:40px;height:40px;min-width:40px;border-radius:10px;background:rgba(255,255,255,0.14);border:1.5px solid rgba(255,255,255,0.28);box-shadow:0 4px 14px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;padding:2px;">
+        <img src="{% static 'catalog/images/litsey_logo.png' %}" alt="UrDU Litseyi" class="uzedu-brand-logo-img" style="width:32px;height:32px;object-fit:contain;border-radius:50%;background:#ffffff;padding:2px;">
+      </div>
+      <div class="uzedu-brand-texts" style="display:flex;flex-direction:column;gap:1px;">
+        <span class="uzedu-ministry-text" style="font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:#93c5fd;font-weight:700;line-height:1.2;">O‘ZBEKISTON RESPUBLIKASI</span>
+        <span class="uzedu-platform-title" style="font-size:0.88rem;font-weight:800;letter-spacing:0.02em;color:#ffffff;line-height:1.25;text-transform:uppercase;">UrDU AKADEMIK LITSEYI</span>
+        <span style="font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:#93c5fd;font-weight:700;line-height:1.2;">ELEKTRON DARSLIK ONLAYN PLATFORMASI</span>
+      </div>
+    </a>
+  </header>
+
+  <!-- Main (sign-in-frame) -->
+  <main class="sign-in-frame relative flex flex-1 items-center justify-center gap-12 px-4 py-4 sm:px-8 lg:justify-between lg:py-0" style="max-width:1440px;margin:0 auto;width:100%;box-sizing:border-box;">
+    
+    <!-- LEFT HERO COLUMN -->
+    <div class="sign-in-hero" style="max-width:460px;">
+      <h1 class="sign-in-h1" style="font-size:2.3rem;font-weight:800;color:#ffffff;line-height:1.15;letter-spacing:-0.025em;margin:0 0 10px;">
+        Raqamli Kutubxona
+      </h1>
+
+      <p class="sign-in-desc" style="font-size:0.92rem;color:rgba(255,255,255,0.82);line-height:1.5;margin:0 0 20px;max-width:420px;">
+        Elektron darsliklar va akademik litsey kutubxonasi uchun yagona axborot platformasi.
+      </p>
+
+      <!-- 3 Feature Highlights -->
+      <ul class="sign-in-features" style="display:flex;flex-direction:column;gap:14px;padding:0;margin:0;list-style:none;">
+        <li class="sign-in-feature-item" style="display:flex;align-items:center;gap:14px;">
+          <div class="sign-in-feature-icon" style="width:38px;height:38px;min-width:38px;border-radius:50%;background:rgba(35,166,240,0.12);border:1.5px solid #23a6f0;display:flex;align-items:center;justify-content:center;color:#38bdf8;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          </div>
+          <div class="sign-in-feature-text" style="display:flex;flex-direction:column;gap:2px;">
+            <strong style="color:#ffffff;font-size:0.88rem;font-weight:700;">Elektron darsliklar</strong>
+            <span style="color:#94a3b8;font-size:0.8rem;">Barcha guruh va fanlar uchun darsliklar bir joyda</span>
+          </div>
+        </li>
+
+        <li class="sign-in-feature-item" style="display:flex;align-items:center;gap:14px;">
+          <div class="sign-in-feature-icon" style="width:38px;height:38px;min-width:38px;border-radius:50%;background:rgba(35,166,240,0.12);border:1.5px solid #23a6f0;display:flex;align-items:center;justify-content:center;color:#38bdf8;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+          </div>
+          <div class="sign-in-feature-text" style="display:flex;flex-direction:column;gap:2px;">
+            <strong style="color:#ffffff;font-size:0.88rem;font-weight:700;">Tarqatish va qaytarish</strong>
+            <span style="color:#94a3b8;font-size:0.8rem;">Buyurtma, tarqatish va yig‘ib olish nazorati</span>
+          </div>
+        </li>
+
+        <li class="sign-in-feature-item" style="display:flex;align-items:center;gap:14px;">
+          <div class="sign-in-feature-icon" style="width:38px;height:38px;min-width:38px;border-radius:50%;background:rgba(35,166,240,0.12);border:1.5px solid #23a6f0;display:flex;align-items:center;justify-content:center;color:#38bdf8;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          </div>
+          <div class="sign-in-feature-text" style="display:flex;flex-direction:column;gap:2px;">
+            <strong style="color:#ffffff;font-size:0.88rem;font-weight:700;">Hisobotlar</strong>
+            <span style="color:#94a3b8;font-size:0.8rem;">Litsey, guruh va kafedralar kesimida</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- RIGHT AUTH CARD (Compact, balanced & zero-overflow) -->
+    <div class="sign-in-card" style="width:100%;max-width:360px;border-radius:14px;padding:16px 20px;background:rgba(13,24,41,0.92);border:1px solid rgba(255,255,255,0.12);box-shadow:0 20px 50px -10px rgba(0,0,0,0.7);backdrop-filter:blur(20px);box-sizing:border-box;">
+      
+      <!-- Card Header with In-Card Theme Switcher -->
+      <div class="uzedu-card-head" style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;">
+        <div>
+          <h2 id="card-main-title" class="uzedu-card-title" style="font-size:1.25rem;font-weight:700;color:#ffffff;margin:0 0 2px;letter-spacing:-0.02em;">{% if auth_tab == 'register' %}Ro‘yxatdan o‘tish{% else %}Tizimga kirish{% endif %}</h2>
+          <p id="card-main-subtitle" class="uzedu-card-subtitle" style="font-size:0.76rem;color:#94a3b8;margin:0;">{% if auth_tab == 'register' %}Litsey platformasida yangi hisob ochish{% else %}Davom etish uchun hisobingizga kiring{% endif %}</p>
+        </div>
+        <button id="theme-toggle" class="theme-toggle-btn uzedu-card-theme-btn" type="button" onclick="toggleAppTheme()" aria-label="Mavzuni almashtirish (Kun / Tun)" title="Kun / Tun rejimini almashtirish" style="width:30px;height:30px;min-width:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.08);transition:all 0.2s ease;">
+          <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Segmented Capsule Tabs: [ Login va parol ] | [ Ro'yxatdan o'tish ] -->
+      <div class="uzedu-tabs-capsule" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:3px;margin-bottom:8px;">
+        <button type="button" id="tab-btn-login" class="uzedu-capsule-btn {% if auth_tab != 'register' %}active{% endif %}" onclick="setAuthTab('login')" style="border:none;border-radius:7px;padding:5px 8px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s ease;">
+          Login va parol
+        </button>
+        <button type="button" id="tab-btn-register" class="uzedu-capsule-btn {% if auth_tab == 'register' %}active{% endif %}" onclick="setAuthTab('register')" style="border:none;border-radius:7px;padding:5px 8px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s ease;">
+          Ro‘yxatdan o‘tish
+        </button>
+      </div>
+
+      <!-- Flash Messages & Errors -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="uzedu-alert-box alert-{{ message.tags|default:'info' }}" data-type="{{ message.tags|default:'info' }}">
+            <div class="uzedu-alert-main">
+              {% if message.tags == 'success' %}
+                <svg class="uzedu-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              {% else %}
+                <svg class="uzedu-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              {% endif %}
+              <span class="uzedu-alert-text">{{ message }}</span>
+            </div>
+            <button type="button" class="uzedu-alert-close" onclick="this.parentElement.remove()" aria-label="Yopish">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if auth_error or error %}
+        <div class="uzedu-alert-box alert-error" data-type="error">
+          <div class="uzedu-alert-main">
+            <svg class="uzedu-alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span class="uzedu-alert-text">{{ auth_error|default:error }}</span>
+          </div>
+          <button type="button" class="uzedu-alert-close" onclick="this.parentElement.remove()" aria-label="Yopish">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      {% endif %}
+
+      <!-- PANE 1: DIRECT LOGIN FORM -->
+      <form id="form-login" method="post" action="{% url 'login' %}" style="{% if auth_tab == 'register' %}display:none;{% endif %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="login">
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        {% if redirectURL %}<input type="hidden" name="redirectURL" value="{{ redirectURL }}">{% endif %}
+
+        <div class="uzedu-field" style="margin-bottom:7px;">
+          <label for="login-username" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin-bottom:3px;display:block;">Login</label>
+          <div class="uzedu-input-wrap" style="position:relative;">
+            <input type="text" id="login-username" name="username" class="uzedu-input" placeholder="Loginni kiriting" required autocomplete="username" autofocus style="width:100%;box-sizing:border-box;border-radius:8px;padding:7px 10px;font-size:0.84rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+          </div>
+        </div>
+
+        <div class="uzedu-field" style="margin-bottom:9px;">
+          <div class="uzedu-label-row" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+            <label for="login-password" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin:0;">Parol</label>
+            <a href="{% url 'password_reset' %}" class="uzedu-forgot-link" style="font-size:0.72rem;color:#38bdf8;text-decoration:none;">Parolni unutdingizmi?</a>
+          </div>
+          <div class="uzedu-input-wrap" style="position:relative;">
+            <input type="password" id="login-password" name="password" class="uzedu-input" placeholder="Parolni kiriting" required autocomplete="current-password" style="width:100%;box-sizing:border-box;border-radius:8px;padding:7px 34px 7px 10px;font-size:0.84rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+            <button type="button" class="uzedu-pwd-toggle" onclick="togglePasswordVisibility('login-password', this)" title="Parolni ko‘rsatish" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:2px;display:flex;align-items:center;color:#64748b;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="uzedu-btn-primary" style="width:100%;border:none;border-radius:8px;padding:8px 14px;font-size:0.85rem;font-weight:700;cursor:pointer;background:#23a6f0;color:#ffffff;box-shadow:0 4px 14px rgba(35,166,240,0.35);transition:all 0.2s ease;">
+          <span>Tizimga kirish</span>
+        </button>
+      </form>
+
+      <!-- PANE 2: STANDARD REGISTRATION FORM -->
+      <form id="form-register" method="post" action="{% url 'login' %}" style="{% if auth_tab != 'register' %}display:none;{% endif %}" onsubmit="return validateRegisterForm(this)">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="register">
+
+        <!-- 1. Ism va Familiya -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px;">
+          <div class="uzedu-field">
+            <label for="reg-first-name" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin-bottom:3px;display:block;">Ism</label>
+            <div class="uzedu-input-wrap">
+              <input type="text" id="reg-first-name" name="first_name" class="uzedu-input" placeholder="Ismingiz" required autocomplete="given-name" style="width:100%;box-sizing:border-box;border-radius:8px;padding:6px 9px;font-size:0.82rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+            </div>
+          </div>
+          <div class="uzedu-field">
+            <label for="reg-last-name" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin-bottom:3px;display:block;">Familiya</label>
+            <div class="uzedu-input-wrap">
+              <input type="text" id="reg-last-name" name="last_name" class="uzedu-input" placeholder="Familiyangiz" required autocomplete="family-name" style="width:100%;box-sizing:border-box;border-radius:8px;padding:6px 9px;font-size:0.82rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Login (Username) -->
+        <div class="uzedu-field" style="margin-bottom:6px;">
+          <label for="reg-username" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin-bottom:3px;display:flex;align-items:center;justify-content:space-between;">
+            <span>Login</span>
+            <span style="font-size:0.7rem;color:#94a3b8;font-weight:400;">(foydalanuvchi nomi)</span>
+          </label>
+          <div class="uzedu-input-wrap" style="position:relative;">
+            <input type="text" id="reg-username" name="username" class="uzedu-input" placeholder="Login tanlang (kamida 3 belgi)" required autocomplete="username" minlength="3" style="width:100%;box-sizing:border-box;border-radius:8px;padding:6px 9px;font-size:0.82rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+          </div>
+        </div>
+
+        <!-- 3. Parol -->
+        <div class="uzedu-field" style="margin-bottom:6px;">
+          <label for="reg-password" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin-bottom:3px;display:flex;align-items:center;justify-content:space-between;">
+            <span>Parol</span>
+            <span style="font-size:0.7rem;color:#94a3b8;font-weight:400;">(kamida 6 belgi)</span>
+          </label>
+          <div class="uzedu-input-wrap" style="position:relative;">
+            <input type="password" id="reg-password" name="password" class="uzedu-input" placeholder="Parol o‘ylab toping" required autocomplete="new-password" minlength="6" style="width:100%;box-sizing:border-box;border-radius:8px;padding:6px 32px 6px 9px;font-size:0.82rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+            <button type="button" class="uzedu-pwd-toggle" onclick="togglePasswordVisibility('reg-password', this)" title="Parolni ko‘rsatish" style="position:absolute;right:7px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:2px;display:flex;align-items:center;color:#64748b;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Parolni tasdiqlang -->
+        <div class="uzedu-field" style="margin-bottom:9px;">
+          <label for="reg-password-confirm" class="uzedu-label" style="font-size:0.76rem;font-weight:600;color:#cbd5e1;margin-bottom:3px;display:block;">Parolni tasdiqlang</label>
+          <div class="uzedu-input-wrap" style="position:relative;">
+            <input type="password" id="reg-password-confirm" name="password_confirm" class="uzedu-input" placeholder="Parolni qaytadan kiriting" required autocomplete="new-password" minlength="6" style="width:100%;box-sizing:border-box;border-radius:8px;padding:6px 32px 6px 9px;font-size:0.82rem;border:1.5px solid rgba(255,255,255,0.14);background:rgba(7,18,33,0.88);color:#ffffff;">
+            <button type="button" class="uzedu-pwd-toggle" onclick="togglePasswordVisibility('reg-password-confirm', this)" title="Parolni ko‘rsatish" style="position:absolute;right:7px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:2px;display:flex;align-items:center;color:#64748b;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div id="pwd-match-error" style="display:none;color:#f87171;font-size:0.72rem;margin-top:2px;font-weight:500;">
+            Parollar bir-biriga mos kelmadi!
+          </div>
+        </div>
+
+        <!-- 5. Submit Button -->
+        <button type="submit" class="uzedu-btn-primary" style="width:100%;border:none;border-radius:8px;padding:8px 14px;font-size:0.85rem;font-weight:700;cursor:pointer;background:#23a6f0;color:#ffffff;box-shadow:0 4px 14px rgba(35,166,240,0.35);transition:all 0.2s ease;">
+          <span>Ro‘yxatdan o‘tish</span>
+        </button>
+
+        <!-- 6. Footer Link -->
+        <div style="margin-top:7px;text-align:center;">
+          <span style="font-size:0.76rem;color:#94a3b8;">Hisobingiz bormi?</span>
+          <button type="button" onclick="setAuthTab('login')" style="background:none;border:none;cursor:pointer;font-size:0.76rem;font-weight:600;color:#38bdf8;margin-left:4px;">
+            Tizimga kirish &rarr;
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+</div>
+
+<script>
+  function setAuthTab(tab) {
+    var btnLogin = document.getElementById('tab-btn-login');
+    var btnRegister = document.getElementById('tab-btn-register');
+    var formLogin = document.getElementById('form-login');
+    var formRegister = document.getElementById('form-register');
+    var cardTitle = document.getElementById('card-main-title');
+    var cardSubtitle = document.getElementById('card-main-subtitle');
+
+    if (tab === 'register') {
+      if (btnLogin) btnLogin.classList.remove('active');
+      if (btnRegister) btnRegister.classList.add('active');
+      if (formLogin) formLogin.style.display = 'none';
+      if (formRegister) {
+        formRegister.style.display = 'block';
+        var inp = document.getElementById('reg-first-name');
+        if (inp) inp.focus();
+      }
+      if (cardTitle) cardTitle.textContent = 'Ro‘yxatdan o‘tish';
+      if (cardSubtitle) cardSubtitle.textContent = 'Litsey platformasida yangi hisob ochish';
+    } else {
+      if (btnRegister) btnRegister.classList.remove('active');
+      if (btnLogin) btnLogin.classList.add('active');
+      if (formRegister) formRegister.style.display = 'none';
+      if (formLogin) {
+        formLogin.style.display = 'block';
+        var inp2 = document.getElementById('login-username');
+        if (inp2) inp2.focus();
+      }
+      if (cardTitle) cardTitle.textContent = 'Tizimga kirish';
+      if (cardSubtitle) cardSubtitle.textContent = 'Davom etish uchun hisobingizga kiring';
+    }
+  }
+
+  function validateRegisterForm(form) {
+    var p1 = document.getElementById('reg-password');
+    var p2 = document.getElementById('reg-password-confirm');
+    var err = document.getElementById('pwd-match-error');
+    if (p1 && p2 && p1.value !== p2.value) {
+      if (err) err.style.display = 'block';
+      p2.focus();
+      return false;
+    }
+    if (err) err.style.display = 'none';
+    return true;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var p1 = document.getElementById('reg-password');
+    var p2 = document.getElementById('reg-password-confirm');
+    var err = document.getElementById('pwd-match-error');
+    if (p1 && p2 && err) {
+      function checkMatch() {
+        if (p2.value && p1.value !== p2.value) {
+          err.style.display = 'block';
+        } else {
+          err.style.display = 'none';
+        }
+      }
+      p1.addEventListener('input', checkMatch);
+      p2.addEventListener('input', checkMatch);
+    }
+  });
+
+  function togglePasswordVisibility(fieldId, btn) {
+    var input = document.getElementById(fieldId);
+    if (!input) return;
+    if (input.type === 'password') {
+      input.type = 'text';
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+    } else {
+      input.type = 'password';
+      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+    }
+  }
+</script>
+
+{% else %}
+<div class="lib-content-wrap">
+
+  <!-- Yagona va ixcham qidiruv maydoni -->
+  <div class="lib-search-card">
+    <div class="lib-search-top">
+      <h2 class="lib-search-title">Kitob qidirish</h2>
+      <span class="lib-search-count">
+        {% if query or selected_category or selected_subject %}
+          {{ filtered_count }} ta natija (jami {{ book_count }})
+        {% else %}
+          {{ book_count }} ta kitob
+        {% endif %}
+      </span>
+    </div>
+
+    <form method="get" action="{% url 'home' %}" class="lib-search-form">
+      <input
+        type="search"
+        name="q"
+        value="{{ query }}"
+        class="lib-search-input"
+        placeholder="Kitob nomi, muallif yoki fan bo‘yicha qidirish..."
+        autocomplete="off">
+      {% if selected_category %}
+        <input type="hidden" name="category" value="{{ selected_category }}">
+      {% endif %}
+      {% if not user.is_authenticated %}
+        <input type="hidden" name="browse" value="1">
+      {% endif %}
+      <button type="submit" class="lib-search-btn">Qidirish</button>
+    </form>
+
+    {% if query or selected_category or selected_subject %}
+      <div class="lib-filter-bar">
+        <span>
+          {% if query %}So‘rov: <strong>«{{ query }}»</strong>{% endif %}
+          {% if selected_subject %}{% if query %} · {% endif %}Fan: <strong>{{ selected_subject }}</strong>{% endif %}
+          {% if query or selected_subject %} · {% endif %}<strong>{{ filtered_count }}</strong> ta kitob topildi
+        </span>
+        <a href="{% url 'home' %}{% if not user.is_authenticated %}?browse=1{% endif %}" class="lib-filter-clear">
+          ✕ Filtrni tozalash
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Fan toifalari (ixcham wrap, gorizontal scrolsiz) -->
+  <div class="lib-category-bar">
+    <a href="{% url 'home' %}{% if query %}?q={{ query|urlencode }}{% elif not user.is_authenticated %}?browse=1{% endif %}" class="lib-cat-pill {% if not selected_category %}active{% endif %}">
+      <span>Barcha fanlar</span>
+      <span class="lib-cat-count">{{ book_count }}</span>
+    </a>
+
+    {% for cat in categories %}
+      <a href="{% url 'home' %}?category={{ cat.id }}{% if query %}&q={{ query|urlencode }}{% endif %}" class="lib-cat-pill {% if selected_category == cat.id|stringformat:'s' %}active{% endif %}">
+        <span>{{ cat.name }}</span>
+        <span class="lib-cat-count">{{ cat.approved_count }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <!-- Yagona kitoblar gridi -->
+  <div class="lib-books-grid">
+    {% for book in books %}
+      <article class="lib-book-card" data-book-id="{{ book.id }}">
+
+        <a href="{% url 'book_detail' book.id %}" class="lib-book-cover-wrap" aria-label="{{ book.title }}">
+          {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="lib-book-cover-img" loading="lazy">
+          {% else %}
+            <div class="lib-book-cover-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="opacity:0.85;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span>{{ book.title|truncatechars:42 }}</span>
+            </div>
+          {% endif %}
+        </a>
+
+        <div class="lib-book-body">
+          <div class="lib-book-meta">
+            <span class="lib-book-tag">{{ book.display_subject }}</span>
+            <span class="lib-book-stats-mini">
+              <span title="Mutolaalar soni">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                {{ book.view_count }}
+              </span>
+              <span title="Yuklab olishlar soni">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                {{ book.download_count }}
+              </span>
+            </span>
+          </div>
+
+          <h3 class="lib-book-title" title="{{ book.title }}">
+            <a href="{% url 'book_detail' book.id %}">{{ book.title }}</a>
+          </h3>
+          <p class="lib-book-author" title="{{ book.author }}">{{ book.author }}</p>
+
+          <div class="lib-book-actions">
+            {% if book.pdf_file or book.external_url %}
+              {% if user.is_authenticated %}
+                <button type="button" class="lib-btn-read" onclick="openLibModalReader('{{ book.title|escapejs }}', '{% url 'book_pdf' book.id %}', '{% url 'download_book_file' book.id %}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Mutolaa qilish</span>
+                </button>
+              {% else %}
+                <a href="{% url 'login' %}?next={% url 'book_pdf' book.id %}" class="lib-btn-read">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Mutolaa qilish</span>
+                </a>
+              {% endif %}
+              <a href="{% url 'download_book_file' book.id %}" class="lib-btn-icon" title="PDF yuklab olish" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            {% else %}
+              <a href="{% url 'book_detail' book.id %}" class="lib-btn-read">
+                <span>Batafsil ko‘rish</span>
+              </a>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+              <button type="button" class="lib-btn-icon {% if book.id in favorites %}active{% endif %}" onclick="toggleFavoriteInline(this, {{ book.id }})" title="Saralanganlarga qo‘shish">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="{% if book.id in favorites %}#ef4444{% else %}none{% endif %}" stroke="{% if book.id in favorites %}#ef4444{% else %}currentColor{% endif %}" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            {% endif %}
+          </div>
+
+        </div>
+      </article>
+    {% endfor %}
+
+    {% for rb in remote_books %}
+      <article class="lib-book-card">
+        <a href="{% url 'ziyouz_open_book' rb.id %}" class="lib-book-cover-wrap" aria-label="{{ rb.title }}">
+          <img src="{% url 'ziyouz_cover' rb.id %}" alt="{{ rb.title }}" class="lib-book-cover-img" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="lib-book-cover-placeholder" style="display:none;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="opacity:0.85;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>{{ rb.title|truncatechars:42 }}</span>
+          </div>
+        </a>
+
+        <div class="lib-book-body">
+          <div class="lib-book-meta">
+            <span class="lib-book-tag">{{ rb.subject }}</span>
+            <span class="lib-book-stats-mini">PDF</span>
+          </div>
+
+          <h3 class="lib-book-title" title="{{ rb.title }}">
+            <a href="{% url 'ziyouz_open_book' rb.id %}">{{ rb.title }}</a>
+          </h3>
+          <p class="lib-book-author" title="{{ rb.author }}">{{ rb.author }}</p>
+
+          <div class="lib-book-actions">
+            {% if user.is_authenticated %}
+              <button type="button" class="lib-btn-read" onclick="openLibModalReader('{{ rb.title|escapejs }}', '{% url 'ziyouz_open_book' rb.id %}?mode=read', '{% url 'ziyouz_open_book' rb.id %}?mode=download')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>Mutolaa qilish</span>
+              </button>
+            {% else %}
+              <a href="{% url 'ziyouz_open_book' rb.id %}?mode=read" class="lib-btn-read">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>Mutolaa qilish</span>
+              </a>
+            {% endif %}
+            <a href="{% url 'ziyouz_open_book' rb.id %}?mode=download" class="lib-btn-icon" title="PDF yuklab olish">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+
+    {% if not books and not remote_books %}
+      <div style="grid-column:1/-1;text-align:center;padding:48px 20px;background:var(--bg-surface);border:1px dashed var(--border-main);border-radius:12px;">
+        <h3 style="margin:0 0 6px;">Kitoblar topilmadi</h3>
+        <p style="color:var(--text-secondary);margin:0 0 14px;font-size:0.88rem;">So‘rov bo‘yicha adabiyot topilmadi.</p>
+        <a href="{% url 'home' %}{% if not user.is_authenticated %}?browse=1{% endif %}" class="lib-btn-primary-sm">Barcha kitoblarni ko‘rish</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Sahifalash (Pagination) -->
+  {% if page_obj.has_other_pages %}
+    <nav class="lib-pagination" aria-label="Sahifalar">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query|urlencode }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if not user.is_authenticated %}&browse=1{% endif %}" class="lib-page-btn">&larr; Oldingi</a>
+      {% endif %}
+
+      {% for num in page_items %}
+        {% if num == ellipsis_marker %}
+          <span class="lib-page-btn" style="cursor:default;opacity:0.6;">…</span>
+        {% elif num == page_obj.number %}
+          <span class="lib-page-btn active">{{ num }}</span>
+        {% else %}
+          <a href="?page={{ num }}{% if query %}&q={{ query|urlencode }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if not user.is_authenticated %}&browse=1{% endif %}" class="lib-page-btn">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query|urlencode }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if not user.is_authenticated %}&browse=1{% endif %}" class="lib-page-btn">Keyingi &rarr;</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+
+</div>
+
+<script>
+  function toggleFavoriteInline(btn, bookId) {
+    fetch('/kitob/' + bookId + '/sevimli/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data && typeof data.is_favorite !== 'undefined') {
+        var svg = btn.querySelector('svg');
+        if (data.is_favorite) {
+          btn.classList.add('active');
+          if (svg) {
+            svg.setAttribute('fill', '#ef4444');
+            svg.setAttribute('stroke', '#ef4444');
+          }
+        } else {
+          btn.classList.remove('active');
+          if (svg) {
+            svg.setAttribute('fill', 'none');
+            svg.setAttribute('stroke', 'currentColor');
+          }
+        }
+      }
+    })
+    .catch(function(err) { console.error(err); });
+  }
+</script>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Elektron Sertifikat #{{ attempt.certificate_code }} | Urganch akademik litseyi{% endblock %}
+
+{% block content %}
+<div class="certificate-page-wrap">
+  <div class="cert-toolbar no-print">
+    <a href="{% url 'quiz_list' %}" class="cert-back-btn">← Testlar ro‘yxatiga qaytish</a>
+    <button type="button" class="cert-print-btn" onclick="window.print()" style="display:inline-flex;align-items:center;gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span>Sertifikatni chop etish / PDF saqlash</span>
+    </button>
+  </div>
+
+  <div class="certificate-container" id="certificate-print-area">
+    <div class="cert-border-outer">
+      <div class="cert-border-inner">
+        
+        <!-- HEADER -->
+        <div class="cert-header">
+          <div class="cert-seal-wrap">
+            <img src="{% static 'catalog/images/litsey_logo.png' %}" alt="UrDU Litseyi Rasmiy Muhri" style="width:72px;height:72px;object-fit:contain;border-radius:50%;box-shadow:0 2px 10px rgba(0,0,0,0.15);">
+          </div>
+          <h2 class="cert-institution">O‘ZBEKISTON RESPUBLIKASI OLIY TA’LIM, FAN VA INNOVATSIYALAR VAZIRLIGI</h2>
+          <h3 class="cert-sub-institution">URGANCH DAVLAT UNIVERSITETI HUZURIDAGI</h3>
+          <h1 class="cert-title">ABU RAYHON BERUNIY NOMIDAGI AKADEMIK LITSEY</h1>
+          <p class="cert-badge-type">RAQAMLI KUTUBXONA ELEKTRON SERTIFIKATI</p>
+        </div>
+
+        <!-- MAIN BODY -->
+        <div class="cert-body">
+          <p class="cert-awarded-text">Ushbu sertifikat tasdiqlaydiki,</p>
+          <h2 class="cert-recipient-name">
+            {{ attempt.user.get_full_name|default:attempt.user.username }}
+          </h2>
+          {% if attempt.user.group_name %}
+            <p class="cert-group-text">{{ attempt.user.group_name }} o‘quvchisi</p>
+          {% endif %}
+
+          <p class="cert-description">
+            Raqamli kutubxona platformasida <strong>{{ attempt.quiz.title }}</strong> yo‘nalishidagi bilim sinovi testidan muvaffaqiyatli o‘tib, <strong>{{ attempt.score }} / {{ attempt.total }}</strong> (<strong>{{ attempt.percent }}%</strong>) natija ko‘rsatdi.
+          </p>
+        </div>
+
+        <!-- FOOTER & QR VERIFICATION -->
+        <div class="cert-footer">
+          <div class="cert-footer-col">
+            <p class="cert-date-label">Berilgan sana:</p>
+            <p class="cert-date-val">{{ attempt.created_at|date:"d.m.Y" }}</p>
+            <p class="cert-code-label">Sertifikat kodi:</p>
+            <p class="cert-code-val">#{{ attempt.certificate_code }}</p>
+          </div>
+
+          <div class="cert-stamp-box">
+            <div class="cert-official-stamp">
+              <span>★ LITSEY ★</span>
+              <small>TASDIQLANGAN</small>
+            </div>
+          </div>
+
+          <div class="cert-footer-col text-right">
+            <div class="cert-qr-box">
+              <img src="{% url 'certificate_qrcode' attempt.pk %}" alt="Tekshirish QR kodi" class="cert-qr-img">
+              <span class="cert-qr-hint">Haqiqiyligini tekshirish</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

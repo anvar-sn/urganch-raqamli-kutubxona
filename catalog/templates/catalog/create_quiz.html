@@ -1,0 +1,381 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Yangi test yaratish — UrDU Akademik Litseyi{% endblock %}
+
+{% block content %}
+<div class="qz-builder-wrap">
+  <div class="qz-top-bar">
+    <a class="qz-back-link" href="{% url 'quiz_list' %}">← Testlar ro‘yxatiga qaytish</a>
+    <span class="qz-role-pill">{% if user.role == 'teacher' or user.role == 'librarian' or user.is_staff or user.is_superuser %}Darhol nashr qilinadi{% else %}Tekshiruvdan so‘ng chiqadi{% endif %}</span>
+  </div>
+
+  <div class="qz-head-card">
+    <h1>Yangi bilim sinovi yaratish</h1>
+    <p>Savollarni Google Docs, Word (<code>.docx</code>), matn yoki tayyor shablondan import qiling yoxud pastda xohlaganingizcha qo‘lda kiriting.</p>
+  </div>
+
+  {% if errors %}
+    <div class="qz-error-box" role="alert">
+      <strong>Iltimos, quyidagi kamchiliklarni tuzating:</strong>
+      <ul>
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" id="qz-main-form" class="qz-form" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- 1. Test ma'lumotlari -->
+    <section class="qz-panel">
+      <div class="qz-meta-grid">
+        <div class="qz-field">
+          <label for="qz-title">Test nomi *</label>
+          <input id="qz-title" name="title" type="text" maxlength="200" required value="{{ request.POST.title }}" placeholder="Masalan: Matematika — Integral asoslari">
+        </div>
+        <div class="qz-field">
+          <label for="qz-subject">Fan yoki mavzu</label>
+          <input id="qz-subject" name="subject" type="text" maxlength="100" value="{{ request.POST.subject }}" placeholder="Masalan: Matematika">
+        </div>
+      </div>
+      <div class="qz-field" style="margin-top:12px;">
+        <label for="qz-desc">Qisqacha tavsif (ixtiyoriy)</label>
+        <textarea id="qz-desc" name="description" rows="2" maxlength="3000" placeholder="Test maqsadi yoki mavzu haqida qisqacha izoh...">{{ request.POST.description }}</textarea>
+      </div>
+    </section>
+
+    <!-- 2. Google Docs / Kod / Fayl orqali tezkor import -->
+    <section class="qz-panel qz-import-panel">
+      <div class="qz-import-head">
+        <div>
+          <span class="qz-badge-blue">TEZKOR IMPORT · GOOGLE DOCS / KOD / FAYL</span>
+          <h2>Matn yoki shablondan avtomatik yaratish</h2>
+        </div>
+        <div class="qz-import-actions-top">
+          <button type="button" class="qz-btn-ghost" onclick="fillQuizTemplate()">Tayyor shablonni qo‘yish</button>
+          <a href="{% url 'parse_quiz_import_api' %}?template=1" class="qz-btn-ghost">Shablon (.txt) yuklab olish</a>
+        </div>
+      </div>
+
+      <p class="qz-import-hint">
+        Google Docs / Word hujjatingizdan nusxa olib tashlang (<code>*A)</code>, <code>#javob</code>, <code>ANSWER: B</code> yoki <code>==== / ++++</code> formatlari avtomatik taniladi) yoxud <code>.txt</code>, <code>.docx</code>, <code>.csv</code>, <code>.json</code> fayl tanlang.
+      </p>
+
+      <textarea
+        id="qz-raw-input"
+        name="raw_import_text"
+        rows="6"
+        class="qz-import-textarea"
+        placeholder="1. Savol matni?&#10;*A) To‘g‘ri javob (oldiga * qo‘ying)&#10;B) Ikkinchi variant&#10;C) Uchinchi variant&#10;D) To‘rtinchi variant&#10;&#10;2. Navbatdagi savol?&#10;A) Variant 1&#10;B) To‘g‘ri variant&#10;ANSWER: B"
+      >{{ request.POST.raw_import_text }}</textarea>
+
+      <div class="qz-import-footer">
+        <div class="qz-file-row">
+          <label class="qz-file-btn">
+            <input type="file" id="qz-file-input" accept=".txt,.md,.docx,.csv,.json" onchange="importQuizFromFile(this)">
+            <span>Fayldan yuklash (.docx, .txt, .csv, .json)</span>
+          </label>
+          <span id="qz-import-status" class="qz-import-status"></span>
+        </div>
+        <div class="qz-import-btns">
+          <button type="button" class="qz-btn-outline" onclick="importQuizText(false)">+ Mavjud savollarga qo‘shish</button>
+          <button type="button" class="qz-btn-primary-sm" onclick="importQuizText(true)">Savollarga aylantirish</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Cheksiz dinamik vizual konstruktor -->
+    <section class="qz-questions-header">
+      <div class="qz-qh-left">
+        <h2>Savollar konstruktori</h2>
+        <span id="qz-total-badge" class="qz-count-pill">Jami: 0 ta savol</span>
+      </div>
+      <div class="qz-qh-right">
+        <button type="button" class="qz-btn-outline" onclick="addQuestionCards(1)">+ 1 savol</button>
+        <button type="button" class="qz-btn-outline" onclick="addQuestionCards(5)">+ 5 savol</button>
+      </div>
+    </section>
+
+    <div id="qz-questions-container" class="qz-cards-list"></div>
+
+    <div class="qz-submit-bar">
+      <div class="qz-submit-left">
+        <button type="button" class="qz-btn-outline" onclick="addQuestionCards(1)">+ Yangi savol qo‘shish</button>
+      </div>
+      <button type="submit" class="qz-btn-submit">Testni saqlash va yuborish →</button>
+    </div>
+  </form>
+</div>
+
+<script id="qz-initial-data" type="application/json">{{ initial_questions_json|safe }}</script>
+
+<script>
+(function () {
+  const container = document.getElementById('qz-questions-container');
+  const totalBadge = document.getElementById('qz-total-badge');
+  const statusEl = document.getElementById('qz-import-status');
+  const rawTextarea = document.getElementById('qz-raw-input');
+  const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
+  let uidCounter = 0;
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function refreshIndicesAndCount() {
+    const cards = container.querySelectorAll('.qz-card');
+    cards.forEach((card, idx) => {
+      const displayNum = idx + 1;
+      const badge = card.querySelector('.qz-card-num');
+      if (badge) badge.textContent = displayNum + '-savol';
+      const checked = card.querySelector('input[type="radio"]:checked');
+      card.querySelectorAll('.qz-option-row').forEach((row) => {
+        const r = row.querySelector('input[type="radio"]');
+        row.classList.toggle('is-selected', Boolean(r && r.checked));
+      });
+      const warn = card.querySelector('.qz-warn-pill');
+      const qVal = (card.querySelector('.qz-q-input')?.value || '').trim();
+      if (warn) {
+        warn.style.display = qVal && !checked ? 'inline-flex' : 'none';
+      }
+    });
+    totalBadge.textContent = 'Jami: ' + cards.length + ' ta savol';
+  }
+
+  function createOptionRowHtml(qId, optIdx, value, isCorrect) {
+    const letter = LETTERS[optIdx - 1] || String(optIdx);
+    return `
+      <div class="qz-option-row ${isCorrect ? 'is-selected' : ''}">
+        <label class="qz-correct-radio" title="To‘g‘ri javob sifatida belgilash">
+          <input type="radio" name="correct_${qId}" value="${optIdx}" ${isCorrect ? 'checked' : ''} onchange="window.__qzRefresh()">
+          <span class="qz-radio-mark"></span>
+          <span class="qz-opt-letter">${letter}</span>
+        </label>
+        <input
+          type="text"
+          class="qz-opt-input"
+          name="option_${qId}_${optIdx}"
+          maxlength="500"
+          value="${escapeHtml(value)}"
+          placeholder="${letter} variantini kiriting..."
+        >
+        <span class="qz-selected-tag">✓ To‘g‘ri</span>
+      </div>
+    `;
+  }
+
+  function addQuestionCard(data) {
+    uidCounter += 1;
+    const qId = uidCounter;
+    const item = data || { text: '', options: ['', '', '', ''], correct: 0 };
+    const opts = Array.isArray(item.options) && item.options.length >= 2 ? item.options : ['', '', '', ''];
+    const correctIdx = Number(item.correct) || 0;
+
+    const card = document.createElement('article');
+    card.className = 'qz-card';
+    card.dataset.qid = String(qId);
+
+    const optionsHtml = opts
+      .slice(0, 6)
+      .map((val, i) => createOptionRowHtml(qId, i + 1, val, correctIdx === i + 1))
+      .join('');
+
+    card.innerHTML = `
+      <div class="qz-card-head">
+        <div class="qz-card-title-row">
+          <span class="qz-card-num">1-savol</span>
+          <span class="qz-warn-pill" style="display:none;">To‘g‘ri javobni belgilang</span>
+        </div>
+        <button type="button" class="qz-del-btn" onclick="window.__qzRemoveCard(this)" title="Savolni o‘chirish">O‘chirish</button>
+      </div>
+      <div class="qz-field">
+        <input
+          type="text"
+          class="qz-q-input"
+          name="question_${qId}"
+          maxlength="1000"
+          value="${escapeHtml(item.text || '')}"
+          placeholder="Savol matnini kiriting..."
+          oninput="window.__qzRefresh()"
+        >
+      </div>
+      <div class="qz-options-list">${optionsHtml}</div>
+      <div class="qz-card-foot">
+        <button type="button" class="qz-add-opt-btn" onclick="window.__qzAddOption(this)">+ Variant qo‘shish</button>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+
+  window.__qzRefresh = refreshIndicesAndCount;
+
+  window.__qzRemoveCard = function (btn) {
+    const cards = container.querySelectorAll('.qz-card');
+    if (cards.length <= 1) {
+      const card = btn.closest('.qz-card');
+      card.querySelectorAll('input[type="text"]').forEach((inp) => { inp.value = ''; });
+      card.querySelectorAll('input[type="radio"]').forEach((r) => { r.checked = false; });
+    } else {
+      btn.closest('.qz-card').remove();
+    }
+    refreshIndicesAndCount();
+  };
+
+  window.__qzAddOption = function (btn) {
+    const card = btn.closest('.qz-card');
+    const list = card.querySelector('.qz-options-list');
+    const qId = card.dataset.qid;
+    const count = list.querySelectorAll('.qz-option-row').length;
+    if (count >= 6) return;
+    list.insertAdjacentHTML('beforeend', createOptionRowHtml(qId, count + 1, '', false));
+    if (count + 1 >= 6) btn.style.display = 'none';
+    refreshIndicesAndCount();
+  };
+
+  window.addQuestionCards = function (n) {
+    for (let i = 0; i < n; i++) {
+      addQuestionCard({ text: '', options: ['', '', '', ''], correct: 0 });
+    }
+    refreshIndicesAndCount();
+    const last = container.lastElementChild;
+    if (last && n === 1) {
+      last.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const inp = last.querySelector('.qz-q-input');
+      if (inp) inp.focus();
+    }
+  };
+
+  window.fillQuizTemplate = function () {
+    rawTextarea.value = `1. Alisher Navoiy qaysi asarda «Tilga ixtiyorsiz — elga e’tiborsiz» hikmatini keltirgan?
+*A) Mahbub ul-qulub
+B) Hayrat ul-abror
+C) Farhod va Shirin
+D) Lison ut-tayr
+
+2. Python dasturlash tilida ro‘yxat (list) uzunligini qaysi funksiya aniqlaydi?
+A) count()
+*B) len()
+C) size()
+D) length()
+
+Nyutonning ikkinchi qonuni formulasini belgilang.
+====
+F = m / a
+====
+#F = m * a
+====
+F = m + a
+====
+F = a / m
+++++`;
+    statusEl.textContent = 'Namuna shablon joylandi — «Savollarga aylantirish» tugmasini bosing.';
+    statusEl.className = 'qz-import-status';
+    rawTextarea.focus();
+  };
+
+  function hasOnlyBlankCards() {
+    const cards = container.querySelectorAll('.qz-card');
+    for (const card of cards) {
+      for (const inp of card.querySelectorAll('input[type="text"]')) {
+        if (inp.value.trim()) return false;
+      }
+    }
+    return true;
+  }
+
+  function applyImportedQuestions(questions, replaceExisting) {
+    if (replaceExisting || hasOnlyBlankCards()) {
+      container.innerHTML = '';
+    }
+    questions.forEach((q) => addQuestionCard(q));
+    refreshIndicesAndCount();
+    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function getCsrfToken() {
+    const inp = document.querySelector('#qz-main-form input[name="csrfmiddlewaretoken"]');
+    return inp ? inp.value : '';
+  }
+
+  window.importQuizText = async function (replaceExisting) {
+    const text = (rawTextarea.value || '').trim();
+    if (!text) {
+      statusEl.textContent = 'Avval savollar matnini kiriting yoki shablonni qo‘ying.';
+      statusEl.className = 'qz-import-status is-error';
+      return;
+    }
+    statusEl.textContent = 'Tahlil qilinmoqda...';
+    statusEl.className = 'qz-import-status';
+    try {
+      const fd = new FormData();
+      fd.append('raw_text', text);
+      const resp = await fetch('{% url "parse_quiz_import_api" %}', {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrfToken() },
+        body: fd,
+      });
+      const data = await resp.json();
+      if (!resp.ok) {
+        statusEl.textContent = data.error || 'Importda xatolik yuz berdi.';
+        statusEl.className = 'qz-import-status is-error';
+        return;
+      }
+      applyImportedQuestions(data.questions || [], replaceExisting);
+      statusEl.textContent = data.count + ' ta savol muvaffaqiyatli yuklandi!';
+      statusEl.className = 'qz-import-status is-ok';
+    } catch (err) {
+      statusEl.textContent = 'Server bilan ulanishda xatolik yuz berdi.';
+      statusEl.className = 'qz-import-status is-error';
+    }
+  };
+
+  window.importQuizFromFile = async function (fileInput) {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) return;
+    statusEl.textContent = file.name + ' yuklanmoqda...';
+    statusEl.className = 'qz-import-status';
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const resp = await fetch('{% url "parse_quiz_import_api" %}', {
+        method: 'POST',
+        headers: { 'X-CSRFToken': getCsrfToken() },
+        body: fd,
+      });
+      const data = await resp.json();
+      if (!resp.ok) {
+        statusEl.textContent = data.error || 'Faylni o‘qib bo‘lmadi.';
+        statusEl.className = 'qz-import-status is-error';
+        return;
+      }
+      applyImportedQuestions(data.questions || [], hasOnlyBlankCards());
+      statusEl.textContent = file.name + ': ' + data.count + ' ta savol yuklandi!';
+      statusEl.className = 'qz-import-status is-ok';
+    } catch (err) {
+      statusEl.textContent = 'Fayl importida xatolik yuz berdi.';
+      statusEl.className = 'qz-import-status is-error';
+    } finally {
+      fileInput.value = '';
+    }
+  };
+
+  // Boot initial cards from server JSON
+  let initial = [];
+  try {
+    initial = JSON.parse(document.getElementById('qz-initial-data').textContent || '[]');
+  } catch (e) {
+    initial = [];
+  }
+  if (!Array.isArray(initial) || !initial.length) {
+    initial = [{ text: '', options: ['', '', '', ''], correct: 0 }];
+  }
+  initial.forEach((q) => addQuestionCard(q));
+  refreshIndicesAndCount();
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Eng faol kitobxonlar reytingi | Urganch akademik litseyi{% endblock %}
+
+{% block content %}
+<section class="page-container">
+  <div class="page-header-box">
+    <h1 class="page-title">Kitobxonlar reytingi</h1>
+    <p class="page-subtitle">Litseyning eng faol kitobxonlari va peshqadamlar ro‘yxati</p>
+  </div>
+
+  <div class="leaderboard-stats-cards">
+    <!-- 1-O'rin -->
+    <div class="l-card gold-border" data-tilt-card>
+      <div class="l-medal">
+        <svg class="ios-3d-medal" width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="gold-shadow" x="-10%" y="-10%" width="130%" height="130%">
+              <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.3"/>
+            </filter>
+            <linearGradient id="gold-rim-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fffbeb"/>
+              <stop offset="30%" stop-color="#fbbf24"/>
+              <stop offset="70%" stop-color="#d97706"/>
+              <stop offset="100%" stop-color="#78350f"/>
+            </linearGradient>
+            <radialGradient id="gold-face-g" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#fef08a"/>
+              <stop offset="45%" stop-color="#f59e0b"/>
+              <stop offset="90%" stop-color="#b45309"/>
+              <stop offset="100%" stop-color="#78350f"/>
+            </radialGradient>
+            <linearGradient id="rib-l-g" x1="16" y1="4" x2="32" y2="28" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#2563eb"/><stop offset="100%" stop-color="#1d4ed8"/>
+            </linearGradient>
+            <linearGradient id="rib-r-g" x1="48" y1="4" x2="32" y2="28" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ef4444"/><stop offset="100%" stop-color="#b91c1c"/>
+            </linearGradient>
+          </defs>
+          <path d="M22 6 L32 26 L27 28 L14 8 Z" fill="url(#rib-l-g)"/>
+          <path d="M22 6 L25 7 L20 18 L17 17 Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M42 6 L32 26 L37 28 L50 8 Z" fill="url(#rib-r-g)"/>
+          <path d="M42 6 L39 7 L44 18 L47 17 Z" fill="#ffffff" opacity="0.9"/>
+          <circle cx="32" cy="40" r="19" fill="url(#gold-rim-g)" filter="url(#gold-shadow)"/>
+          <circle cx="32" cy="40" r="16" fill="url(#gold-face-g)"/>
+          <circle cx="32" cy="40" r="14" stroke="rgba(255,255,255,0.45)" stroke-width="0.8" stroke-dasharray="2 1.5" fill="none"/>
+          <path d="M32 31 L34.2 36.8 L40.5 36.8 L35.3 40.5 L37.2 46.5 L32 42.8 L26.8 46.5 L28.7 40.5 L23.5 36.8 L29.8 36.8 Z" fill="#fffbeb" stroke="#b45309" stroke-width="0.7" stroke-linejoin="round"/>
+          <path d="M21 34 C25 29 39 29 43 34 C40 31.5 24 31.5 21 34 Z" fill="#ffffff" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="l-info">
+        <span class="l-rank">1-O‘rin · Oltin kitobxon</span>
+        <h4>{% if students.0 %}{{ students.0.get_full_name|default:students.0.username }}{% else %}—{% endif %}</h4>
+        <p style="display:flex;align-items:center;gap:4px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {% if students.0 %}{{ students.0.points }} ball{% else %}0 ball{% endif %}
+        </p>
+      </div>
+    </div>
+
+    <!-- 2-O'rin -->
+    <div class="l-card silver-border" data-tilt-card>
+      <div class="l-medal">
+        <svg class="ios-3d-medal" width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="silver-shadow" x="-10%" y="-10%" width="130%" height="130%">
+              <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.3"/>
+            </filter>
+            <linearGradient id="silv-rim-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="40%" stop-color="#cbd5e1"/>
+              <stop offset="70%" stop-color="#94a3b8"/>
+              <stop offset="100%" stop-color="#475569"/>
+            </linearGradient>
+            <radialGradient id="silv-face-g" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="45%" stop-color="#e2e8f0"/>
+              <stop offset="85%" stop-color="#94a3b8"/>
+              <stop offset="100%" stop-color="#475569"/>
+            </radialGradient>
+          </defs>
+          <path d="M22 6 L32 26 L27 28 L14 8 Z" fill="#3b82f6"/>
+          <path d="M22 6 L25 7 L20 18 L17 17 Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M42 6 L32 26 L37 28 L50 8 Z" fill="#64748b"/>
+          <path d="M42 6 L39 7 L44 18 L47 17 Z" fill="#ffffff" opacity="0.9"/>
+          <circle cx="32" cy="40" r="19" fill="url(#silv-rim-g)" filter="url(#silver-shadow)"/>
+          <circle cx="32" cy="40" r="16" fill="url(#silv-face-g)"/>
+          <circle cx="32" cy="40" r="14" stroke="rgba(255,255,255,0.6)" stroke-width="0.8" stroke-dasharray="2 1.5" fill="none"/>
+          <path d="M32 31 L34.2 36.8 L40.5 36.8 L35.3 40.5 L37.2 46.5 L32 42.8 L26.8 46.5 L28.7 40.5 L23.5 36.8 L29.8 36.8 Z" fill="#ffffff" stroke="#64748b" stroke-width="0.7" stroke-linejoin="round"/>
+          <path d="M21 34 C25 29 39 29 43 34 C40 31.5 24 31.5 21 34 Z" fill="#ffffff" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="l-info">
+        <span class="l-rank">2-O‘rin · Kumush kitobxon</span>
+        <h4>{% if students.1 %}{{ students.1.get_full_name|default:students.1.username }}{% else %}—{% endif %}</h4>
+        <p style="display:flex;align-items:center;gap:4px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#94a3b8" stroke="#64748b" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {% if students.1 %}{{ students.1.points }} ball{% else %}0 ball{% endif %}
+        </p>
+      </div>
+    </div>
+
+    <!-- 3-O'rin -->
+    <div class="l-card bronze-border" data-tilt-card>
+      <div class="l-medal">
+        <svg class="ios-3d-medal" width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="bronze-shadow" x="-10%" y="-10%" width="130%" height="130%">
+              <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#000" flood-opacity="0.3"/>
+            </filter>
+            <linearGradient id="brnz-rim-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#ffedd5"/>
+              <stop offset="35%" stop-color="#fb923c"/>
+              <stop offset="70%" stop-color="#c2410c"/>
+              <stop offset="100%" stop-color="#7c2d12"/>
+            </linearGradient>
+            <radialGradient id="brnz-face-g" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stop-color="#fed7aa"/>
+              <stop offset="45%" stop-color="#ea580c"/>
+              <stop offset="85%" stop-color="#9a3412"/>
+              <stop offset="100%" stop-color="#431407"/>
+            </radialGradient>
+          </defs>
+          <path d="M22 6 L32 26 L27 28 L14 8 Z" fill="#0284c7"/>
+          <path d="M22 6 L25 7 L20 18 L17 17 Z" fill="#ffffff" opacity="0.9"/>
+          <path d="M42 6 L32 26 L37 28 L50 8 Z" fill="#ea580c"/>
+          <path d="M42 6 L39 7 L44 18 L47 17 Z" fill="#ffffff" opacity="0.9"/>
+          <circle cx="32" cy="40" r="19" fill="url(#brnz-rim-g)" filter="url(#bronze-shadow)"/>
+          <circle cx="32" cy="40" r="16" fill="url(#brnz-face-g)"/>
+          <circle cx="32" cy="40" r="14" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" stroke-dasharray="2 1.5" fill="none"/>
+          <path d="M32 31 L34.2 36.8 L40.5 36.8 L35.3 40.5 L37.2 46.5 L32 42.8 L26.8 46.5 L28.7 40.5 L23.5 36.8 L29.8 36.8 Z" fill="#ffedd5" stroke="#7c2d12" stroke-width="0.7" stroke-linejoin="round"/>
+          <path d="M21 34 C25 29 39 29 43 34 C40 31.5 24 31.5 21 34 Z" fill="#ffffff" opacity="0.55"/>
+        </svg>
+      </div>
+      <div class="l-info">
+        <span class="l-rank">3-O‘rin · Bronza kitobxon</span>
+        <h4>{% if students.2 %}{{ students.2.get_full_name|default:students.2.username }}{% else %}—{% endif %}</h4>
+        <p style="display:flex;align-items:center;gap:4px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#d97706" stroke="#b45309" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {% if students.2 %}{{ students.2.points }} ball{% else %}0 ball{% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="leaderboard-table-wrap">
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th>O‘rin</th>
+          <th>Kitobxon</th>
+          <th>Guruh / Maqom</th>
+          <th>O‘qigan kitoblari</th>
+          <th>Topshirilgan testlar</th>
+          <th>To‘plagan ballari</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in students %}
+          <tr class="{% if forloop.counter <= 3 %}top-row{% endif %} {% if user == s %}my-row{% endif %}">
+            <td class="rank-cell">
+              {% if forloop.counter == 1 %}
+                <span style="font-weight:800;color:#d97706;">#1</span>
+              {% elif forloop.counter == 2 %}
+                <span style="font-weight:800;color:#64748b;">#2</span>
+              {% elif forloop.counter == 3 %}
+                <span style="font-weight:800;color:#b45309;">#3</span>
+              {% else %}
+                #{{ forloop.counter }}
+              {% endif %}
+            </td>
+            <td class="user-cell">
+              <strong>{{ s.get_full_name|default:s.username }}</strong>
+              {% if user == s %}<span class="me-tag">Siz</span>{% endif %}
+            </td>
+            <td>{{ s.group_name|default:s.get_role_display }}</td>
+            <td>
+              <span style="display:inline-flex;align-items:center;gap:4px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                {{ s.books_read_count|default:0 }} ta kitob
+              </span>
+            </td>
+            <td>
+              <span style="display:inline-flex;align-items:center;gap:4px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                {{ s.attempts_count|default:0 }} ta sinov
+              </span>
+            </td>
+            <td class="points-cell">
+              <span style="display:inline-flex;align-items:center;gap:4px;font-weight:800;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                {{ s.points }} ball
+              </span>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6" class="empty-table-cell">Hozircha reyting ishtirokchilari mavjud emas. Birinchi bo‘lib test topshiring va ball to‘plang!</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

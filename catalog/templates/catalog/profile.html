@@ -1,0 +1,608 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Profil va Boshqaruv — UrDU Akademik Litseyi{% endblock %}
+
+{% block content %}
+<div class="lib-content-wrap adm-wrap">
+
+  <!-- 1. IXCHAM PROFIL KARTASI -->
+  <section class="adm-profile-card">
+    <div class="adm-profile-left">
+      <div class="adm-avatar">
+        {% if user.avatar %}
+          <img src="{{ user.avatar.url }}" alt="{{ user.username }}">
+        {% else %}
+          {{ user.first_name|default:user.username|slice:":1"|upper }}
+        {% endif %}
+      </div>
+      <div class="adm-profile-info">
+        <div class="adm-profile-title-row">
+          <h1>{{ user.get_full_name|default:user.username }}</h1>
+          {% if user.role == 'librarian' or user.is_superuser %}
+            <span class="adm-role-pill is-admin">Administrator</span>
+          {% elif user.role == 'teacher' %}
+            <span class="adm-role-pill is-teacher">Kutubxonachi</span>
+          {% else %}
+            <span class="adm-role-pill is-student">O‘quvchi</span>
+          {% endif %}
+        </div>
+        <div class="adm-profile-meta">
+          <span><strong>Login:</strong> @{{ user.username }}</span>
+          <span>·</span>
+          <span><strong>Guruh / Kafedra:</strong> {{ user.group_name|default:"UrDU Akademik litseyi" }}</span>
+          {% if user.phone %}
+            <span>·</span>
+            <span><strong>Tel:</strong> {{ user.phone }}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="adm-profile-right">
+      {% if user.role == 'student' %}
+        <div class="adm-points-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#f59e0b" stroke="#d97706" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div>
+            <strong>{{ user.points }} ball</strong>
+            <small>Reytingda {{ rank }}-o‘rin</small>
+          </div>
+        </div>
+      {% endif %}
+
+      <button type="button" class="adm-btn-outline" onclick="toggleEditProfile()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <span>Profilni tahrirlash</span>
+      </button>
+    </div>
+
+    <!-- Shaxsiy profilni tahrirlash shakli -->
+    <div id="prof-edit-box" class="adm-prof-edit" style="display:none;">
+      <form method="post" enctype="multipart/form-data" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="update_profile">
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label>Ism</label>
+            <input type="text" name="first_name" value="{{ user.first_name }}">
+          </div>
+          <div class="adm-field">
+            <label>Familiya</label>
+            <input type="text" name="last_name" value="{{ user.last_name }}">
+          </div>
+          <div class="adm-field">
+            <label>Guruh / Kafedra</label>
+            <input type="text" name="group_name" value="{{ user.group_name }}" placeholder="101-guruh yoki Aniq fanlar">
+          </div>
+          <div class="adm-field">
+            <label>Telefon raqami</label>
+            <input type="text" name="phone" value="{{ user.phone }}" placeholder="+998 90 123 45 67">
+          </div>
+          <div class="adm-field">
+            <label>Profil rasmi (Avatar)</label>
+            <input type="file" name="avatar" accept="image/*">
+          </div>
+        </div>
+        <div class="adm-form-actions">
+          <button type="button" class="adm-btn-ghost" onclick="toggleEditProfile()">Bekor qilish</button>
+          <button type="submit" class="adm-btn-primary">Saqlash</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {% if active_workspace == 'admin' or active_workspace == 'teacher' %}
+    <!-- ==============================================================
+         ADMINISTRATOR / KUTUBXONACHI BOSHQARUVI
+         ============================================================== -->
+    <div class="adm-kpi-grid">
+      <div class="adm-kpi-card">
+        <span>Umumiy Katalog</span>
+        <strong>{{ total_catalog_db }} ta</strong>
+        <small>{{ total_books_db }} mahalliy · Ziyouz PDF bilan</small>
+      </div>
+      <div class="adm-kpi-card">
+        <span>Ustozlar Materiallari</span>
+        <strong>{{ teacher_books_db }} ta</strong>
+        <small>Tanlangan qo‘llanmalar</small>
+      </div>
+      <div class="adm-kpi-card">
+        <span>Foydalanuvchilar</span>
+        <strong>{{ total_users_db }} nafar</strong>
+        <small>O‘quvchi: {{ students_count }} · Kutubxonachi: {{ teachers_count }}</small>
+      </div>
+      <div class="adm-kpi-card">
+        <span>Bilim Sinovlari</span>
+        <strong>{{ total_quizzes_db }} ta</strong>
+        <small>Faol onlayn testlar</small>
+      </div>
+    </div>
+
+    {% if active_workspace == 'admin' %}
+      <!-- FOYDALANUVCHILAR BOSHQARUVI (Murojaat sayti uslubida: Tayinlash + Tahrirlash modali + Faol holat) -->
+      <section class="adm-panel">
+        <div class="adm-panel-head">
+          <div>
+            <h2>Foydalanuvchilar boshqaruvi</h2>
+            <p>Kutubxonachilar, administratorlar va o‘quvchilarni tayinlash, tahrirlash va boshqarish</p>
+          </div>
+          <div class="adm-head-actions">
+            <button type="button" class="adm-btn-primary" onclick="openAddUserModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Foydalanuvchi qo‘shish</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead>
+              <tr>
+                <th>F.I.Sh. / Login</th>
+                <th>Guruh / Tel</th>
+                <th>Roli</th>
+                <th>Rolni tayinlash</th>
+                <th>Holat</th>
+                <th style="text-align:right;">Amallar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for u in all_users %}
+                <tr>
+                  <td>
+                    <div class="adm-cell-title">
+                      {{ u.get_full_name|default:u.username }}
+                      {% if u.id == user.id %}<span class="adm-self-tag">Siz</span>{% endif %}
+                    </div>
+                    <div class="adm-cell-sub">@{{ u.username }}</div>
+                  </td>
+                  <td>
+                    <div class="adm-cell-text">{{ u.group_name|default:"—" }}</div>
+                    {% if u.phone %}<div class="adm-cell-sub">{{ u.phone }}</div>{% endif %}
+                  </td>
+                  <td>
+                    {% if u.role == 'librarian' or u.is_superuser %}
+                      <span class="adm-badge is-blue">Admin</span>
+                    {% elif u.role == 'teacher' %}
+                      <span class="adm-badge is-green">Kutubxonachi</span>
+                    {% else %}
+                      <span class="adm-badge is-slate">O‘quvchi</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <form method="post" action="{% url 'admin_change_user_role' u.id %}" class="adm-inline-role">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                      <select name="role" aria-label="Rol tanlash">
+                        <option value="student" {% if u.role == 'student' %}selected{% endif %}>O‘quvchi</option>
+                        <option value="teacher" {% if u.role == 'teacher' %}selected{% endif %}>Kutubxonachi</option>
+                        <option value="librarian" {% if u.role == 'librarian' or u.is_superuser %}selected{% endif %}>Admin</option>
+                      </select>
+                      <button type="submit" class="adm-btn-xs is-primary">Tayinlash</button>
+                    </form>
+                  </td>
+                  <td>
+                    {% if u.id != user.id %}
+                      <form method="post" action="{% url 'admin_toggle_user_active' u.id %}" style="margin:0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" class="adm-status-pill {% if u.is_active %}is-active{% else %}is-inactive{% endif %}" title="Holatni almashtirish">
+                          {% if u.is_active %}● Faol{% else %}○ Nofaol{% endif %}
+                        </button>
+                      </form>
+                    {% else %}
+                      <span class="adm-status-pill is-active" style="cursor:default;">● Faol</span>
+                    {% endif %}
+                  </td>
+                  <td style="text-align:right;white-space:nowrap;">
+                    <div class="adm-row-actions">
+                      <button
+                        type="button"
+                        class="adm-btn-xs"
+                        data-uid="{{ u.id }}"
+                        data-username="{{ u.username }}"
+                        data-first="{{ u.first_name }}"
+                        data-last="{{ u.last_name }}"
+                        data-group="{{ u.group_name }}"
+                        data-phone="{{ u.phone }}"
+                        data-role="{% if u.is_superuser or u.role == 'librarian' %}librarian{% elif u.role == 'teacher' %}teacher{% else %}student{% endif %}"
+                        onclick="openEditUserModal(this)"
+                        title="Tahrirlash va parolni yangilash"
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                        <span>Tahrirlash</span>
+                      </button>
+                      {% if u.id != user.id %}
+                        <form method="post" action="{% url 'admin_delete_user' u.id %}" style="display:inline;" onsubmit="return confirm('Ushbu foydalanuvchini o‘chirishga ishonchingiz komilmi?');">
+                          {% csrf_token %}
+                          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                          <button type="submit" class="adm-btn-xs is-danger">O‘chirish</button>
+                        </form>
+                      {% endif %}
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    {% endif %}
+
+    <!-- KITOBLAR FONDI (Ham Admin, ham Kutubxonachi uchun to‘liq huquq) -->
+    <section class="adm-panel">
+      <div class="adm-panel-head">
+        <div>
+          <h2>{% if active_workspace == 'teacher' %}Kutubxonachi Ishchi Stoli — {% endif %}Kitoblar fondi</h2>
+          <p>Barcha yo‘nalishlarga PDF kitoblar qo‘shish, tasdiqlash va boshqarish</p>
+        </div>
+        <div class="adm-head-actions">
+          <a href="{% url 'create_quiz' %}" class="adm-btn-outline">+ Yangi test yaratish</a>
+          <a href="{% url 'upload_book' %}" class="adm-btn-green">+ Yangi kitob (PDF)</a>
+        </div>
+      </div>
+
+      <div class="adm-books-toolbar">
+        <div class="adm-filter-pills" id="adm-book-filters">
+          <button type="button" class="adm-filter-pill active" data-filter="all" onclick="setBookFilter('all', this)">Barchasi ({{ all_books_admin|length }})</button>
+          <button type="button" class="adm-filter-pill" data-filter="teacher" onclick="setBookFilter('teacher', this)">Tanlangan qo‘llanmalar ({{ teacher_books_db }})</button>
+          {% if pending_books_db %}
+            <button type="button" class="adm-filter-pill" data-filter="pending" onclick="setBookFilter('pending', this)">Tasdiq kutmoqda ({{ pending_books_db }})</button>
+          {% endif %}
+        </div>
+        <input type="search" id="adm-book-search" class="adm-search-sm" placeholder="Kitob nomi yoki muallif..." oninput="renderAdminBooksPage(1)">
+      </div>
+
+      <div class="adm-table-wrap">
+        <table class="adm-table" id="adm-books-table">
+          <thead>
+            <tr>
+              <th>Kitob / Muallif</th>
+              <th>Fan / Toifa</th>
+              <th>Holati</th>
+              <th style="text-align:right;">Amallar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in all_books_admin %}
+              <tr
+                class="adm-book-row"
+                data-search="{{ b.title|lower }} {{ b.author|lower }} {{ b.display_subject|lower }}"
+                data-teacher="{% if b.is_teacher_book %}1{% else %}0{% endif %}"
+                data-pending="{% if not b.approved %}1{% else %}0{% endif %}"
+              >
+                <td>
+                  <a href="{% url 'book_detail' b.id %}" class="adm-cell-link">{{ b.title }}</a>
+                  <div class="adm-cell-sub">{{ b.author }}</div>
+                </td>
+                <td class="adm-cell-text">{{ b.display_subject }}</td>
+                <td>
+                  {% if not b.approved %}
+                    <span class="adm-badge is-amber">Kutilmoqda</span>
+                  {% elif b.is_teacher_book %}
+                    <span class="adm-badge is-green">Tanlangan qo‘llanma</span>
+                  {% else %}
+                    <span class="adm-badge is-blue">Fond kitobi</span>
+                  {% endif %}
+                </td>
+                <td style="text-align:right;white-space:nowrap;">
+                  <div class="adm-row-actions">
+                    {% if b.pdf_file or b.external_url %}
+                      <button type="button" class="adm-btn-xs is-primary" onclick="openLibModalReader('{{ b.title|escapejs }}', '{% url 'book_pdf' b.id %}', '{% url 'download_book_file' b.id %}')">O‘qish</button>
+                      <a href="{% url 'download_book_file' b.id %}" class="adm-btn-xs" download>Yuklash</a>
+                    {% endif %}
+                    {% if not b.approved %}
+                      <form method="post" action="{% url 'admin_approve_book' b.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" class="adm-btn-xs is-green">Tasdiqlash</button>
+                      </form>
+                    {% endif %}
+                    <form method="post" action="{% url 'admin_toggle_teacher_book' b.id %}" style="display:inline;">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                      <button type="submit" class="adm-btn-xs">{% if b.is_teacher_book %}Bo‘limdan olish{% else %}Ustozga{% endif %}</button>
+                    </form>
+                    <form method="post" action="{% url 'admin_delete_book' b.id %}" style="display:inline;" onsubmit="return confirm('Ushbu kitobni o‘chirishga ishonchingiz komilmi?');">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                      <button type="submit" class="adm-btn-xs is-danger">O‘chirish</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div id="adm-books-pager" class="adm-books-pager"></div>
+    </section>
+
+    <!-- BILIM SINOVLARI (TESTLAR) BOSHQARUVI -->
+    <section class="adm-panel">
+      <div class="adm-panel-head">
+        <div>
+          <h2>Bilim sinovlari (Testlar) boshqaruvi</h2>
+          <p>Kitoblar asosida testlar yaratish, ko‘rish va tahrirlash/o‘chirish</p>
+        </div>
+        <a href="{% url 'create_quiz' %}" class="adm-btn-primary">+ Yangi test yaratish</a>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:14px;">
+        {% for q in all_quizzes_manage %}
+          <div class="adm-sub-card">
+            <span class="adm-badge is-blue" style="align-self:flex-start;">{{ q.subject|default:"Umumiy fan" }}</span>
+            <h3>{{ q.title }}</h3>
+            <p>{{ q.description|default:"Kutubxona kitoblari asosidagi test"|truncatewords:14 }}</p>
+            <div class="adm-sub-card-foot">
+              <small>{{ q.num_questions }} ta savol</small>
+              <div class="adm-row-actions">
+                <a href="{% url 'take_quiz' q.id %}" class="adm-btn-xs is-primary">Ochish</a>
+                <form method="post" action="{% url 'delete_quiz' q.id %}" style="display:inline;" onsubmit="return confirm('Ushbu testni o‘chirishga ishonchingiz komilmi?');">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                  <button type="submit" class="adm-btn-xs is-danger">O‘chirish</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="adm-empty-box">
+            <p>Hozircha yaratilgan testlar yo‘q.</p>
+            <a href="{% url 'create_quiz' %}" class="adm-btn-primary">+ Yangi test yaratish</a>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% if active_workspace == 'admin' %}
+      <!-- FOYDALANUVCHI QO'SHISH / TAHRIRLASH MODALI (Murojaat sayti uslubida) -->
+      <div id="user-modal-backdrop" class="lib-modal-backdrop" onclick="if(event.target===this)closeUserModal()">
+        <div class="lib-modal adm-modal">
+          <div class="lib-modal-header">
+            <h3 id="user-modal-title" class="lib-modal-title">Yangi foydalanuvchi qo‘shish</h3>
+            <button type="button" class="lib-modal-close" onclick="closeUserModal()" aria-label="Yopish">&times;</button>
+          </div>
+
+          <form id="user-modal-form" method="post" action="{% url 'admin_add_user' %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+
+            <div class="adm-modal-grid">
+              <div class="adm-field">
+                <label for="um-username">Login *</label>
+                <input id="um-username" type="text" name="username" required placeholder="Masalan: jasur26">
+              </div>
+              <div class="adm-field">
+                <label for="um-password">Parol <span id="um-pwd-hint" style="font-weight:500;color:var(--text-muted);"></span></label>
+                <input id="um-password" type="password" name="password" placeholder="Kamida 6 ta belgi">
+              </div>
+              <div class="adm-field">
+                <label for="um-first">Ism</label>
+                <input id="um-first" type="text" name="first_name" placeholder="Ism">
+              </div>
+              <div class="adm-field">
+                <label for="um-last">Familiya</label>
+                <input id="um-last" type="text" name="last_name" placeholder="Familiya">
+              </div>
+              <div class="adm-field">
+                <label for="um-group">Guruh / Kafedra</label>
+                <input id="um-group" type="text" name="group_name" placeholder="102-guruh yoki Kutubxona">
+              </div>
+              <div class="adm-field">
+                <label for="um-phone">Telefon</label>
+                <input id="um-phone" type="text" name="phone" placeholder="+998 90 123 45 67">
+              </div>
+            </div>
+
+            <div class="adm-field" style="margin-top:12px;">
+              <label for="um-role">Roli</label>
+              <select id="um-role" name="role">
+                <option value="student">O‘quvchi</option>
+                <option value="teacher">Kutubxonachi</option>
+                <option value="librarian">Administrator</option>
+              </select>
+            </div>
+
+            <div class="adm-form-actions" style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border-main);">
+              <button type="button" class="adm-btn-ghost" onclick="closeUserModal()">Bekor qilish</button>
+              <button type="submit" class="adm-btn-primary">Saqlash</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+
+  {% else %}
+    <!-- ==============================================================
+         O'QUVCHI SHAXSIY KABINETI
+         ============================================================== -->
+    <div style="display:grid;grid-template-columns:1fr;gap:20px;">
+      <section class="adm-panel">
+        <div class="adm-panel-head">
+          <div>
+            <h2>O‘quvchi Shaxsiy Ishchi Stoli</h2>
+            <p>O‘qilayotgan kitoblar va to‘xtagan sahifalaringiz</p>
+          </div>
+          <a href="{% url 'home' %}" class="adm-btn-outline">Katalogga o‘tish →</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));gap:14px;">
+          {% for prog in progress %}
+            <div class="adm-sub-card">
+              <span class="adm-badge is-blue" style="align-self:flex-start;">{{ prog.book.display_subject }}</span>
+              <h3>{{ prog.book.title }}</h3>
+              <p>{{ prog.book.author }}</p>
+              <div style="display:flex;justify-content:space-between;font-size:0.78rem;font-weight:700;margin-bottom:4px;">
+                <span>Sahifa: {{ prog.current_page }}</span>
+                <span style="color:#059669;">{{ prog.percent }}%</span>
+              </div>
+              <div style="height:6px;border-radius:6px;background:var(--border-main);overflow:hidden;margin-bottom:10px;">
+                <div style="width:{{ prog.percent }}%;height:100%;background:#059669;"></div>
+              </div>
+              <button type="button" class="adm-btn-primary" style="width:100%;" onclick="openLibModalReader('{{ prog.book.title|escapejs }}', '{% url 'book_pdf' prog.book.id %}', '{% url 'download_book_file' prog.book.id %}')">Davom ettirish →</button>
+            </div>
+          {% empty %}
+            <div class="adm-empty-box">
+              <p>Hozircha mutolaa tarixi mavjud emas.</p>
+              <a href="{% url 'home' %}" class="adm-btn-primary">Kitoblarni ko‘rish</a>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="adm-panel">
+        <div class="adm-panel-head">
+          <div>
+            <h2>Test natijalari va sertifikatlar</h2>
+            <p>Bilim sinovlaridan olingan ballar va QR-kodli sertifikatlar</p>
+          </div>
+          <a href="{% url 'quiz_list' %}" class="adm-btn-outline">Testlarni ko‘rish →</a>
+        </div>
+        <div class="adm-table-wrap">
+          <table class="adm-table">
+            <thead>
+              <tr>
+                <th>Test nomi</th>
+                <th>To‘g‘ri javob</th>
+                <th>Natija</th>
+                <th>Sana</th>
+                <th style="text-align:right;">Sertifikat</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for att in attempts %}
+                <tr>
+                  <td class="adm-cell-title">{{ att.quiz.title }}</td>
+                  <td>{{ att.score }} / {{ att.total }}</td>
+                  <td>
+                    {% if att.percent >= 70 %}
+                      <span class="adm-badge is-green">{{ att.percent }}% (O‘tdi)</span>
+                    {% else %}
+                      <span class="adm-badge is-danger">{{ att.percent }}%</span>
+                    {% endif %}
+                  </td>
+                  <td class="adm-cell-sub">{{ att.created_at|date:"d.m.Y H:i" }}</td>
+                  <td style="text-align:right;">
+                    {% if att.certificate_code %}
+                      <a href="{% url 'certificate_view' att.id %}" target="_blank" class="adm-btn-xs is-green">Sertifikat →</a>
+                    {% else %}
+                      <span class="adm-cell-sub">Mavjud emas</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5" style="text-align:center;padding:24px;color:var(--text-muted);">Hozircha topshirilgan testlar yo‘q.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  function toggleEditProfile() {
+    var box = document.getElementById('prof-edit-box');
+    if (!box) return;
+    box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'block' : 'none';
+  }
+
+  function openAddUserModal() {
+    var bd = document.getElementById('user-modal-backdrop');
+    var form = document.getElementById('user-modal-form');
+    if (!bd || !form) return;
+    document.getElementById('user-modal-title').textContent = 'Yangi foydalanuvchi qo‘shish';
+    form.action = "{% url 'admin_add_user' %}";
+    document.getElementById('um-username').value = '';
+    document.getElementById('um-password').value = '';
+    document.getElementById('um-password').required = true;
+    document.getElementById('um-password').placeholder = 'Kamida 6 ta belgi';
+    document.getElementById('um-pwd-hint').textContent = '*';
+    document.getElementById('um-first').value = '';
+    document.getElementById('um-last').value = '';
+    document.getElementById('um-group').value = '';
+    document.getElementById('um-phone').value = '';
+    document.getElementById('um-role').value = 'student';
+    bd.classList.add('is-open');
+  }
+
+  function openEditUserModal(btn) {
+    var bd = document.getElementById('user-modal-backdrop');
+    var form = document.getElementById('user-modal-form');
+    if (!bd || !form) return;
+    var uid = btn.getAttribute('data-uid');
+    document.getElementById('user-modal-title').textContent = 'Foydalanuvchini tahrirlash';
+    form.action = '/admin-panel/foydalanuvchi/' + uid + '/tahrirlash/';
+    document.getElementById('um-username').value = btn.getAttribute('data-username') || '';
+    document.getElementById('um-password').value = '';
+    document.getElementById('um-password').required = false;
+    document.getElementById('um-password').placeholder = 'O‘zgarmasa bo‘sh qoldiring';
+    document.getElementById('um-pwd-hint').textContent = '(ixtiyoriy)';
+    document.getElementById('um-first').value = btn.getAttribute('data-first') || '';
+    document.getElementById('um-last').value = btn.getAttribute('data-last') || '';
+    document.getElementById('um-group').value = btn.getAttribute('data-group') || '';
+    document.getElementById('um-phone').value = btn.getAttribute('data-phone') || '';
+    document.getElementById('um-role').value = btn.getAttribute('data-role') || 'student';
+    bd.classList.add('is-open');
+  }
+
+  function closeUserModal() {
+    var bd = document.getElementById('user-modal-backdrop');
+    if (bd) bd.classList.remove('is-open');
+  }
+
+  var _admBookFilter = 'all';
+  var _admBookPerPage = 10;
+
+  function setBookFilter(mode, btn) {
+    _admBookFilter = mode;
+    document.querySelectorAll('#adm-book-filters .adm-filter-pill').forEach(function (el) {
+      el.classList.toggle('active', el === btn);
+    });
+    renderAdminBooksPage(1);
+  }
+
+  function renderAdminBooksPage(pageNum) {
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#adm-books-table tbody tr.adm-book-row'));
+    var pager = document.getElementById('adm-books-pager');
+    if (!rows.length || !pager) return;
+
+    var qEl = document.getElementById('adm-book-search');
+    var q = qEl ? qEl.value.trim().toLowerCase() : '';
+
+    var matched = rows.filter(function (row) {
+      if (_admBookFilter === 'teacher' && row.getAttribute('data-teacher') !== '1') return false;
+      if (_admBookFilter === 'pending' && row.getAttribute('data-pending') !== '1') return false;
+      if (q && (row.getAttribute('data-search') || '').indexOf(q) === -1) return false;
+      return true;
+    });
+
+    var totalPages = Math.max(1, Math.ceil(matched.length / _admBookPerPage));
+    var current = Math.min(Math.max(1, pageNum || 1), totalPages);
+    var start = (current - 1) * _admBookPerPage;
+    var end = start + _admBookPerPage;
+
+    rows.forEach(function (row) { row.style.display = 'none'; });
+    matched.slice(start, end).forEach(function (row) { row.style.display = ''; });
+
+    if (totalPages <= 1) {
+      pager.innerHTML = matched.length ? '<span class="adm-pager-info">' + matched.length + ' ta kitob</span>' : '<span class="adm-pager-info">Mos kitob topilmadi</span>';
+      return;
+    }
+
+    var html = '<span class="adm-pager-info">' + matched.length + ' ta kitob</span><div class="adm-pager-btns">';
+    for (var i = 1; i <= totalPages; i++) {
+      html += '<button type="button" class="adm-page-btn ' + (i === current ? 'active' : '') + '" onclick="renderAdminBooksPage(' + i + ')">' + i + '</button>';
+    }
+    html += '</div>';
+    pager.innerHTML = html;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    renderAdminBooksPage(1);
+  });
+</script>
+{% endblock %}

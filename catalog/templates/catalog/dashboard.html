@@ -1,0 +1,968 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block title %}Boshqaruv Paneli — Urganch Davlat Akademik Litseyi Onlayn Kutubxonasi{% endblock %}
+
+{% block content %}
+<div class="uzedu-dashboard">
+  
+  <!-- 1. Top Breadcrumb + Education Language Filter Strip (Exact lib.uzedu.uz header) -->
+  <div class="uzedu-dash-toolbar">
+    <nav class="uzedu-dash-breadcrumb" aria-label="Hudud tanlovi">
+      <button type="button" id="dash-back-btn" class="uzedu-back-btn" hidden title="Orqaga qaytish">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="uzedu-crumb-link" id="crumb-uzbekistan" onclick="selectDashboardRegion('O‘zbekiston Respublikasi', '10 223', '6 642 830', '80 858 150', '99.1%')">
+        O‘zbekiston
+      </button>
+      <span class="uzedu-crumb-sep">/</span>
+      <button type="button" class="uzedu-crumb-link active" id="crumb-region" onclick="selectDashboardRegion('Xorazm viloyati', '549', '368 420', '4 892 450', '100%')">
+        Xorazm viloyati
+      </button>
+      <span class="uzedu-crumb-sep" id="crumb-dist-sep">/</span>
+      <span class="uzedu-crumb-current" id="crumb-district">Urganch shahri (Beruniy litseyi)</span>
+    </nav>
+
+    <div role="group" aria-label="Ta'lim tili" class="uzedu-lang-filter-group">
+      <button type="button" class="uzedu-filter-pill active" data-lang-filter="all" aria-pressed="true">
+        Barcha tillar
+      </button>
+      {% for lrow in language_rows %}
+        <button type="button" class="uzedu-filter-pill" data-lang-filter="{{ lrow.id }}" data-students="{{ lrow.students }}" data-books="{{ lrow.books }}" data-name="{{ lrow.name }}" aria-pressed="false">
+          <img src="{% static 'catalog/uzedu/' %}{{ lrow.flag }}" alt="" class="uzedu-pill-flag">
+          <span>{{ lrow.name }}</span>
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Flash Messages -->
+  {% if messages %}
+    <div style="margin-bottom:20px;">
+      {% for message in messages %}
+        <div style="padding:12px 18px;border-radius:12px;font-size:0.9rem;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06);background:{% if message.tags == 'success' %}#f0fdf4;color:#15803d;border:1px solid #bbf7d0{% elif message.tags == 'error' %}#fef2f2;color:#b91c1c;border:1px solid #fecaca{% else %}#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe{% endif %};">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+          <span style="font-weight:600;">{{ message }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- ==============================================================
+       2. THREE DEDICATED WORKSPACES SELECTOR (ADMIN / USTOZ / O'QUVCHI)
+       ============================================================== -->
+  <div class="ws-switch-wrapper">
+    <div class="ws-switch-bar" role="tablist">
+      
+      <a href="?workspace=admin" class="ws-tab-btn {% if active_workspace == 'admin' %}active{% endif %}">
+        <span class="ws-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
+        <div class="ws-tab-text">
+          <strong>Admin Boshqaruv Stoli</strong>
+          <small>Foydalanuvchilar, Fond va Hisobotlar</small>
+        </div>
+      </a>
+      
+      <a href="?workspace=teacher" class="ws-tab-btn {% if active_workspace == 'teacher' %}active{% endif %}">
+        <span class="ws-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </span>
+        <div class="ws-tab-text">
+          <strong>Kutubxonachi Ishchi Stoli</strong>
+          <small>Kitoblar fondi va Testlar konstruktori</small>
+        </div>
+      </a>
+
+      <a href="?workspace=student" class="ws-tab-btn {% if active_workspace == 'student' %}active{% endif %}">
+        <span class="ws-tab-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </span>
+        <div class="ws-tab-text">
+          <strong>O‘quvchi Ishchi Stoli</strong>
+          <small>Mutolaa jarayoni, Testlar va Ballar</small>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+
+  <!-- ==============================================================
+       WORKSPACE 1: ADMIN BOSHQARUV STOLI
+       ============================================================== -->
+  {% if active_workspace == 'admin' %}
+    <section class="ws-banner">
+      <div class="ws-banner-info">
+        <h2>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#23a6f0" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Administrator Boshqaruv Stoli
+        </h2>
+        <p>Litsey o‘quvchi va o‘qituvchilari hisoblari nazorati, yangi foydalanuvchi qo‘shish, o‘chirish hamda elektron fond boshqaruvi.</p>
+      </div>
+      <div class="ws-banner-actions">
+        <button type="button" class="ws-btn-action primary" onclick="openAddUserModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Yangi foydalanuvchi qo‘shish</span>
+        </button>
+        <a href="{% url 'upload_book' %}" class="ws-btn-action secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+          <span>Kitob yuklash</span>
+        </a>
+        <a href="{% url 'create_quiz' %}" class="ws-btn-action secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Test yaratish</span>
+        </a>
+        <a href="/admin/" target="_blank" class="ws-btn-action secondary" title="Django Administrator Paneli">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Django Admin (/admin/)</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Admin KPI Strip -->
+    <section class="uzedu-kpi-strip" aria-label="Asosiy ko'rsatkichlar">
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Jami foydalanuvchilar</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ total_users_db }} nafar</strong>
+          <span class="uzedu-kpi-tag info">Baza nazoratda</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Litsey o‘quvchilari</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ students_count }} nafar</strong>
+          <span class="uzedu-kpi-tag success">O‘quvchi profili</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Kutubxonachilar</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ teachers_count }} nafar</strong>
+          <span class="uzedu-kpi-tag">Kutubxonachi</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Fonddagi elektron darsliklar</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ total_books_db }} ta</strong>
+          <a href="{% url 'home' %}" class="uzedu-kpi-link">Fondni ko‘rish →</a>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Ustozlar qo‘llanmalari</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ teacher_books_db }} ta</strong>
+          <a href="{% url 'teachers_books' %}" class="uzedu-kpi-link">Barchasi →</a>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Bilim sinovi testlari</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ total_quizzes_db }} test</strong>
+          <a href="{% url 'quiz_list' %}" class="uzedu-kpi-link">Testlar →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foydalanuvchilar Boshqaruvi Jadvali (Jonli Qo'shish & O'chirish) -->
+    <section class="uzedu-dash-card" style="margin-bottom:28px;">
+      <div class="uzedu-dash-card-head" style="flex-wrap:wrap;gap:12px;">
+        <div class="uzedu-dash-card-title-wrap">
+          <h2 class="uzedu-dash-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Litsey Foydalanuvchilari Nazorati (O‘quvchilar, O‘qituvchilar va Adminlar)
+          </h2>
+          <span class="uzedu-dash-card-hint">Tizim administratorlari yangi foydalanuvchilarni qo‘shishi va kerak bo‘lganda o‘chirishi mumkin.</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button type="button" class="uzedu-btn-primary" onclick="openAddUserModal()" style="height:36px;padding:0 16px;font-size:0.84rem;margin:0;">
+            ➕ Yangi foydalanuvchi qo‘shish
+          </button>
+        </div>
+      </div>
+
+      <div class="uzedu-table-scroll">
+        <table class="uzedu-table" id="admin-users-table">
+          <thead>
+            <tr>
+              <th>Foydalanuvchi (Ism / Familiya)</th>
+              <th>Login (Username)</th>
+              <th>Rol (Maqom)</th>
+              <th>Guruh / Kafedra</th>
+              <th class="num">To‘plagan ballar</th>
+              <th>Ro‘yxatdan o‘tgan sana</th>
+              <th class="num" style="min-width:130px;">Amallar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for u in all_users %}
+              <tr>
+                <td>
+                  <strong>{{ u.get_full_name|default:u.username }}</strong>
+                  {% if u.email %}<div style="font-size:12px;color:var(--surface-500);">{{ u.email }}</div>{% endif %}
+                </td>
+                <td>
+                  <code style="background:var(--surface-100);padding:2px 6px;border-radius:6px;font-size:12.5px;">@{{ u.username }}</code>
+                </td>
+                <td>
+                  <form method="post" action="{% url 'admin_change_user_role' u.pk %}" style="margin:0;display:flex;align-items:center;gap:6px;">
+                    {% csrf_token %}
+                    <select name="role" onchange="this.form.submit()" style="padding:5px 8px;border-radius:8px;font-size:12px;font-weight:700;background:var(--surface-50);color:var(--surface-900);border:1px solid var(--surface-300);cursor:pointer;" title="Rolni va ishchi stolni o‘zgartirish">
+                      <option value="student" {% if u.role == 'student' %}selected{% endif %}>🎓 O‘quvchi</option>
+                      <option value="teacher" {% if u.role == 'teacher' %}selected{% endif %}>📚 Kutubxonachi</option>
+                      <option value="librarian" {% if u.role == 'librarian' %}selected{% endif %}>🛡️ Admin</option>
+                    </select>
+                  </form>
+                </td>
+                <td>{{ u.group_name|default:"—" }}</td>
+                <td class="num"><b>{{ u.points }}</b> ball</td>
+                <td style="font-size:12.5px;color:var(--surface-500);">{{ u.date_joined|date:"d.m.Y H:i" }}</td>
+                <td class="num">
+                  <div style="display:inline-flex;align-items:center;gap:6px;">
+                    {% if u.pk == user.pk %}
+                      <span class="uzedu-cov-pill cov-100" style="font-size:11px;">Siz</span>
+                    {% else %}
+                      <form method="post" action="{% url 'admin_delete_user' u.pk %}" style="margin:0;" onsubmit="return confirm('Haqiqatan ham «{{ u.get_full_name|default:u.username }}» (@{{ u.username }}) foydalanuvchisini tizimdan o‘chirmoqchimisiz?');">
+                        {% csrf_token %}
+                        <button type="submit" class="uzedu-btn-xs" style="background:#fee2e2;color:#b91c1c;border-color:#fca5a5;" title="Foydalanuvchini o‘chirish">
+                          🗑️ O‘chirish
+                        </button>
+                      </form>
+                    {% endif %}
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Kitoblar va Darsliklar Boshqaruvi Jadvali -->
+    <section class="uzedu-dash-card" style="margin-bottom:28px;">
+      <div class="uzedu-dash-card-head">
+        <div class="uzedu-dash-card-title-wrap">
+          <h2 class="uzedu-dash-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>
+            Kutubxona Fondidagi Darsliklar va Resurslar Nazorati
+          </h2>
+          <span class="uzedu-dash-card-hint">Nashrlar ro‘yxati, ko‘rishlar statistikasi va fonddan o‘chirish nazorati.</span>
+        </div>
+        <a href="{% url 'upload_book' %}" class="ws-btn-action primary" style="padding:6px 14px;font-size:0.82rem;">
+          ➕ Yangi kitob qo‘shish
+        </a>
+      </div>
+
+      <div class="uzedu-table-scroll">
+        <table class="uzedu-table">
+          <thead>
+            <tr>
+              <th>Kitob / Darslik nomi</th>
+              <th>Muallif</th>
+              <th>Fan / Yo‘nalish</th>
+              <th>Turi</th>
+              <th class="num">Ko‘rildi</th>
+              <th class="num">Yuklandi</th>
+              <th class="num">Amallar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in all_books_admin %}
+              <tr>
+                <td>
+                  <a href="{% url 'book_detail' b.pk %}" style="font-weight:700;color:var(--primary-700);">{{ b.title }}</a>
+                  {% if b.submitted_by %}
+                    <div style="font-size:11.5px;color:var(--surface-500);">Yuklovchi: {{ b.submitted_by.get_full_name|default:b.submitted_by.username }}</div>
+                  {% endif %}
+                </td>
+                <td>{{ b.author }}</td>
+                <td>{{ b.display_subject }}</td>
+                <td>
+                  {% if b.is_teacher_book %}
+                    <span class="uzedu-cov-pill cov-98">Ustozlar qo‘llanmasi</span>
+                  {% else %}
+                    <span class="uzedu-cov-pill cov-100">Darslik</span>
+                  {% endif %}
+                </td>
+                <td class="num">{{ b.view_count }}</td>
+                <td class="num">{{ b.download_count }}</td>
+                <td class="num">
+                  <div style="display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+                    <a href="{% url 'book_pdf' b.pk %}" class="uzedu-btn-xs primary">Mutolaa</a>
+                    <form method="post" action="{% url 'admin_toggle_teacher_book' b.pk %}" style="margin:0;">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                      <button type="submit" class="uzedu-btn-xs">{% if b.is_teacher_book %}Ustozdan olish{% else %}Ustozga qo‘shish{% endif %}</button>
+                    </form>
+                    <form method="post" action="{% url 'admin_delete_book' b.pk %}" style="margin:0;" onsubmit="return confirm('«{{ b.title }}» kitobini fonddan o‘chirishni tasdiqlaysizmi?');">
+                      {% csrf_token %}
+                      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                      <button type="submit" class="uzedu-btn-xs" style="background:#fee2e2;color:#b91c1c;border-color:#fca5a5;">🗑️ O‘chirish</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Interactive Uzbekistan SVG Map + Regional Breakdown (from lib.uzedu.uz) -->
+    <div class="uzedu-dash-mid-grid">
+      <section class="uzedu-dash-card">
+        <div class="uzedu-dash-card-head">
+          <div class="uzedu-dash-card-title-wrap">
+            <h2 class="uzedu-dash-card-title" id="map-card-title">Ta’minlanganlik xaritasi — Xorazm viloyati va hududlar kesimida</h2>
+            <span class="uzedu-dash-card-hint">Batafsil ko‘rish va filtrlash uchun xaritadagi hududni bosing</span>
+          </div>
+          <div class="uzedu-coverage-legend">
+            <span class="uzedu-legend-item"><i class="cov-dot cov-100"></i> 100%</span>
+            <span class="uzedu-legend-item"><i class="cov-dot cov-98"></i> 98–99%</span>
+            <span class="uzedu-legend-item"><i class="cov-dot cov-85"></i> 85–97%</span>
+          </div>
+        </div>
+
+        <div class="uzedu-map-stage" id="uzedu-map-stage">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 466 304" class="uzedu-uz-svg" id="uzedu-uz-svg">
+            {% for prov in provinces %}
+              <path
+                id="{{ prov.id }}"
+                d="{{ prov.d }}"
+                class="uzedu-map-province {% if prov.is_home %}is-selected{% endif %}"
+                style="fill: {{ prov.color_Var }};"
+                data-name="{{ prov.name }}"
+                data-schools="{{ prov.schools }}"
+                data-students="{{ prov.students }}"
+                data-books="{{ prov.books }}"
+                data-coverage="{{ prov.coverage }}%"
+                tabindex="0"
+                role="button"
+              ></path>
+            {% endfor %}
+          </svg>
+
+          <div class="uzedu-map-tooltip" id="uzedu-map-tooltip">
+            <div class="uzedu-map-tooltip-head">
+              <span class="uzedu-tooltip-dot" id="tt-dot"></span>
+              <strong id="tt-name">Xorazm viloyati (Urganch)</strong>
+            </div>
+            <div class="uzedu-map-tooltip-grid">
+              <span>Ta’lim tashkiloti:</span>
+              <strong id="tt-schools">549</strong>
+              <span>O‘quvchilar soni:</span>
+              <strong id="tt-students">368 420</strong>
+              <span>Jami darslik soni:</span>
+              <strong id="tt-books">4 892 450</strong>
+              <span>Ta’minlanganlik:</span>
+              <strong id="tt-coverage" style="color:var(--primary-700);">100.0%</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="uzedu-map-footer">
+          <span style="display:inline-flex;align-items:center;gap:4px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Tanlangan hudud: <strong id="selected-map-region-label">Xorazm viloyati · Urganch shahri (Abu Rayhon Beruniy litseyi)</strong>
+          </span>
+          <button type="button" class="uzedu-btn-xs" onclick="selectDashboardRegion('O‘zbekiston Respublikasi', '10 223', '6 642 830', '80 858 150', '99.1%')">
+            Butun Respublika bo‘yicha ko‘rsatish
+          </button>
+        </div>
+      </section>
+
+      <!-- Right Card: Regional Table -->
+      <section class="uzedu-dash-card">
+        <div class="uzedu-dash-card-head">
+          <div class="uzedu-dash-card-title-wrap">
+            <h2 class="uzedu-dash-card-title">Xorazm viloyati tumanlari va litsey tarmoqlari</h2>
+            <span class="uzedu-dash-card-hint">Hududiy ta’minlanganlik va darslik fondi ko‘rsatkichlari</span>
+          </div>
+          <button type="button" class="uzedu-btn-xs" onclick="exportTableToCSV('xorazm-litsey-fondi.csv')">
+            ⬇ CSV Eksport
+          </button>
+        </div>
+
+        <div class="uzedu-table-scroll">
+          <table class="uzedu-table" id="uzedu-region-table">
+            <thead>
+              <tr>
+                <th>Hudud / Bo‘lim nomi</th>
+                <th class="num">Tashkilot</th>
+                <th class="num">O‘quvchilar</th>
+                <th class="num">Jami darslik</th>
+                <th class="num">Ta’minot</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in regional_rows %}
+                <tr class="uzedu-click-row {% if row.is_active %}selected-row{% endif %}"
+                    data-district="{{ row.name }}"
+                    data-schools="{{ row.schools }}"
+                    data-students="{{ row.students }}"
+                    data-books="{{ row.books }}"
+                    data-coverage="{{ row.coverage }}%">
+                  <td><strong>{{ row.name }}</strong></td>
+                  <td class="num">{{ row.schools }}</td>
+                  <td class="num">{{ row.students }}</td>
+                  <td class="num">{{ row.books }}</td>
+                  <td class="num">
+                    <span class="uzedu-cov-pill {{ row.badge }}">{{ row.coverage }}%</span>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  {% endif %}
+
+
+  <!-- ==============================================================
+       WORKSPACE 2: O‘QITUVCHI / USTOZ ISHCHI STOLI
+       ============================================================== -->
+  {% if active_workspace == 'teacher' %}
+    <section class="ws-banner">
+      <div class="ws-banner-info">
+        <h2>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Kutubxonachi Ishchi Stoli
+        </h2>
+        <p>Mualliflik darsliklari, elektron uslubiy qo‘llanmalar va o‘quvchilar bilim sinovlari nazorati.</p>
+      </div>
+      <div class="ws-banner-actions">
+        <a href="{% url 'upload_book' %}" class="ws-btn-action primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Yangi o‘quv qo‘llanma yuklash</span>
+        </a>
+        <a href="{% url 'create_quiz' %}" class="ws-btn-action secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Yangi test yaratish</span>
+        </a>
+        <a href="{% url 'teachers_books' %}" class="ws-btn-action secondary">
+          <span>Ustozlar kutubxonasi →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Teacher KPIs -->
+    <section class="uzedu-kpi-strip" aria-label="Ustoz ko'rsatkichlari">
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Mening qo‘llanmalarim</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ teacher_my_books|length }} ta</strong>
+          <span class="uzedu-kpi-tag success">Fondda faol</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Yaratilgan testlar</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ teacher_quizzes|length }} ta</strong>
+          <span class="uzedu-kpi-tag info">Nashr qilingan</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">O‘quvchilar test topshirishlari</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ all_attempts_feed|length }} ta</strong>
+          <span class="uzedu-kpi-tag">Jami natijalar</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Litsey umumiy darslik fondi</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ total_books_db }} ta</strong>
+          <a href="{% url 'home' %}" class="uzedu-kpi-link">Katalogga o‘tish →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mening Qo'llanmalarim Jadvali -->
+    <section class="uzedu-dash-card" style="margin-bottom:28px;">
+      <div class="uzedu-dash-card-head">
+        <div class="uzedu-dash-card-title-wrap">
+          <h2 class="uzedu-dash-card-title">Mening Uslubiy Qo‘llanmalarim va Darsliklarim</h2>
+          <span class="uzedu-dash-card-hint">Siz yuklagan materiallar litsey o‘quvchilari uchun PDF formatida ochiq.</span>
+        </div>
+        <a href="{% url 'upload_book' %}" class="ws-btn-action primary" style="padding:6px 14px;font-size:0.82rem;">
+          ➕ Yangi material yuklash
+        </a>
+      </div>
+
+      <div class="uzedu-table-scroll">
+        <table class="uzedu-table">
+          <thead>
+            <tr>
+              <th>Material nomi</th>
+              <th>Muallif</th>
+              <th>Fan</th>
+              <th>Holati</th>
+              <th class="num">Ko‘rildi</th>
+              <th class="num">Amallar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in teacher_my_books %}
+              <tr>
+                <td>
+                  <a href="{% url 'book_detail' b.pk %}" style="font-weight:700;color:var(--primary-700);">{{ b.title }}</a>
+                </td>
+                <td>{{ b.author }}</td>
+                <td>{{ b.display_subject }}</td>
+                <td>
+                  {% if b.approved %}
+                    <span class="uzedu-cov-pill cov-100">Tasdiqlangan</span>
+                  {% else %}
+                    <span class="uzedu-cov-pill cov-85">Moderatsiyada</span>
+                  {% endif %}
+                </td>
+                <td class="num">{{ b.view_count }}</td>
+                <td class="num">
+                  <div style="display:inline-flex;gap:6px;">
+                    <a href="{% url 'book_pdf' b.pk %}" class="uzedu-btn-xs primary">Mutolaa</a>
+                    <a href="{% url 'book_detail' b.pk %}" class="uzedu-btn-xs">Tavsif</a>
+                  </div>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="6" style="text-align:center;padding:24px;color:var(--surface-500);">
+                  Hozircha o‘quv qo‘llanma yuklanmagan. «Yangi material yuklash» tugmasi orqali ilk kitobingizni joylang!
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- O'quvchilar Test Natijalari Monitoringi -->
+    <section class="uzedu-dash-card" style="margin-bottom:28px;">
+      <div class="uzedu-dash-card-head">
+        <div class="uzedu-dash-card-title-wrap">
+          <h2 class="uzedu-dash-card-title">O‘quvchilar Test Natijalari va O‘zlashtirish Monitoringi</h2>
+          <span class="uzedu-dash-card-hint">Test topshirgan o‘quvchilar ballari va berilgan rasmiy sertifikatlar</span>
+        </div>
+        <a href="{% url 'create_quiz' %}" class="ws-btn-action secondary" style="padding:6px 14px;font-size:0.82rem;">
+          ➕ Yangi test yaratish
+        </a>
+      </div>
+
+      <div class="uzedu-table-scroll">
+        <table class="uzedu-table">
+          <thead>
+            <tr>
+              <th>O‘quvchi ismi</th>
+              <th>Test nomi</th>
+              <th class="num">Ball</th>
+              <th class="num">Foiz</th>
+              <th>Holat</th>
+              <th>Sertifikat</th>
+              <th>Topshirilgan vaqt</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for att in all_attempts_feed %}
+              <tr>
+                <td><strong>{{ att.user.get_full_name|default:att.user.username }}</strong></td>
+                <td>{{ att.quiz.title }}</td>
+                <td class="num"><b>{{ att.score }}</b> / {{ att.total }}</td>
+                <td class="num"><b>{{ att.percent }}%</b></td>
+                <td>
+                  {% if att.is_passed %}
+                    <span class="uzedu-cov-pill cov-100">Muvaffaqiyatli</span>
+                  {% else %}
+                    <span class="uzedu-cov-pill cov-85">Yetarli emas</span>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if att.certificate_code %}
+                    <a href="{% url 'certificate_view' att.pk %}" class="uzedu-btn-xs">Sertifikat #{{ att.certificate_code }}</a>
+                  {% else %}
+                    <span style="color:var(--surface-400);font-size:12px;">Yo‘q</span>
+                  {% endif %}
+                </td>
+                <td style="font-size:12px;color:var(--surface-500);">{{ att.created_at|date:"d.m.Y H:i" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% endif %}
+
+
+  <!-- ==============================================================
+       WORKSPACE 3: O‘QUVCHI ISHCHI STOLI
+       ============================================================== -->
+  {% if active_workspace == 'student' %}
+    <section class="ws-banner">
+      <div class="ws-banner-info">
+        <h2>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          O‘quvchi Shaxsiy Ishchi Stoli
+        </h2>
+        <p>Mening mutolaalarim, oxirgi qolgan sahifalar, bilim sinovi testlari, elektron sertifikatlarim va kitobxonlik reytingi.</p>
+      </div>
+      <div class="ws-banner-actions">
+        <a href="{% url 'home' %}" class="ws-btn-action primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span>Kutubxonadan kitob izlash</span>
+        </a>
+        <a href="{% url 'quiz_list' %}" class="ws-btn-action secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+          <span>Test topshirish</span>
+        </a>
+        <a href="{% url 'leaderboard' %}" class="ws-btn-action secondary">
+          <span>Kitobxonlar ligasi →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Student KPIs -->
+    <section class="uzedu-kpi-strip" aria-label="O'quvchi ko'rsatkichlari">
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Faol mutolaa qilinayotgan</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ progress|length }} ta</strong>
+          <span class="uzedu-kpi-tag info">Darslik</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">To‘plangan bilim ballari</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ user.points|default:0 }} ball</strong>
+          <span class="uzedu-kpi-tag success">Reyting: #{{ rank }}-o‘rin</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Qo‘lga kiritilgan sertifikatlar</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ total_certificates }} ta</strong>
+          <span class="uzedu-kpi-tag">Rasmiy QR-kodli</span>
+        </div>
+      </div>
+
+      <div class="uzedu-kpi-cell">
+        <span class="uzedu-kpi-label">Sevimli kitoblarim</span>
+        <div class="uzedu-kpi-value-row">
+          <strong class="uzedu-kpi-value">{{ favorites|length }} ta</strong>
+          <a href="{% url 'favorites' %}" class="uzedu-kpi-link">Ko‘rish →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mutolaa Jarayoni (Reading Progress) -->
+    <section class="uzedu-dash-card" style="margin-bottom:28px;">
+      <div class="uzedu-dash-card-head">
+        <div class="uzedu-dash-card-title-wrap">
+          <h2 class="uzedu-dash-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Mutolaa Jarayonidagi Darslik va Kitoblaringiz
+          </h2>
+          <span class="uzedu-dash-card-hint">Oxirgi qolgan betingiz eslab qolingan — bir klikda davom ettiring</span>
+        </div>
+      </div>
+
+      {% if progress %}
+        <div class="uzedu-progress-grid">
+          {% for item in progress %}
+            <div class="uzedu-progress-card">
+              <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start;">
+                <div>
+                  <strong style="font-size:14px;color:var(--surface-900);display:block;">{{ item.book.title }}</strong>
+                  <span style="font-size:12px;color:var(--surface-500);">{{ item.book.author }} · {{ item.current_page }}/{{ item.total_pages }} bet</span>
+                </div>
+                <span class="uzedu-cov-pill cov-100">{{ item.percent }}%</span>
+              </div>
+              <div class="uzedu-progress-bar">
+                <span style="width: {{ item.percent }}%;"></span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <a href="{% url 'book_detail' item.book.pk %}" style="font-size:12px;color:var(--surface-500);">Tavsif</a>
+                <a href="{% url 'book_pdf' item.book.pk %}" style="font-size:12.5px;font-weight:700;color:var(--primary-700);">PDF mutolaani davom ettirish →</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div style="padding:28px;text-align:center;color:var(--surface-500);">
+          Hozircha mutolaa qilinayotgan kitob mavjud emas. 
+          <a href="{% url 'home' %}" style="font-weight:700;color:var(--primary-700);">Kutubxona katalogidan</a> darslik tanlab o‘qishni boshlang!
+        </div>
+      {% endif %}
+    </section>
+
+    <!-- Topshirilgan Testlar va Elektron Sertifikatlar -->
+    <section class="uzedu-dash-card" style="margin-bottom:28px;">
+      <div class="uzedu-dash-card-head">
+        <div class="uzedu-dash-card-title-wrap">
+          <h2 class="uzedu-dash-card-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:6px;"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            Topshirilgan Testlar va Elektron Sertifikatlar
+          </h2>
+          <span class="uzedu-dash-card-hint">Muvaffaqiyatli topshirilgan testlar uchun rasmiy QR-kodli litsey sertifikatlari</span>
+        </div>
+        <a href="{% url 'quiz_list' %}" class="ws-btn-action primary" style="padding:6px 14px;font-size:0.82rem;">
+          Yangi test topshirish
+        </a>
+      </div>
+
+      <div class="uzedu-table-scroll">
+        <table class="uzedu-table">
+          <thead>
+            <tr>
+              <th>Test nomi</th>
+              <th class="num">Natija</th>
+              <th class="num">Foiz</th>
+              <th>Holati</th>
+              <th class="num">Sertifikat</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for att in attempts %}
+              <tr>
+                <td><strong>{{ att.quiz.title }}</strong></td>
+                <td class="num">{{ att.score }} / {{ att.total }}</td>
+                <td class="num"><b>{{ att.percent }}%</b></td>
+                <td>
+                  {% if att.is_passed %}
+                    <span class="uzedu-cov-pill cov-100">Muvaffaqiyatli</span>
+                  {% else %}
+                    <span class="uzedu-cov-pill cov-85">Qayta topshirish</span>
+                  {% endif %}
+                </td>
+                <td class="num">
+                  {% if att.is_passed %}
+                    <a href="{% url 'certificate_view' att.pk %}" class="uzedu-btn-xs">Sertifikat #{{ att.certificate_code }}</a>
+                  {% else %}
+                    <a href="{% url 'take_quiz' att.quiz.pk %}" class="uzedu-btn-xs">Qayta urinish</a>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5" style="text-align:center;padding:24px;color:var(--surface-500);">
+                  Hozircha topshirilgan testlar yo‘q. «Yangi test topshirish» tugmasi orqali o‘z bilimingizni sinab ko‘ring!
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% endif %}
+
+</div>
+
+<!-- ==============================================================
+     MODAL: YANGI FOYDALANUVCHI QO'SHISH (ADMIN UCHUN)
+     ============================================================== -->
+<div class="lib-modal-backdrop" id="addUserModalBackdrop">
+  <div class="lib-modal">
+    <div class="lib-modal-header">
+      <h3 class="lib-modal-title">➕ Yangi Foydalanuvchi Qo‘shish</h3>
+      <button type="button" class="lib-modal-close" onclick="closeAddUserModal()">&times;</button>
+    </div>
+
+    <form method="post" action="{% url 'admin_add_user' %}">
+      {% csrf_token %}
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="uzedu-field" style="margin:0;">
+          <label class="uzedu-label" style="color:var(--surface-800);">Ism</label>
+          <input type="text" name="first_name" class="uzedu-input" placeholder="Jasur" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);" required>
+        </div>
+        <div class="uzedu-field" style="margin:0;">
+          <label class="uzedu-label" style="color:var(--surface-800);">Familiya</label>
+          <input type="text" name="last_name" class="uzedu-input" placeholder="Beruniy" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);" required>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+        <div class="uzedu-field" style="margin:0;">
+          <label class="uzedu-label" style="color:var(--surface-800);">Yangi Login (Username)</label>
+          <input type="text" name="username" class="uzedu-input" placeholder="jasur_102" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);" required autocomplete="off">
+        </div>
+        <div class="uzedu-field" style="margin:0;">
+          <label class="uzedu-label" style="color:var(--surface-800);">Rol (Tizim maqomi)</label>
+          <select name="role" class="uzedu-input" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);padding:0 10px;">
+            <option value="student" selected>🎓 O‘quvchi (Student)</option>
+            <option value="teacher">📚 Kutubxonachi</option>
+            <option value="librarian">🛡️ Administrator (Admin)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="uzedu-field" style="margin-bottom:12px;">
+        <label class="uzedu-label" style="color:var(--surface-800);">Guruh / Kafedra / Yo‘nalish</label>
+        <input type="text" name="group_name" class="uzedu-input" placeholder="Masalan: 101-guruh (Aniq fanlar) yoki Informatika kafedrasi" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;">
+        <div class="uzedu-field" style="margin:0;">
+          <label class="uzedu-label" style="color:var(--surface-800);">Boshlang‘ich Parol</label>
+          <input type="password" name="password" class="uzedu-input" placeholder="Kamida 4 ta belgi" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);" required>
+        </div>
+        <div class="uzedu-field" style="margin:0;">
+          <label class="uzedu-label" style="color:var(--surface-800);">Email (Ixtiyoriy)</label>
+          <input type="email" name="email" class="uzedu-input" placeholder="jasur@litsey.uz" style="background:var(--surface-50);color:var(--surface-900);border-color:var(--surface-300);">
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:flex-end;gap:10px;">
+        <button type="button" class="ws-btn-action secondary" onclick="closeAddUserModal()">Bekor qilish</button>
+        <button type="submit" class="ws-btn-action primary">Foydalanuvchini saqlash</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openAddUserModal() {
+    var modal = document.getElementById('addUserModalBackdrop');
+    if (modal) modal.classList.add('is-open');
+  }
+
+  function closeAddUserModal() {
+    var modal = document.getElementById('addUserModalBackdrop');
+    if (modal) modal.classList.remove('is-open');
+  }
+
+  // Interactive Uzbekistan SVG Map + Region Table + Language Filter (lib.uzedu.uz behavior)
+  function selectDashboardRegion(name, schools, students, books, coverage) {
+    var elSchools = document.getElementById('kpi-schools');
+    var elStudents = document.getElementById('kpi-students');
+    var elBooks = document.getElementById('kpi-books');
+    var elCov = document.getElementById('kpi-coverage');
+    var elLabel = document.getElementById('selected-map-region-label');
+    var elCrumbDist = document.getElementById('crumb-district');
+    var ttName = document.getElementById('tt-name');
+    var ttSchools = document.getElementById('tt-schools');
+    var ttStudents = document.getElementById('tt-students');
+    var ttBooks = document.getElementById('tt-books');
+    var ttCov = document.getElementById('tt-coverage');
+
+    if (elSchools) elSchools.textContent = schools;
+    if (elStudents) elStudents.textContent = students;
+    if (elBooks) elBooks.textContent = books;
+    if (elCov) elCov.textContent = coverage;
+    if (elLabel) elLabel.textContent = name;
+    if (elCrumbDist) elCrumbDist.textContent = name;
+    if (ttName) ttName.textContent = name;
+    if (ttSchools) ttSchools.textContent = schools;
+    if (ttStudents) ttStudents.textContent = students;
+    if (ttBooks) ttBooks.textContent = books;
+    if (ttCov) ttCov.textContent = coverage;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. SVG Map Province Hover & Click
+    var paths = document.querySelectorAll('.uzedu-map-province');
+    paths.forEach(function(p) {
+      p.addEventListener('mouseenter', function() {
+        var name = p.getAttribute('data-name');
+        var schools = p.getAttribute('data-schools');
+        var students = Number(p.getAttribute('data-students') || 0).toLocaleString('ru-RU');
+        var books = Number(p.getAttribute('data-books') || 0).toLocaleString('ru-RU');
+        var cov = p.getAttribute('data-coverage');
+        var ttName = document.getElementById('tt-name');
+        var ttSchools = document.getElementById('tt-schools');
+        var ttStudents = document.getElementById('tt-students');
+        var ttBooks = document.getElementById('tt-books');
+        var ttCov = document.getElementById('tt-coverage');
+        if (ttName) ttName.textContent = name;
+        if (ttSchools) ttSchools.textContent = schools;
+        if (ttStudents) ttStudents.textContent = students;
+        if (ttBooks) ttBooks.textContent = books;
+        if (ttCov) ttCov.textContent = cov;
+      });
+      p.addEventListener('click', function() {
+        paths.forEach(function(other) { other.classList.remove('is-selected'); });
+        p.classList.add('is-selected');
+        var name = p.getAttribute('data-name');
+        var schools = p.getAttribute('data-schools');
+        var students = Number(p.getAttribute('data-students') || 0).toLocaleString('ru-RU');
+        var books = Number(p.getAttribute('data-books') || 0).toLocaleString('ru-RU');
+        var cov = p.getAttribute('data-coverage');
+        selectDashboardRegion(name, schools, students, books, cov);
+      });
+    });
+
+    // 2. District Table Row Click
+    var rows = document.querySelectorAll('#uzedu-region-table tbody .uzedu-click-row');
+    rows.forEach(function(row) {
+      row.addEventListener('click', function() {
+        rows.forEach(function(r) { r.classList.remove('selected-row'); });
+        row.classList.add('selected-row');
+        selectDashboardRegion(
+          row.getAttribute('data-district'),
+          row.getAttribute('data-schools'),
+          Number(row.getAttribute('data-students') || 0).toLocaleString('ru-RU'),
+          Number(row.getAttribute('data-books') || 0).toLocaleString('ru-RU'),
+          row.getAttribute('data-coverage')
+        );
+      });
+    });
+
+    // 3. Education Language Filter Pills & Table Rows
+    var langPills = document.querySelectorAll('.uzedu-filter-pill');
+    var langRows = document.querySelectorAll('.lang-row');
+    function activateLangFilter(langId, students, books, langName) {
+      langPills.forEach(function(b) {
+        var active = b.getAttribute('data-lang-filter') === langId;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      langRows.forEach(function(r) {
+        r.classList.toggle('selected-row', r.getAttribute('data-lang-row') === langId);
+      });
+      if (langId === 'all') {
+        selectDashboardRegion('Xorazm viloyati (Barcha tillar)', '549', '368 420', '4 892 450', '100%');
+      } else {
+        selectDashboardRegion('Xorazm viloyati · ' + langName, '549', students, books, '100%');
+      }
+    }
+    langPills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        activateLangFilter(
+          pill.getAttribute('data-lang-filter'),
+          pill.getAttribute('data-students'),
+          pill.getAttribute('data-books'),
+          pill.getAttribute('data-name')
+        );
+      });
+    });
+  });
+
+  function exportTableToCSV(filename) {
+    var csv = [];
+    var rows = document.querySelectorAll('#uzedu-region-table tr');
+    for (var i = 0; i < rows.length; i++) {
+      var row = [], cols = rows[i].querySelectorAll('td, th');
+      for (var j = 0; j < cols.length; j++) {
+        var text = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, ' ').trim();
+        row.push('"' + text.replace(/"/g, '""') + '"');
+      }
+      csv.push(row.join(','));
+    }
+    var blob = new Blob(['\uFEFF' + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+  }
+</script>
+{% endblock %}

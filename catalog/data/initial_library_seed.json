@@ -1,0 +1,5032 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Aniq fanlar",
+      "description": "Matematika, Fizika, Informatika"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Tabiiy fanlar",
+      "description": "Biologiya, Kimyo, Geografiya"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Ijtimoiy fanlar",
+      "description": "Tarix, Adabiyot, Falsafa"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "Xorijiy tillar",
+      "description": "Ingliz tili, Nemis tili, Rus tili"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "Badiiy adabiyot",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "name": "Tarix va meros",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 8,
+    "fields": {
+      "name": "Ustozlar qo‘llanmalari",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 1,
+    "fields": {
+      "title": "Oliy matematika asoslari (2-qism)",
+      "author": "T. Jo‘rayev, A. Sa’dullayev, G. Xudoyberganov",
+      "subject": "Matematika",
+      "category": 1,
+      "description": "Akademik litseylar va oliy o‘quv yurtlari uchun matematik analiz, chiziqli algebra asoslari.",
+      "language": "O‘zbek",
+      "published_year": 2022,
+      "isbn": "",
+      "cover": "covers/title_1.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/matematika/Oliy%20Matematika%20asoslari.%202-qism%20(T.Jo'rayev%20va%20b.).pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-05T17:53:28.290Z",
+      "view_count": 4,
+      "download_count": 2
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 2,
+    "fields": {
+      "title": "Algoritmlash va dasturlash asoslari",
+      "author": "A. Azamatov",
+      "subject": "Informatika",
+      "category": 1,
+      "description": "Python tilining sintaksisi, ma’lumotlar tuzilmalari, algoritmlar va amaliy loyihalar.",
+      "language": "O‘zbek",
+      "published_year": 2023,
+      "isbn": "",
+      "cover": "covers/title_2.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/axborot_texnologiyalari/Algoritmlash%20va%20dasturlash%20asoslari%20(A.Azamatov).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-05T17:53:28.293Z",
+      "view_count": 0,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 3,
+    "fields": {
+      "title": "O‘zbekiston tarixi (1-qism)",
+      "author": "A. Sagdullayev va b.",
+      "subject": "Tarix",
+      "category": 7,
+      "description": "Akademik litsey o‘quvchilari uchun O‘zbekiston tarixi darsligi.",
+      "language": "O‘zbek",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_3.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/tarixiy/A.Sagdullayev%20va%20b.%20O'zbekiston%20tarixi.%20Davlat%20va%20jamiyat%20taraqqiyoti.%201-qism.pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-05T17:53:28.295Z",
+      "view_count": 0,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 4,
+    "fields": {
+      "title": "Sarob (roman)",
+      "author": "Abdulla Qahhor",
+      "subject": "Badiiy adabiyot",
+      "category": 5,
+      "description": "O‘zbek romanchiligining ilk namunasi bo‘lgan mashhur tarixiy roman.",
+      "language": "O‘zbek",
+      "published_year": 2019,
+      "isbn": "",
+      "cover": "covers/title_4.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Abdulla%20Qahhor.%20Sarob%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-05T17:53:28.298Z",
+      "view_count": 0,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 5,
+    "fields": {
+      "title": "Fizika kursi (Mexanika va termodinamika)",
+      "author": "A. Remizov",
+      "subject": "Fizika",
+      "category": 1,
+      "description": "Fundamental physics concepts, problem solving and experimental principles.",
+      "language": "Ingliz",
+      "published_year": 2020,
+      "isbn": "",
+      "cover": "covers/title_5.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/aniq_fanlar/Aleksandr%20Remizov.%20Fizika%20kursi%20(mexanika,%20molekulyar%20fizika,%20termodinamika).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-05T17:53:28.301Z",
+      "view_count": 0,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 6,
+    "fields": {
+      "title": "Fizikadan masalalar to‘plami",
+      "author": "A. Rimkevich",
+      "subject": "Fizika",
+      "category": 1,
+      "description": "Akademik litsey o‘quvchilari va olimpiadachilar uchun mexanika va elektrodinamika bo‘yicha tanlangan masalalar.",
+      "language": "O‘zbek",
+      "published_year": 2023,
+      "isbn": "",
+      "cover": "covers/title_6.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/aniq_fanlar/Andrey%20Rimkevich.%20Fizikadan%20masalalar%20to'plami.pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-05T18:01:41.194Z",
+      "view_count": 0,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 7,
+    "fields": {
+      "title": "Hisoblash matematikasi va dasturlash",
+      "author": "A. Abduqodirov, F. Fozilov, T. Umurzoqov",
+      "subject": "Informatika",
+      "category": 1,
+      "description": "Litsey o‘quvchilari uchun C++ va Python tillarida dasturlash amaliyoti.",
+      "language": "O‘zbek",
+      "published_year": 2024,
+      "isbn": "",
+      "cover": "covers/title_7.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/axborot_texnologiyalari/Hisoblash%20matematikasi%20va%20dasturlash%20(A.Abduqodirov,%20F.Fozilov,%20T.Umurzoqov).pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-05T18:01:41.198Z",
+      "view_count": 0,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 8,
+    "fields": {
+      "title": "Oliy matematikadan masalalar yechish qo‘llanmasi",
+      "author": "P. Danko, O‘zbekiston nashri",
+      "subject": "Matematika",
+      "category": 8,
+      "description": "Akademik litsey o‘quvchilari uchun murakkab algebraik tenglamalar, funksiyalar va olimpiada masalalarini yechish usullari bo‘yicha mualliflik uslubiy qo‘llanmasi.",
+      "language": "O‘zbek",
+      "published_year": 2025,
+      "isbn": "978-9943-81-101-4",
+      "cover": "covers/title_8.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/aniq_fanlar/Oliy%20matematikadan%20masalalar%20yechish%20bo'yicha%20qo'llanma.pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-06T17:58:42.926Z",
+      "view_count": 342,
+      "download_count": 128
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 9,
+    "fields": {
+      "title": "Fizika: Mexanika va issiqlik (Akademik litsey kursi)",
+      "author": "M. O‘lmasova, J. Kamolov, T. Lutfullayeva",
+      "subject": "Fizika",
+      "category": 8,
+      "description": "Mexanika, molekulyar fizika, elektrodinamika va kvant fizikasi bo‘limlari bo‘yicha laboratoriya va amaliy masalalar yechimi.",
+      "language": "O‘zbek",
+      "published_year": 2024,
+      "isbn": "978-9943-81-102-1",
+      "cover": "covers/title_9.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/fizika/Fizika.%201-kitob.%20Mexanika,%20molekulyar%20fizika%20va%20issiqlik%20(M.O'lmasova%20va%20b.).pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-06T17:58:42.929Z",
+      "view_count": 289,
+      "download_count": 96
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 10,
+    "fields": {
+      "title": "Ingliz tili grammatikasi (Litsey kursi)",
+      "author": "M. G‘apporov, R. Qosimova",
+      "subject": "Ingliz tili",
+      "category": 4,
+      "description": "Urganch davlat akademik litseyi xorijiy tillar kafedrasi tomonidan tavsiya etilgan chuqurlashtirilgan o‘quv-uslubiy qo‘llanma.",
+      "language": "Ingliz",
+      "published_year": 2025,
+      "isbn": "978-9943-81-103-8",
+      "cover": "covers/title_10.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/chet_tillari/Ingliz%20tili%20grammatikasi%20(M.G'apporov,%20R.Qosimova).pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-06T17:58:42.932Z",
+      "view_count": 416,
+      "download_count": 185
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 11,
+    "fields": {
+      "title": "Informatika va axborot texnologiyalari",
+      "author": "A. Sattorov",
+      "subject": "Informatika",
+      "category": 8,
+      "description": "Zamonaviy dasturlash asoslari, ma’lumotlar tuzilmasi va algoritmik masalalarni yechish bo‘yicha amaliy qo‘llanma.",
+      "language": "O‘zbek",
+      "published_year": 2025,
+      "isbn": "978-9943-81-104-5",
+      "cover": "covers/title_11.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/axborot_texnologiyalari/Informatika%20va%20axborot%20texnologiyalari%20(A.Sattorov).pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-06T17:58:42.935Z",
+      "view_count": 262,
+      "download_count": 112
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 12,
+    "fields": {
+      "title": "Anorganik kimyo nazariy asoslari",
+      "author": "N. Parpiyev, H. Rahimov, A. Muftaxov",
+      "subject": "Kimyo",
+      "category": 2,
+      "description": "Kimyoviy reaksiyalar kinetikasi, davriy qonun va tibbiyot oliygohlariga kiruvchilar uchun murakkab masalalar yechimi.",
+      "language": "O‘zbek",
+      "published_year": 2024,
+      "isbn": "978-9943-81-105-2",
+      "cover": "covers/title_12.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/kimyo/Anorganik%20kimyo%20nazariy%20asoslari%20(N.Parpiyev%20va%20b.).pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-06T17:58:42.938Z",
+      "view_count": 198,
+      "download_count": 74
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 13,
+    "fields": {
+      "title": "Qadimgi xalqlardan qolgan yodgorliklar (Tanlangan asarlar)",
+      "author": "Abu Rayhon Beruniy",
+      "subject": "Tarix",
+      "category": 7,
+      "description": "Buyuk qomusiy olim Abu Rayhon Beruniy asarlari, Xorazm Ma’mun akademiyasi tarixi va jahon ilm-faniga qo‘shgan hissasi.",
+      "language": "O‘zbek",
+      "published_year": 2025,
+      "isbn": "978-9943-81-106-9",
+      "cover": "covers/title_13.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/tarixiy/Abu%20Rayhon%20Beruniy.%20Tanlangan%20asarlar.%201-jild.%20Qadimgi%20xalqlardan%20qolgan%20yodgorliklar.pdf",
+      "submitted_by": null,
+      "is_teacher_book": true,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-06T17:58:42.940Z",
+      "view_count": 377,
+      "download_count": 150
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 14,
+    "fields": {
+      "title": "O‘tkan kunlar (roman)",
+      "author": "Abdulla Qodiriy",
+      "subject": "Badiiy adabiyot",
+      "category": 5,
+      "description": "O‘zbek romanchiligi maktabining asoschisi Abdulla Qodiriyning shoh asari. Ziyouz elektron kutubxonasining to‘liq PDF nashri.",
+      "language": "O‘zbek",
+      "published_year": 2021,
+      "isbn": "978-9943-01-412-1",
+      "cover": "covers/title_14.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Abdulla%20Qodiriy.%20O%27tkan%20kunlar%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-06T17:58:42.943Z",
+      "view_count": 614,
+      "download_count": 310
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 15,
+    "fields": {
+      "title": "Yulduzli tunlar (Bobur)",
+      "author": "Pirimqul Qodirov",
+      "subject": "Tarixiy roman",
+      "category": 5,
+      "description": "Zahiriddin Muhammad Bobur hayoti va davlat boshqaruvi, ijodi haqidagi mashhur tarixiy roman.",
+      "language": "O‘zbek",
+      "published_year": 2020,
+      "isbn": "978-9943-01-518-0",
+      "cover": "covers/title_15.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Pirimqul%20Qodirov.%20Yulduzli%20tunlar%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": true,
+      "created_at": "2026-11-06T17:58:42.946Z",
+      "view_count": 493,
+      "download_count": 224
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 16,
+    "fields": {
+      "title": "Otamdan qolgan dalalar (roman)",
+      "author": "Tog‘ay Murod",
+      "subject": "Badiiy adabiyot",
+      "category": 5,
+      "description": "Ona mehri, insoniylik va bolalik xotiralari haqida eng ta’sirli o‘zbek qissasi.",
+      "language": "O‘zbek",
+      "published_year": 2022,
+      "isbn": "978-9943-01-609-5",
+      "cover": "covers/title_16.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Tog%27ay%20Murod.%20Otamdan%20qolgan%20dalalar%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-06T17:58:42.948Z",
+      "view_count": 390,
+      "download_count": 175
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 17,
+    "fields": {
+      "title": "Mehrobdan chayon (roman)",
+      "author": "Abdulla Qodiriy",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "Abdulla Qodiriy qalamiga mansub «Mehrobdan chayon (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_17.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Abdulla%20Qodiriy.%20Mehrobdan%20chayon%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.671Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 18,
+    "fields": {
+      "title": "Hikoyalar va tarjimalar",
+      "author": "Abdulhamid Cho‘lpon",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "Abdulhamid Cho‘lpon qalamiga mansub «Kecha va kunduz (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_18.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Abdulhamid%20Cho'lpon.%20Hikoyalar,%20tarjimalar.pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.682Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 19,
+    "fields": {
+      "title": "Navoiy (roman)",
+      "author": "Oybek",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "Oybek qalamiga mansub «Navoiy (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_19.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Oybek.%20Navoiy%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.687Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 20,
+    "fields": {
+      "title": "Qutlug‘ qon (roman)",
+      "author": "Oybek",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "Oybek qalamiga mansub «Qutlug‘ qon (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_20.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Oybek.%20Qutlug%27%20qon%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.692Z",
+      "view_count": 182,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 21,
+    "fields": {
+      "title": "Avlodlar dovoni (Humoyun va Akbar)",
+      "author": "Pirimqul Qodirov",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "Pirimqul Qodirov qalamiga mansub «Avlodlar dovoni (Humoyun va Akbar)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_21.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Pirimqul%20Qodirov.%20Avlodlar%20dovoni%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.696Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 22,
+    "fields": {
+      "title": "Ulug‘bek xazinasi (roman)",
+      "author": "Odil Yoqubov",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "Odil Yoqubov qalamiga mansub «Ulug‘bek xazinasi (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_22.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Odil%20Yoqubov.%20Ulug%27bek%20xazinasi%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.700Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 23,
+    "fields": {
+      "title": "Odam bo‘lish qiyin (roman)",
+      "author": "O‘lmas Umarbekov",
+      "subject": "Badiiy adabiyot",
+      "category": 5,
+      "description": "O‘tkir Hoshimov qalamiga mansub «Ikki eshik orasi (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_23.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/O'lmas%20Umarbekov.%20Odam%20bo'lish%20qiyin%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.705Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 24,
+    "fields": {
+      "title": "Ko‘hna dunyo (roman)",
+      "author": "Odil Yoqubov",
+      "subject": "Badiiy adabiyot",
+      "category": 5,
+      "description": "O‘tkir Hoshimov qalamiga mansub «Daftar hoshiyasidagi bitiklar» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_24.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Odil%20Yoqubov.%20Ko'hna%20dunyo%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.709Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 25,
+    "fields": {
+      "title": "Shum bola (qissa)",
+      "author": "G‘afur G‘ulom",
+      "subject": "O‘zbek adabiyoti",
+      "category": 5,
+      "description": "G‘afur G‘ulom qalamiga mansub «Shum bola (qissa)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_25.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/G%27afur%20G%27ulom.%20Shum%20bola%20(qissa).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.714Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 26,
+    "fields": {
+      "title": "Sariq devni minib (roman)",
+      "author": "Xudoyberdi To‘xtaboyev",
+      "subject": "Bolalar adabiyoti",
+      "category": 5,
+      "description": "Xudoyberdi To‘xtaboyev qalamiga mansub «Sariq devni minib (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_26.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/bolalar_kutubxonasi/Xudoyberdi%20To'xtaboyev.%20Sariq%20devni%20minib%20(roman).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.719Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 27,
+    "fields": {
+      "title": "Boburnoma",
+      "author": "Zahiriddin Muhammad Bobur",
+      "subject": "Mumtoz adabiyot / Tarix",
+      "category": 7,
+      "description": "Zahiriddin Muhammad Bobur qalamiga mansub «Boburnoma» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_27.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_mumtoz_adabiyoti/Zahiriddin%20Muhammad%20Bobur.%20Boburnoma.pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.723Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 28,
+    "fields": {
+      "title": "Xamsa: Farhod va Shirin",
+      "author": "Alisher Navoiy",
+      "subject": "Mumtoz adabiyot",
+      "category": 5,
+      "description": "Alisher Navoiy qalamiga mansub «Xamsa: Farhod va Shirin» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_28.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/alisher_navoiy_asarlari/Alisher%20Navoiy.%20Xamsa.%20Farhod%20va%20Shirin%20(nasriy%20bayoni).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.726Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 29,
+    "fields": {
+      "title": "Amir Temur tuzuklari",
+      "author": "Ziyodulla Muqimov",
+      "subject": "Tarix",
+      "category": 7,
+      "description": "Amir Temur qalamiga mansub «Temur tuzuklari» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_29.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/tarixiy/Ziyodulla%20Muqimov.%20Amir%20Temur%20tuzuklari.pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.729Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 30,
+    "fields": {
+      "title": "Alpomish (o‘zbek xalq dostoni)",
+      "author": "Xalq og‘zaki ijodi",
+      "subject": "Folklor",
+      "category": 5,
+      "description": "Xalq og‘zaki ijodi qalamiga mansub «Alpomish (o‘zbek xalq dostoni)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_30.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_xalq_ogzaki_ijodi/Fozil%20Yo'ldosh%20o'g'li%20(aytuvchi).%20Alpomish%20(doston).%201-qism.pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.733Z",
+      "view_count": 182,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 31,
+    "fields": {
+      "title": "Asrga tatigulik kun (roman)",
+      "author": "Chingiz Aytmatov",
+      "subject": "Jahon adabiyoti",
+      "category": 5,
+      "description": "Chingiz Aytmatov qalamiga mansub «Asrga tatigulik kun (roman)» asari. Elektron mutolaa va ta’lim uchun tavsiya etiladi.",
+      "language": "uz",
+      "published_year": 2021,
+      "isbn": "",
+      "cover": "covers/title_31.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/jahon_nasri/Chingiz%20Aytmatov.%20Qiyomat.%20Asrga%20tatigulik%20kun%20(romanlar,%201989).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-17T20:16:31.736Z",
+      "view_count": 180,
+      "download_count": 65
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 32,
+    "fields": {
+      "title": "Bank huquqi",
+      "author": "M. Yo‘ldoshev, Y. Tursunov",
+      "subject": "Huquqshunoslik",
+      "category": 3,
+      "description": "Bank huquqi (M.Yo’ldoshev, Y.Tursunov) — ijtimoiy-gumanitar fanlar bo‘yicha o‘quv qo‘llanma.",
+      "language": "O‘zbek",
+      "published_year": 2020,
+      "isbn": "",
+      "cover": "covers/title_32.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/huquq/Bank%20huquqi%20(M.Yo%E2%80%99ldoshev,%20Y.Tursunov).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-18T06:28:59.007Z",
+      "view_count": 117,
+      "download_count": 38
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 33,
+    "fields": {
+      "title": "Qariya (qissalar, hikoyalar)",
+      "author": "Abbos Said",
+      "subject": "Badiiy adabiyot",
+      "category": 5,
+      "description": "Abbos Said — «Qariya (qissalar, hikoyalar)» (Badiiy adabiyot).",
+      "language": "O‘zbek",
+      "published_year": null,
+      "isbn": "",
+      "cover": "covers/title_33.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/uzbek_nasri/Abbos%20Said.%20Qariya%20(qissalar,%20hikoyalar).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-18T06:45:13.384Z",
+      "view_count": 2,
+      "download_count": 1
+    }
+  },
+  {
+    "model": "catalog.book",
+    "pk": 34,
+    "fields": {
+      "title": "Chiziqli algebra va analitik geometriyadan masalalar yechish (J.Akilov, M.Jabborov)",
+      "author": "Ziyouz Kutubxonasi",
+      "subject": "Matematika",
+      "category": 1,
+      "description": "Ziyouz Kutubxonasi — «Chiziqli algebra va analitik geometriyadan masalalar yechish (J.Akilov, M.Jabborov)» (Matematika).",
+      "language": "O‘zbek",
+      "published_year": null,
+      "isbn": "",
+      "cover": "covers/title_34.jpg",
+      "pdf_file": "",
+      "external_url": "https://n.ziyouz.com/books/kollej_va_otm_darsliklari/matematika/Chiziqli%20algebra%20va%20analitik%20geometriyadan%20masalalar%20yechish%20(J.Akilov,%20M.Jabborov).pdf",
+      "submitted_by": null,
+      "is_teacher_book": false,
+      "approved": true,
+      "featured": false,
+      "created_at": "2026-11-18T16:17:57.709Z",
+      "view_count": 7,
+      "download_count": 0
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 5,
+    "fields": {
+      "title": "«O‘tkan kunlar» va «Mehrobdan chayon» asarlari bo‘yicha test",
+      "description": "Abdulla Qodiriyning «O‘tkan kunlar» hamda «Mehrobdan chayon» romanlari mazmuni, qahramonlari va tarixiy muhiti asosida 10 ta savol.",
+      "subject": "Badiiy adabiyot",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.679Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 6,
+    "fields": {
+      "title": "«Yulduzli tunlar» va «Boburnoma» asarlari bo‘yicha test",
+      "description": "Pirimqul Qodirovning «Yulduzli tunlar» romani hamda Zahiriddin Muhammad Boburning «Boburnoma» memuar asari asosida 10 ta savol.",
+      "subject": "Tarixiy adabiyot",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.684Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 7,
+    "fields": {
+      "title": "Alisher Navoiy «Farhod va Shirin» hamda Beruniy merosi",
+      "description": "Alisher Navoiy «Xamsa: Farhod va Shirin» dostoni va Abu Rayhon Beruniyning «Qadimgi xalqlardan qolgan yodgorliklar» kitobi asosida 10 ta savol.",
+      "subject": "Mumtoz adabiyot va meros",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.690Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 8,
+    "fields": {
+      "title": "Fizika: Mexanika, issiqlik va termodinamika",
+      "description": "M. O‘lmasova, A. Remizov va A. Rimkevich darsliklari hamda masalalar to‘plamlari asosida tuzilgan 10 ta savol.",
+      "subject": "Fizika",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.694Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 9,
+    "fields": {
+      "title": "Oliy matematika va Chiziqli algebra asoslari",
+      "description": "T. Jo‘rayev («Oliy matematika asoslari»), P. Danko va J. Akilov darsliklari asosida 10 ta savol.",
+      "subject": "Matematika",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.699Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 10,
+    "fields": {
+      "title": "Informatika, algoritmlash va dasturlash asoslari",
+      "description": "A. Sattorov, A. Azamatov va A. Abduqodirovning informatika hamda algoritmlash darsliklari asosida 10 ta savol.",
+      "subject": "Informatika",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.704Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 11,
+    "fields": {
+      "title": "Anorganik kimyo nazariy asoslari",
+      "description": "N. Parpiyev, H. Rahimov va A. Muftaxovning «Anorganik kimyo nazariy asoslari» kitobi asosida 10 ta savol.",
+      "subject": "Kimyo",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.709Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 12,
+    "fields": {
+      "title": "Ingliz tili grammatikasi (Litsey kursi)",
+      "description": "M. G‘apporov va R. Qosimovaning «Ingliz tili grammatikasi» darsligi asosida tuzilgan 10 ta akademik savol.",
+      "subject": "Xorijiy tillar",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.713Z"
+    }
+  },
+  {
+    "model": "catalog.quiz",
+    "pk": 13,
+    "fields": {
+      "title": "O‘zbekiston tarixi va Bank huquqi asoslari",
+      "description": "A. Sagdullayevning «O‘zbekiston tarixi» hamda M. Yo‘ldoshev, Y. Tursunovlarning «Bank huquqi» darsliklari asosida 10 ta savol.",
+      "subject": "Ijtimoiy fanlar",
+      "is_published": true,
+      "created_by": null,
+      "created_at": "2026-11-18T16:34:49.718Z"
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 13,
+    "fields": {
+      "quiz": 5,
+      "text": "«O‘tkan kunlar» romanidagi voqealar qaysi shaharlarda boshlanadi?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 14,
+    "fields": {
+      "quiz": 5,
+      "text": "Otabekning otasi Yusufbek hoji qaysi shaharning obro‘li arboblaridan edi?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 15,
+    "fields": {
+      "quiz": 5,
+      "text": "Kumushbibi qaysi shaharda yashar va kimning qizi edi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 16,
+    "fields": {
+      "quiz": 5,
+      "text": "Otabekka Toshkentdan olib berilgan ikkinchi xotinning ismi kim edi?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 17,
+    "fields": {
+      "quiz": 5,
+      "text": "«O‘tkan kunlar» romanida sodiq xizmatkor va Otabekning murabbiysi sifatida tasvirlangan obraz kim?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 18,
+    "fields": {
+      "quiz": 5,
+      "text": "Marg‘ilonda Kumushga ko‘z tikib, Otabek bilan raqobat qilgan salbiy obraz kim edi?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 19,
+    "fields": {
+      "quiz": 5,
+      "text": "«Mehrobdan chayon» romanining bosh qahramonlari kimlar?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 20,
+    "fields": {
+      "quiz": 5,
+      "text": "«Mehrobdan chayon» asarida Ra’noning otasi Solih maxdum qaysi kasb egasi edi?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 21,
+    "fields": {
+      "quiz": 5,
+      "text": "Anvar Qo‘qon xoni Xudoyorxon saroyida qanday vazifada ishlagan?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 22,
+    "fields": {
+      "quiz": 5,
+      "text": "Abdulla Qodiriy qaysi yillarda «O‘tkan kunlar» romanini yozib e’lon qilgan?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 23,
+    "fields": {
+      "quiz": 6,
+      "text": "Zahiriddin Muhammad Bobur necha yoshida Farg‘ona taxtiga o‘tirgan?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 24,
+    "fields": {
+      "quiz": 6,
+      "text": "«Yulduzli tunlar» romanining muallifi kim?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 25,
+    "fields": {
+      "quiz": 6,
+      "text": "Boburning otasi Umarshayx mirzo vafot etgan qal’a qaysi edi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 26,
+    "fields": {
+      "quiz": 6,
+      "text": "Bobur 1526-yilda Panipat jangida kimning qo‘shinini mag‘lub etib Hindistonda saltanat qurgan?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 27,
+    "fields": {
+      "quiz": 6,
+      "text": "«Boburnoma» asari dastlab qaysi tilda yozilgan?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 28,
+    "fields": {
+      "quiz": 6,
+      "text": "«Yulduzli tunlar» romanida Boburning sadoqatli va iqtidorli qizi, «Humoyunnoma» muallifi kim?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 29,
+    "fields": {
+      "quiz": 6,
+      "text": "Bobur qaysi shaharda o‘z saltanatining poytaxtlaridan biri sifatida ko‘p bog‘lar barpo ettirgan?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 30,
+    "fields": {
+      "quiz": 6,
+      "text": "«Boburnoma»da qaysi buyuk o‘zbek shoiri haqida «Turkiy tilda hech kim oncha ko‘p va xo‘b she’r aytgan emas» deb yozilgan?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 31,
+    "fields": {
+      "quiz": 6,
+      "text": "Bobur hayotining so‘nggi davri va vorisi Humoyun haqidagi Pirimqul Qodirovning davom romanining nomi nima?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 32,
+    "fields": {
+      "quiz": 6,
+      "text": "Zahiriddin Muhammad Bobur qaysi yilda vafot etgan?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 33,
+    "fields": {
+      "quiz": 7,
+      "text": "«Farhod va Shirin» dostoni Alisher Navoiy «Xamsa»sining nechanchi dostonidir?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 34,
+    "fields": {
+      "quiz": 7,
+      "text": "Farhod qaysi mamlakat podshohining o‘g‘li edi?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 35,
+    "fields": {
+      "quiz": 7,
+      "text": "«Farhod va Shirin» dostonida Shirinning ammasi va yurt hukmdori kim edi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 36,
+    "fields": {
+      "quiz": 7,
+      "text": "Farhodga tosh yo‘nish va me’morchilik sirlarini kim o‘rgatgan?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 37,
+    "fields": {
+      "quiz": 7,
+      "text": "Farhodga qarshi makr-hiyla ishlatib urush boshlagan hukmdor kim?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 38,
+    "fields": {
+      "quiz": 7,
+      "text": "Abu Rayhon Beruniy qaysi yilda Xorazmda (Kot shahrida) tavallud topgan?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 39,
+    "fields": {
+      "quiz": 7,
+      "text": "Beruniyning «Qadimgi xalqlardan qolgan yodgorliklar» asari qaysi fanga bag‘ishlangan?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 40,
+    "fields": {
+      "quiz": 7,
+      "text": "Beruniy Xorazmdagi qaysi ilmiy markazga rahbarlik qilgan?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 41,
+    "fields": {
+      "quiz": 7,
+      "text": "Beruniy Yer radiusini qaysi usul bilan yuqori aniqlikda hisoblagan?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 42,
+    "fields": {
+      "quiz": 7,
+      "text": "Oybek qalamiga mansub Alisher Navoiy hayoti haqidagi mashhur roman nomi qanday?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 43,
+    "fields": {
+      "quiz": 8,
+      "text": "Xalqaro birliklar tizimida (SI) kuchning o‘lchov birligi nima?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 44,
+    "fields": {
+      "quiz": 8,
+      "text": "Nyutonning ikkinchi qonuni formulasini toping:",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 45,
+    "fields": {
+      "quiz": 8,
+      "text": "Tekis harakatda bosib o‘tilgan yo‘l formulasi qaysi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 46,
+    "fields": {
+      "quiz": 8,
+      "text": "Jismning potensial energiyasi (Yer sirtiga nisbatan) qaysi formula bilan topiladi?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 47,
+    "fields": {
+      "quiz": 8,
+      "text": "Termodinamikaning birinchi qonuni nimani ifodalaydi?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 48,
+    "fields": {
+      "quiz": 8,
+      "text": "Mendeleyev–Klapeyron (ideal gaz holat) tenglamasi qaysi?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 49,
+    "fields": {
+      "quiz": 8,
+      "text": "Mutlaq harorat (Kelvin) va Selsiy shkalasi orasidagi bog‘lanish qanday?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 50,
+    "fields": {
+      "quiz": 8,
+      "text": "Quvvatning o‘lchov birligi qaysi javobda to‘g‘ri ko‘rsatilgan?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 51,
+    "fields": {
+      "quiz": 8,
+      "text": "Bosim p = F / S formulasi bilan aniqlanadi. Uning birligi nima?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 52,
+    "fields": {
+      "quiz": 8,
+      "text": "Erkin tushish tezlanishi g Yer sirti yaqinida taxminan nechaga teng?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 53,
+    "fields": {
+      "quiz": 9,
+      "text": "f(x) = x³ funksiyaning hosilasi f'(x) nimaga teng?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 54,
+    "fields": {
+      "quiz": 9,
+      "text": "∫ 2x dx aniqmas integrali nimaga teng?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 55,
+    "fields": {
+      "quiz": 9,
+      "text": "f(x) = sin(x) funksiyaning birinchi tartibli hosilasi qaysi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 56,
+    "fields": {
+      "quiz": 9,
+      "text": "Ikkinchi tartibli A = [[a, b], [c, d]] matritsaning determinanti qanday hisoblanadi?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 57,
+    "fields": {
+      "quiz": 9,
+      "text": "ln(e) natural logarifmning qiymati nechaga teng?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 58,
+    "fields": {
+      "quiz": 9,
+      "text": "Tekislikda ikki vektor perpendikulyar bo‘lishi uchun ularning skalyar ko‘paytmasi nechaga teng bo‘lishi kerak?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 59,
+    "fields": {
+      "quiz": 9,
+      "text": "lim (x → 0) sin(x) / x ajoyib limitining qiymati nechaga teng?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 60,
+    "fields": {
+      "quiz": 9,
+      "text": "f(x) = eˣ funksiyaning hosilasi nimaga teng?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 61,
+    "fields": {
+      "quiz": 9,
+      "text": "Chiziqli tenglamalar sistemasini yechishda qo‘llaniladigan determinantlar usuli qaysi olim nomi bilan ataladi?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 62,
+    "fields": {
+      "quiz": 9,
+      "text": "Doira yuzasi S radiusi r orqali qaysi formula bilan hisoblanadi?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 63,
+    "fields": {
+      "quiz": 10,
+      "text": "1 bayt necha bitdan iborat?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 64,
+    "fields": {
+      "quiz": 10,
+      "text": "Ikkilik sanoq tizimi qaysi raqamlardan tashkil topadi?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 65,
+    "fields": {
+      "quiz": 10,
+      "text": "O‘nlik sanoq tizimidagi 10 soni ikkilik sanoq tizimida qanday yoziladi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 66,
+    "fields": {
+      "quiz": 10,
+      "text": "Algoritmning asosiy turlari qaysilar?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 67,
+    "fields": {
+      "quiz": 10,
+      "text": "Python tilida ro‘yxat (list) elementlari sonini aniqlovchi funksiya qaysi?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 68,
+    "fields": {
+      "quiz": 10,
+      "text": "Python dasturida shart operatori qaysi kalit so‘z bilan boshlanadi?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 69,
+    "fields": {
+      "quiz": 10,
+      "text": "Kompyuterning vaqtinchalik tezkor xotirasi qaysi abbreviatura bilan belgilanadi?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 70,
+    "fields": {
+      "quiz": 10,
+      "text": "1 kilobayt (KB) kompyuter xotirasida necha baytga teng?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 71,
+    "fields": {
+      "quiz": 10,
+      "text": "Veb-sahifaning tuzilishini belgilovchi asosiy gipermatn tili qaysi?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 72,
+    "fields": {
+      "quiz": 10,
+      "text": "Ma’lumotlar bazasi bilan ishlash uchun mo‘ljallangan so‘rov tili qaysi?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 73,
+    "fields": {
+      "quiz": 11,
+      "text": "Davriy jadvalda kislorod (O) elementining tartib raqami necha?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 74,
+    "fields": {
+      "quiz": 11,
+      "text": "Suv molekulasining kimyoviy formulasi qanday?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 75,
+    "fields": {
+      "quiz": 11,
+      "text": "Avogadro doimiysi 1 mol moddada nechta zarracha borligini bildiradi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 76,
+    "fields": {
+      "quiz": 11,
+      "text": "Osh tuzi (natriy xlorid) ning kimyoviy formulasi qaysi?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 77,
+    "fields": {
+      "quiz": 11,
+      "text": "Neytral muhitning vodorod ko‘rsatkichi (pH) nechaga teng?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 78,
+    "fields": {
+      "quiz": 11,
+      "text": "Kislotalar ta’sirida qizil rangga kiradigan ko‘rsatkich (indikator) qaysi?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 79,
+    "fields": {
+      "quiz": 11,
+      "text": "Davriy qonunni kashf etgan buyuk kimyogar olim kim?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 80,
+    "fields": {
+      "quiz": 11,
+      "text": "Sulfat kislotaning kimyoviy formulasini toping:",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 81,
+    "fields": {
+      "quiz": 11,
+      "text": "Havoning asosiy qismini (~78%) qaysi gaz tashkil etadi?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 82,
+    "fields": {
+      "quiz": 11,
+      "text": "Moddaning oksidlanish darajasini yo‘qotib, elektron berish jarayoni nima deb ataladi?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 83,
+    "fields": {
+      "quiz": 12,
+      "text": "Bo‘sh o‘rinni to‘g‘ri fe’l shakli bilan to‘ldiring: «She ____ to the library every morning.»",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 84,
+    "fields": {
+      "quiz": 12,
+      "text": "Past Simple zamoni gapini aniqlang: «Yesterday I ____ a very interesting book.»",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 85,
+    "fields": {
+      "quiz": 12,
+      "text": "«Child» so‘zining ko‘plik shakli qaysi?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 86,
+    "fields": {
+      "quiz": 12,
+      "text": "To‘g‘ri artiklni tanlang: «Abu Rayhon Beruniy was ____ great scientist.»",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 87,
+    "fields": {
+      "quiz": 12,
+      "text": "Present Continuous zamoni formulasi qaysi?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 88,
+    "fields": {
+      "quiz": 12,
+      "text": "«Good» sifatining orttirma (Superlative) darajasi qaysi?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 89,
+    "fields": {
+      "quiz": 12,
+      "text": "Majhul nisbat (Passive Voice) gapini toping:",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 90,
+    "fields": {
+      "quiz": 12,
+      "text": "Bo‘sh o‘rinni to‘g‘ri fe’l shakli bilan to‘ldiring: «Although it was raining, they ____ to the library.»",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 91,
+    "fields": {
+      "quiz": 12,
+      "text": "Modal fe’lni to‘g‘ri qo‘llang: «You ____ keep silence in the reading hall.»",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 92,
+    "fields": {
+      "quiz": 12,
+      "text": "«Knowledge» so‘zining o‘zbekcha ma’nosi nima?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 93,
+    "fields": {
+      "quiz": 13,
+      "text": "O‘zbekiston Respublikasining Konstitutsiyasi ilk bor qachon qabul qilingan?",
+      "order": 1
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 94,
+    "fields": {
+      "quiz": 13,
+      "text": "«Amir Temur tuzuklari» asari qaysi mavzuga bag‘ishlangan?",
+      "order": 2
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 95,
+    "fields": {
+      "quiz": 13,
+      "text": "O‘zbekiston hududida qadimgi Xorazm davlati qaysi daryoning quyi oqimida shakllangan?",
+      "order": 3
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 96,
+    "fields": {
+      "quiz": 13,
+      "text": "O‘zbekiston Respublikasida Markaziy bankning asosiy maqsadi nima?",
+      "order": 4
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 97,
+    "fields": {
+      "quiz": 13,
+      "text": "«Bank huquqi» darsligiga ko‘ra, tijorat bankining asosiy operatsiyalaridan biri qaysi?",
+      "order": 5
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 98,
+    "fields": {
+      "quiz": 13,
+      "text": "O‘zbekiston Respublikasi milliy valyutasi — so‘m qaysi yilda muomalaga kiritilgan?",
+      "order": 6
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 99,
+    "fields": {
+      "quiz": 13,
+      "text": "Buyuk Ipak yo‘li qadimda qaysi hududlarni bog‘lagan?",
+      "order": 7
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 100,
+    "fields": {
+      "quiz": 13,
+      "text": "Xorazm Ma’mun akademiyasi qaysi asrlarda ilmiy markaz sifatida gullab-yashnagan?",
+      "order": 8
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 101,
+    "fields": {
+      "quiz": 13,
+      "text": "Shartnoma (kontrakt) tuzishda tomonlarning teng huquqliligi qaysi huquq sohasining tamoyili hisoblanadi?",
+      "order": 9
+    }
+  },
+  {
+    "model": "catalog.question",
+    "pk": 102,
+    "fields": {
+      "quiz": 13,
+      "text": "Jaloliddin Manguberdi qaysi sulolaning jasur sarkardasi va shahzodasi bo‘lgan?",
+      "order": 10
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 47,
+    "fields": {
+      "question": 13,
+      "text": "Buxoro va Xiva",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 48,
+    "fields": {
+      "question": 13,
+      "text": "Samarqand va Shahrisabz",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 49,
+    "fields": {
+      "question": 13,
+      "text": "Qo‘qon va Andijon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 50,
+    "fields": {
+      "question": 13,
+      "text": "Toshkent va Marg‘ilon",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 51,
+    "fields": {
+      "question": 14,
+      "text": "Qo‘qon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 52,
+    "fields": {
+      "question": 14,
+      "text": "Buxoro",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 53,
+    "fields": {
+      "question": 14,
+      "text": "Toshkent",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 54,
+    "fields": {
+      "question": 14,
+      "text": "Marg‘ilon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 55,
+    "fields": {
+      "question": 15,
+      "text": "Andijon, Musulmonqulning qizi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 56,
+    "fields": {
+      "question": 15,
+      "text": "Marg‘ilon, Mirzakarim qutidorning qizi",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 57,
+    "fields": {
+      "question": 15,
+      "text": "Toshkent, Hasanalining qizi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 58,
+    "fields": {
+      "question": 15,
+      "text": "Qo‘qon, Solih maxdumning qizi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 59,
+    "fields": {
+      "question": 16,
+      "text": "Zaynab",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 60,
+    "fields": {
+      "question": 16,
+      "text": "Ra’no",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 61,
+    "fields": {
+      "question": 16,
+      "text": "Oftoboyim",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 62,
+    "fields": {
+      "question": 16,
+      "text": "Xushro‘ybibi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 63,
+    "fields": {
+      "question": 17,
+      "text": "Homid",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 64,
+    "fields": {
+      "question": 17,
+      "text": "Sodiq",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 65,
+    "fields": {
+      "question": 17,
+      "text": "Mutal",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 66,
+    "fields": {
+      "question": 17,
+      "text": "Hasanali",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 67,
+    "fields": {
+      "question": 18,
+      "text": "Azizbek",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 68,
+    "fields": {
+      "question": 18,
+      "text": "Murod",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 69,
+    "fields": {
+      "question": 18,
+      "text": "Homid",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 70,
+    "fields": {
+      "question": 18,
+      "text": "Anvar",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 71,
+    "fields": {
+      "question": 19,
+      "text": "Elmurod va Muhabbat",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 72,
+    "fields": {
+      "question": 19,
+      "text": "Anvar va Ra’no",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 73,
+    "fields": {
+      "question": 19,
+      "text": "Otabek va Kumush",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 74,
+    "fields": {
+      "question": 19,
+      "text": "Yo‘lchi va Gulnor",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 75,
+    "fields": {
+      "question": 20,
+      "text": "Muallim (maktabdor)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 76,
+    "fields": {
+      "question": 20,
+      "text": "Savdogar",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 77,
+    "fields": {
+      "question": 20,
+      "text": "Mirshab",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 78,
+    "fields": {
+      "question": 20,
+      "text": "Shifokor",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 79,
+    "fields": {
+      "question": 21,
+      "text": "Harbiy sarkarda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 80,
+    "fields": {
+      "question": 21,
+      "text": "Xazinabon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 81,
+    "fields": {
+      "question": 21,
+      "text": "Qozikalon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 82,
+    "fields": {
+      "question": 21,
+      "text": "Bosh mirzo (devonbegi)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 83,
+    "fields": {
+      "question": 22,
+      "text": "1945–1949-yillarda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 84,
+    "fields": {
+      "question": 22,
+      "text": "1960–1964-yillarda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 85,
+    "fields": {
+      "question": 22,
+      "text": "1922–1926-yillarda",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 86,
+    "fields": {
+      "question": 22,
+      "text": "1905–1908-yillarda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 87,
+    "fields": {
+      "question": 23,
+      "text": "22 yoshida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 88,
+    "fields": {
+      "question": 23,
+      "text": "25 yoshida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 89,
+    "fields": {
+      "question": 23,
+      "text": "12 yoshida",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 90,
+    "fields": {
+      "question": 23,
+      "text": "18 yoshida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 91,
+    "fields": {
+      "question": 24,
+      "text": "Abdulla Qodiriy",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 92,
+    "fields": {
+      "question": 24,
+      "text": "Pirimqul Qodirov",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 93,
+    "fields": {
+      "question": 24,
+      "text": "Odil Yoqubov",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 94,
+    "fields": {
+      "question": 24,
+      "text": "Oybek",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 95,
+    "fields": {
+      "question": 25,
+      "text": "Axsi qal’asi",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 96,
+    "fields": {
+      "question": 25,
+      "text": "Kobul qal’asi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 97,
+    "fields": {
+      "question": 25,
+      "text": "Hirot qal’asi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 98,
+    "fields": {
+      "question": 25,
+      "text": "Buxoro arki",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 99,
+    "fields": {
+      "question": 26,
+      "text": "Shayboniyxon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 100,
+    "fields": {
+      "question": 26,
+      "text": "Husayn Boyqaro",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 101,
+    "fields": {
+      "question": 26,
+      "text": "Ahmad Tanbal",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 102,
+    "fields": {
+      "question": 26,
+      "text": "Ibrohim Lo‘diy",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 103,
+    "fields": {
+      "question": 27,
+      "text": "Arab tilida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 104,
+    "fields": {
+      "question": 27,
+      "text": "Hind tilida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 105,
+    "fields": {
+      "question": 27,
+      "text": "Eski o‘zbek (turkiy) tilida",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 106,
+    "fields": {
+      "question": 27,
+      "text": "Fors-tojik tilida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 107,
+    "fields": {
+      "question": 28,
+      "text": "Eson Davlat begim",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 108,
+    "fields": {
+      "question": 28,
+      "text": "Gulbadan begim",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 109,
+    "fields": {
+      "question": 28,
+      "text": "Xonzoda begim",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 110,
+    "fields": {
+      "question": 28,
+      "text": "Mohim begim",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 111,
+    "fields": {
+      "question": 29,
+      "text": "Kobul va Agrada",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 112,
+    "fields": {
+      "question": 29,
+      "text": "Bag‘dodda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 113,
+    "fields": {
+      "question": 29,
+      "text": "Qohirada",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 114,
+    "fields": {
+      "question": 29,
+      "text": "Baku va Tbilisida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 115,
+    "fields": {
+      "question": 30,
+      "text": "Lutfiy",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 116,
+    "fields": {
+      "question": 30,
+      "text": "Sakkokiy",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 117,
+    "fields": {
+      "question": 30,
+      "text": "Mashrab",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 118,
+    "fields": {
+      "question": 30,
+      "text": "Alisher Navoiy",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 119,
+    "fields": {
+      "question": 31,
+      "text": "Ulug‘bek xazinasi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 120,
+    "fields": {
+      "question": 31,
+      "text": "Ko‘hna dunyo",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 121,
+    "fields": {
+      "question": 31,
+      "text": "Avlodlar dovoni",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 122,
+    "fields": {
+      "question": 31,
+      "text": "Qutlug‘ qon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 123,
+    "fields": {
+      "question": 32,
+      "text": "1494-yil",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 124,
+    "fields": {
+      "question": 32,
+      "text": "1530-yil",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 125,
+    "fields": {
+      "question": 32,
+      "text": "1501-yil",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 126,
+    "fields": {
+      "question": 32,
+      "text": "1556-yil",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 127,
+    "fields": {
+      "question": 33,
+      "text": "Beshinchi dostoni",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 128,
+    "fields": {
+      "question": 33,
+      "text": "Ikkinchi dostoni",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 129,
+    "fields": {
+      "question": 33,
+      "text": "Birinchi dostoni",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 130,
+    "fields": {
+      "question": 33,
+      "text": "Uchinchi dostoni",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 131,
+    "fields": {
+      "question": 34,
+      "text": "Chin (Xitoy) xoqonining",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 132,
+    "fields": {
+      "question": 34,
+      "text": "Arman yurtining",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 133,
+    "fields": {
+      "question": 34,
+      "text": "Rum imperiyasining",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 134,
+    "fields": {
+      "question": 34,
+      "text": "Yunonistonning",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 135,
+    "fields": {
+      "question": 35,
+      "text": "Shopur",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 136,
+    "fields": {
+      "question": 35,
+      "text": "Buzurg Umid",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 137,
+    "fields": {
+      "question": 35,
+      "text": "Dilorom",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 138,
+    "fields": {
+      "question": 35,
+      "text": "Mehinbonu",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 139,
+    "fields": {
+      "question": 36,
+      "text": "Boniy",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 140,
+    "fields": {
+      "question": 36,
+      "text": "Shopur",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 141,
+    "fields": {
+      "question": 36,
+      "text": "Qoran",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 142,
+    "fields": {
+      "question": 36,
+      "text": "Moniy",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 143,
+    "fields": {
+      "question": 37,
+      "text": "Doroy",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 144,
+    "fields": {
+      "question": 37,
+      "text": "Xusrav Parvez",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 145,
+    "fields": {
+      "question": 37,
+      "text": "Bahrom Go‘r",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 146,
+    "fields": {
+      "question": 37,
+      "text": "Iskandar",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 147,
+    "fields": {
+      "question": 38,
+      "text": "973-yil",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 148,
+    "fields": {
+      "question": 38,
+      "text": "780-yil",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 149,
+    "fields": {
+      "question": 38,
+      "text": "980-yil",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 150,
+    "fields": {
+      "question": 38,
+      "text": "1048-yil",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 151,
+    "fields": {
+      "question": 39,
+      "text": "Faqat kimyo tajribalariga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 152,
+    "fields": {
+      "question": 39,
+      "text": "She’riyat qoidalariga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 153,
+    "fields": {
+      "question": 39,
+      "text": "Harbiy taktikaga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 154,
+    "fields": {
+      "question": 39,
+      "text": "Turli xalqlar taqvimlari, tarixi va madaniyatiga",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 155,
+    "fields": {
+      "question": 40,
+      "text": "Bayt ul-hikma",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 156,
+    "fields": {
+      "question": 40,
+      "text": "Nizomiya madrasasi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 157,
+    "fields": {
+      "question": 40,
+      "text": "Ma’mun akademiyasi (Dorul hikma)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 158,
+    "fields": {
+      "question": 40,
+      "text": "Samarqand rasadxonasi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 159,
+    "fields": {
+      "question": 41,
+      "text": "Shamol tezligini aniqlab",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 160,
+    "fields": {
+      "question": 41,
+      "text": "Tog‘ balandligi va ufq burchagini o‘lchash (Nandna tajribasi)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 161,
+    "fields": {
+      "question": 41,
+      "text": "Faqat okean suvini o‘lchab",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 162,
+    "fields": {
+      "question": 41,
+      "text": "Oy tutilishini sanab",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 163,
+    "fields": {
+      "question": 42,
+      "text": "Navoiy",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 164,
+    "fields": {
+      "question": 42,
+      "text": "Qutlug‘ qon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 165,
+    "fields": {
+      "question": 42,
+      "text": "Shum bola",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 166,
+    "fields": {
+      "question": 42,
+      "text": "Ulug‘bek xazinasi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 167,
+    "fields": {
+      "question": 43,
+      "text": "Nyuton (N)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 168,
+    "fields": {
+      "question": 43,
+      "text": "Joul (J)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 169,
+    "fields": {
+      "question": 43,
+      "text": "Vatt (Vt)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 170,
+    "fields": {
+      "question": 43,
+      "text": "Paskal (Pa)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 171,
+    "fields": {
+      "question": 44,
+      "text": "F = m / a",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 172,
+    "fields": {
+      "question": 44,
+      "text": "A = F · t",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 173,
+    "fields": {
+      "question": 44,
+      "text": "p = m / V",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 174,
+    "fields": {
+      "question": 44,
+      "text": "F = m · a",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 175,
+    "fields": {
+      "question": 45,
+      "text": "S = a · t",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 176,
+    "fields": {
+      "question": 45,
+      "text": "S = m · v",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 177,
+    "fields": {
+      "question": 45,
+      "text": "S = v · t",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 178,
+    "fields": {
+      "question": 45,
+      "text": "S = v / t",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 179,
+    "fields": {
+      "question": 46,
+      "text": "P = A / t",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 180,
+    "fields": {
+      "question": 46,
+      "text": "Ep = m · g · h",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 181,
+    "fields": {
+      "question": 46,
+      "text": "Ek = m · v² / 2",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 182,
+    "fields": {
+      "question": 46,
+      "text": "Q = c · m · Δt",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 183,
+    "fields": {
+      "question": 47,
+      "text": "Issiqlik miqdori ichki energiya o‘zgarishi va bajarilgan ishga sarflanishini",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 184,
+    "fields": {
+      "question": 47,
+      "text": "Jismlarning erkin tushish tezlanishini",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 185,
+    "fields": {
+      "question": 47,
+      "text": "Elektr toki kuchlanishini",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 186,
+    "fields": {
+      "question": 47,
+      "text": "Yorug‘likning sinishini",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 187,
+    "fields": {
+      "question": 48,
+      "text": "p = ρ · g · h",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 188,
+    "fields": {
+      "question": 48,
+      "text": "U = I · R",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 189,
+    "fields": {
+      "question": 48,
+      "text": "F = G · m1 · m2 / r²",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 190,
+    "fields": {
+      "question": 48,
+      "text": "p · V = (m / M) · R · T",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 191,
+    "fields": {
+      "question": 49,
+      "text": "T = t · 100",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 192,
+    "fields": {
+      "question": 49,
+      "text": "T = 273 - t",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 193,
+    "fields": {
+      "question": 49,
+      "text": "T = t + 273",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 194,
+    "fields": {
+      "question": 49,
+      "text": "T = t - 273",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 195,
+    "fields": {
+      "question": 50,
+      "text": "Om (Ω)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 196,
+    "fields": {
+      "question": 50,
+      "text": "Vatt (Vt)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 197,
+    "fields": {
+      "question": 50,
+      "text": "Nyuton (N)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 198,
+    "fields": {
+      "question": 50,
+      "text": "Kulon (Kl)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 199,
+    "fields": {
+      "question": 51,
+      "text": "Paskal (Pa)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 200,
+    "fields": {
+      "question": 51,
+      "text": "Joul (J)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 201,
+    "fields": {
+      "question": 51,
+      "text": "Amper (A)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 202,
+    "fields": {
+      "question": 51,
+      "text": "Gerts (Hz)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 203,
+    "fields": {
+      "question": 52,
+      "text": "1.6 m/s²",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 204,
+    "fields": {
+      "question": 52,
+      "text": "3.14 m/s²",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 205,
+    "fields": {
+      "question": 52,
+      "text": "6.67 m/s²",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 206,
+    "fields": {
+      "question": 52,
+      "text": "9.8 m/s²",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 207,
+    "fields": {
+      "question": 53,
+      "text": "x²",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 208,
+    "fields": {
+      "question": 53,
+      "text": "3x",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 209,
+    "fields": {
+      "question": 53,
+      "text": "x⁴ / 4",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 210,
+    "fields": {
+      "question": 53,
+      "text": "3x²",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 211,
+    "fields": {
+      "question": 54,
+      "text": "x³ + C",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 212,
+    "fields": {
+      "question": 54,
+      "text": "2x² + C",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 213,
+    "fields": {
+      "question": 54,
+      "text": "x² + C",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 214,
+    "fields": {
+      "question": 54,
+      "text": "2 + C",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 215,
+    "fields": {
+      "question": 55,
+      "text": "tg(x)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 216,
+    "fields": {
+      "question": 55,
+      "text": "cos(x)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 217,
+    "fields": {
+      "question": 55,
+      "text": "-cos(x)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 218,
+    "fields": {
+      "question": 55,
+      "text": "-sin(x)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 219,
+    "fields": {
+      "question": 56,
+      "text": "a·d - b·c",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 220,
+    "fields": {
+      "question": 56,
+      "text": "a·b - c·d",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 221,
+    "fields": {
+      "question": 56,
+      "text": "a·d + b·c",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 222,
+    "fields": {
+      "question": 56,
+      "text": "a + d",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 223,
+    "fields": {
+      "question": 57,
+      "text": "0",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 224,
+    "fields": {
+      "question": 57,
+      "text": "e",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 225,
+    "fields": {
+      "question": 57,
+      "text": "10",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 226,
+    "fields": {
+      "question": 57,
+      "text": "1",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 227,
+    "fields": {
+      "question": 58,
+      "text": "-1 ga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 228,
+    "fields": {
+      "question": 58,
+      "text": "Vektorlar uzunligi ko‘paytmasiga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 229,
+    "fields": {
+      "question": 58,
+      "text": "0 ga",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 230,
+    "fields": {
+      "question": 58,
+      "text": "1 ga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 231,
+    "fields": {
+      "question": 59,
+      "text": "e",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 232,
+    "fields": {
+      "question": 59,
+      "text": "1",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 233,
+    "fields": {
+      "question": 59,
+      "text": "0",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 234,
+    "fields": {
+      "question": 59,
+      "text": "∞",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 235,
+    "fields": {
+      "question": 60,
+      "text": "eˣ",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 236,
+    "fields": {
+      "question": 60,
+      "text": "x·eˣ⁻¹",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 237,
+    "fields": {
+      "question": 60,
+      "text": "ln(x)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 238,
+    "fields": {
+      "question": 60,
+      "text": "0",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 239,
+    "fields": {
+      "question": 61,
+      "text": "Pifagor usuli",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 240,
+    "fields": {
+      "question": 61,
+      "text": "Arximed usuli",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 241,
+    "fields": {
+      "question": 61,
+      "text": "Evklid usuli",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 242,
+    "fields": {
+      "question": 61,
+      "text": "Kramer usuli",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 243,
+    "fields": {
+      "question": 62,
+      "text": "S = 4·π·r²",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 244,
+    "fields": {
+      "question": 62,
+      "text": "S = π·r",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 245,
+    "fields": {
+      "question": 62,
+      "text": "S = π·r²",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 246,
+    "fields": {
+      "question": 62,
+      "text": "S = 2·π·r",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 247,
+    "fields": {
+      "question": 63,
+      "text": "16 bit",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 248,
+    "fields": {
+      "question": 63,
+      "text": "1024 bit",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 249,
+    "fields": {
+      "question": 63,
+      "text": "8 bit",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 250,
+    "fields": {
+      "question": 63,
+      "text": "4 bit",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 251,
+    "fields": {
+      "question": 64,
+      "text": "1 va 2",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 252,
+    "fields": {
+      "question": 64,
+      "text": "0 va 1",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 253,
+    "fields": {
+      "question": 64,
+      "text": "0 dan 7 gacha",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 254,
+    "fields": {
+      "question": 64,
+      "text": "0 dan 9 gacha",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 255,
+    "fields": {
+      "question": 65,
+      "text": "1010",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 256,
+    "fields": {
+      "question": 65,
+      "text": "1100",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 257,
+    "fields": {
+      "question": 65,
+      "text": "1001",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 258,
+    "fields": {
+      "question": 65,
+      "text": "0101",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 259,
+    "fields": {
+      "question": 66,
+      "text": "Faqat matnli va grafik",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 260,
+    "fields": {
+      "question": 66,
+      "text": "Oddiy va murakkab",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 261,
+    "fields": {
+      "question": 66,
+      "text": "Birlamchi va ikkilamchi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 262,
+    "fields": {
+      "question": 66,
+      "text": "Chiziqli, tarmoqlanuvchi va takrorlanuvchi",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 263,
+    "fields": {
+      "question": 67,
+      "text": "size()",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 264,
+    "fields": {
+      "question": 67,
+      "text": "length()",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 265,
+    "fields": {
+      "question": 67,
+      "text": "len()",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 266,
+    "fields": {
+      "question": 67,
+      "text": "count()",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 267,
+    "fields": {
+      "question": 68,
+      "text": "while",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 268,
+    "fields": {
+      "question": 68,
+      "text": "if",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 269,
+    "fields": {
+      "question": 68,
+      "text": "for",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 270,
+    "fields": {
+      "question": 68,
+      "text": "def",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 271,
+    "fields": {
+      "question": 69,
+      "text": "RAM",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 272,
+    "fields": {
+      "question": 69,
+      "text": "ROM",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 273,
+    "fields": {
+      "question": 69,
+      "text": "HDD",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 274,
+    "fields": {
+      "question": 69,
+      "text": "SSD",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 275,
+    "fields": {
+      "question": 70,
+      "text": "100 bayt",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 276,
+    "fields": {
+      "question": 70,
+      "text": "512 bayt",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 277,
+    "fields": {
+      "question": 70,
+      "text": "10000 bayt",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 278,
+    "fields": {
+      "question": 70,
+      "text": "1024 bayt",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 279,
+    "fields": {
+      "question": 71,
+      "text": "Python",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 280,
+    "fields": {
+      "question": 71,
+      "text": "TCP",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 281,
+    "fields": {
+      "question": 71,
+      "text": "HTML",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 282,
+    "fields": {
+      "question": 71,
+      "text": "SQL",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 283,
+    "fields": {
+      "question": 72,
+      "text": "PDF",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 284,
+    "fields": {
+      "question": 72,
+      "text": "SQL",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 285,
+    "fields": {
+      "question": 72,
+      "text": "CSS",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 286,
+    "fields": {
+      "question": 72,
+      "text": "MP3",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 287,
+    "fields": {
+      "question": 73,
+      "text": "16",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 288,
+    "fields": {
+      "question": 73,
+      "text": "8",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 289,
+    "fields": {
+      "question": 73,
+      "text": "6",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 290,
+    "fields": {
+      "question": 73,
+      "text": "12",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 291,
+    "fields": {
+      "question": 74,
+      "text": "H₂O",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 292,
+    "fields": {
+      "question": 74,
+      "text": "H₂O₂",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 293,
+    "fields": {
+      "question": 74,
+      "text": "CO₂",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 294,
+    "fields": {
+      "question": 74,
+      "text": "NH₃",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 295,
+    "fields": {
+      "question": 75,
+      "text": "3.14 × 10¹⁰",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 296,
+    "fields": {
+      "question": 75,
+      "text": "9.8 × 10⁵",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 297,
+    "fields": {
+      "question": 75,
+      "text": "1.6 × 10⁻¹⁹",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 298,
+    "fields": {
+      "question": 75,
+      "text": "6.02 × 10²³",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 299,
+    "fields": {
+      "question": 76,
+      "text": "CaCO₃",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 300,
+    "fields": {
+      "question": 76,
+      "text": "NaOH",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 301,
+    "fields": {
+      "question": 76,
+      "text": "NaCl",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 302,
+    "fields": {
+      "question": 76,
+      "text": "KCl",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 303,
+    "fields": {
+      "question": 77,
+      "text": "0",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 304,
+    "fields": {
+      "question": 77,
+      "text": "7",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 305,
+    "fields": {
+      "question": 77,
+      "text": "1",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 306,
+    "fields": {
+      "question": 77,
+      "text": "14",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 307,
+    "fields": {
+      "question": 78,
+      "text": "Lakmus (ko‘kdan qizilga)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 308,
+    "fields": {
+      "question": 78,
+      "text": "Fenolftalein",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 309,
+    "fields": {
+      "question": 78,
+      "text": "Kraxmal",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 310,
+    "fields": {
+      "question": 78,
+      "text": "Yod eritmasi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 311,
+    "fields": {
+      "question": 79,
+      "text": "A. Eynshteyn",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 312,
+    "fields": {
+      "question": 79,
+      "text": "I. Nyuton",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 313,
+    "fields": {
+      "question": 79,
+      "text": "M. Faradey",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 314,
+    "fields": {
+      "question": 79,
+      "text": "D. I. Mendeleyev",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 315,
+    "fields": {
+      "question": 80,
+      "text": "HNO₃",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 316,
+    "fields": {
+      "question": 80,
+      "text": "H₃PO₄",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 317,
+    "fields": {
+      "question": 80,
+      "text": "H₂SO₄",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 318,
+    "fields": {
+      "question": 80,
+      "text": "HCl",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 319,
+    "fields": {
+      "question": 81,
+      "text": "Karbonat angidrid (CO₂)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 320,
+    "fields": {
+      "question": 81,
+      "text": "Azot (N₂)",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 321,
+    "fields": {
+      "question": 81,
+      "text": "Kislorod (O₂)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 322,
+    "fields": {
+      "question": 81,
+      "text": "Vodorod (H₂)",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 323,
+    "fields": {
+      "question": 82,
+      "text": "Oksidlanish",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 324,
+    "fields": {
+      "question": 82,
+      "text": "Qaytarilish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 325,
+    "fields": {
+      "question": 82,
+      "text": "Neytrallanish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 326,
+    "fields": {
+      "question": 82,
+      "text": "Dissotsilanish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 327,
+    "fields": {
+      "question": 83,
+      "text": "goes",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 328,
+    "fields": {
+      "question": 83,
+      "text": "go",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 329,
+    "fields": {
+      "question": 83,
+      "text": "going",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 330,
+    "fields": {
+      "question": 83,
+      "text": "gone",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 331,
+    "fields": {
+      "question": 84,
+      "text": "reading",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 332,
+    "fields": {
+      "question": 84,
+      "text": "reads",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 333,
+    "fields": {
+      "question": 84,
+      "text": "will read",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 334,
+    "fields": {
+      "question": 84,
+      "text": "read",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 335,
+    "fields": {
+      "question": 85,
+      "text": "childes",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 336,
+    "fields": {
+      "question": 85,
+      "text": "childrens",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 337,
+    "fields": {
+      "question": 85,
+      "text": "children",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 338,
+    "fields": {
+      "question": 85,
+      "text": "childs",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 339,
+    "fields": {
+      "question": 86,
+      "text": "artikl qo‘yilmaydi",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 340,
+    "fields": {
+      "question": 86,
+      "text": "a",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 341,
+    "fields": {
+      "question": 86,
+      "text": "an",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 342,
+    "fields": {
+      "question": 86,
+      "text": "the",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 343,
+    "fields": {
+      "question": 87,
+      "text": "am / is / are + V-ing",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 344,
+    "fields": {
+      "question": 87,
+      "text": "have / has + V3",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 345,
+    "fields": {
+      "question": 87,
+      "text": "will + V1",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 346,
+    "fields": {
+      "question": 87,
+      "text": "was / were + V1",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 347,
+    "fields": {
+      "question": 88,
+      "text": "better",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 348,
+    "fields": {
+      "question": 88,
+      "text": "goodest",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 349,
+    "fields": {
+      "question": 88,
+      "text": "more good",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 350,
+    "fields": {
+      "question": 88,
+      "text": "the best",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 351,
+    "fields": {
+      "question": 89,
+      "text": "Students are reading now.",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 352,
+    "fields": {
+      "question": 89,
+      "text": "He goes to school daily.",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 353,
+    "fields": {
+      "question": 89,
+      "text": "The book was written in 1926.",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 354,
+    "fields": {
+      "question": 89,
+      "text": "The author wrote a new book.",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 355,
+    "fields": {
+      "question": 90,
+      "text": "goes",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 356,
+    "fields": {
+      "question": 90,
+      "text": "went",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 357,
+    "fields": {
+      "question": 90,
+      "text": "going",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 358,
+    "fields": {
+      "question": 90,
+      "text": "to go",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 359,
+    "fields": {
+      "question": 91,
+      "text": "must",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 360,
+    "fields": {
+      "question": 91,
+      "text": "musts",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 361,
+    "fields": {
+      "question": 91,
+      "text": "musting",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 362,
+    "fields": {
+      "question": 91,
+      "text": "to must",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 363,
+    "fields": {
+      "question": 92,
+      "text": "Kutubxona",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 364,
+    "fields": {
+      "question": 92,
+      "text": "Tajriba",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 365,
+    "fields": {
+      "question": 92,
+      "text": "Savol",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 366,
+    "fields": {
+      "question": 92,
+      "text": "Bilim",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 367,
+    "fields": {
+      "question": 93,
+      "text": "1991-yil 31-avgust",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 368,
+    "fields": {
+      "question": 93,
+      "text": "1993-yil 1-iyul",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 369,
+    "fields": {
+      "question": 93,
+      "text": "1996-yil 18-oktabr",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 370,
+    "fields": {
+      "question": 93,
+      "text": "1992-yil 8-dekabr",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 371,
+    "fields": {
+      "question": 94,
+      "text": "Astronomiya jadvallariga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 372,
+    "fields": {
+      "question": 94,
+      "text": "She’r yozish san’atiga",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 373,
+    "fields": {
+      "question": 94,
+      "text": "Davlat boshqaruvi, qonun-qoidalar va harbiy san’atga",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 374,
+    "fields": {
+      "question": 94,
+      "text": "Tibbiyot va dorishunoslikka",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 375,
+    "fields": {
+      "question": 95,
+      "text": "Qashqadaryo",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 376,
+    "fields": {
+      "question": 95,
+      "text": "Amudaryo",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 377,
+    "fields": {
+      "question": 95,
+      "text": "Sirdaryo",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 378,
+    "fields": {
+      "question": 95,
+      "text": "Zarafshon",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 379,
+    "fields": {
+      "question": 96,
+      "text": "Milliy valyuta (so‘m) barqarorligini ta’minlash",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 380,
+    "fields": {
+      "question": 96,
+      "text": "Faqat xorijiy tovarlar sotish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 381,
+    "fields": {
+      "question": 96,
+      "text": "Maktab darsliklarini nashr qilish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 382,
+    "fields": {
+      "question": 96,
+      "text": "Soliq yig‘ish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 383,
+    "fields": {
+      "question": 97,
+      "text": "Sud hukmini chiqarish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 384,
+    "fields": {
+      "question": 97,
+      "text": "Bojxona tekshiruvi o‘tkazish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 385,
+    "fields": {
+      "question": 97,
+      "text": "Qonun qabul qilish",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 386,
+    "fields": {
+      "question": 97,
+      "text": "Omonatlar (depozit) jalb qilish va kredit berish",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 387,
+    "fields": {
+      "question": 98,
+      "text": "1998-yil 1-yanvar",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 388,
+    "fields": {
+      "question": 98,
+      "text": "2000-yil 15-may",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 389,
+    "fields": {
+      "question": 98,
+      "text": "1994-yil 1-iyul",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 390,
+    "fields": {
+      "question": 98,
+      "text": "1991-yil 1-sentabr",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 391,
+    "fields": {
+      "question": 99,
+      "text": "Faqat Afrika qit’asini",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 392,
+    "fields": {
+      "question": 99,
+      "text": "Xitoydan O‘rta Osiyo orqali O‘rta yer dengizigacha",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 393,
+    "fields": {
+      "question": 99,
+      "text": "Faqat Shimoliy Amerikani",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 394,
+    "fields": {
+      "question": 99,
+      "text": "Avstraliya va Antarktidani",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 395,
+    "fields": {
+      "question": 100,
+      "text": "X asr oxiri – XI asr boshlarida",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 396,
+    "fields": {
+      "question": 100,
+      "text": "XVII asrda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 397,
+    "fields": {
+      "question": 100,
+      "text": "XIX asrda",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 398,
+    "fields": {
+      "question": 100,
+      "text": "XIV asr oxirida",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 399,
+    "fields": {
+      "question": 101,
+      "text": "Jinoyat protsessining",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 400,
+    "fields": {
+      "question": 101,
+      "text": "Ekologiya nazorati organining",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 401,
+    "fields": {
+      "question": 101,
+      "text": "Harbiy nizomning",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 402,
+    "fields": {
+      "question": 101,
+      "text": "Fuqarolik va tijorat huquqining",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 403,
+    "fields": {
+      "question": 102,
+      "text": "Shayboniylar davlati",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 404,
+    "fields": {
+      "question": 102,
+      "text": "Qoraxoniylar davlati",
+      "is_correct": false
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 405,
+    "fields": {
+      "question": 102,
+      "text": "Xorazmshohlar (Anushteginiylar) davlati",
+      "is_correct": true
+    }
+  },
+  {
+    "model": "catalog.answeroption",
+    "pk": 406,
+    "fields": {
+      "question": 102,
+      "text": "Somoniylar davlati",
+      "is_correct": false
+    }
+  }
+]

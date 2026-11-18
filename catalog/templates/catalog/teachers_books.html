@@ -1,0 +1,88 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+
+{% block title %}Ustozlar kitoblari — UrDU Akademik Litseyi{% endblock %}
+
+{% block content %}
+<div class="lib-content-wrap">
+  <div class="lib-search-card lib-search-compact-header" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div>
+      <h1 class="lib-search-title" style="margin:0 0 2px;">Ustozlar kitoblari</h1>
+      <p class="lib-search-desc" style="margin:0;">Litsey o‘qituvchilarining darslik va uslubiy qo‘llanmalari</p>
+    </div>
+    {% if user.is_authenticated and user.role == 'teacher' or user.is_authenticated and user.role == 'librarian' or user.is_staff %}
+      <a href="{% url 'upload_book' %}" class="lib-btn-primary-sm">+ Yangi qo‘llanma qo‘shish</a>
+    {% endif %}
+  </div>
+
+  <div class="lib-books-grid">
+    {% for book in books %}
+      <article class="lib-book-card">
+        <a href="{% url 'book_detail' book.pk %}" class="lib-book-cover-wrap" aria-label="{{ book.title }}">
+          {% if book.cover %}
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="lib-book-cover-img" loading="lazy">
+          {% else %}
+            <div class="lib-book-cover-placeholder">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="opacity:0.85;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span>{{ book.title|truncatechars:42 }}</span>
+            </div>
+          {% endif %}
+        </a>
+
+        <div class="lib-book-body">
+          <div class="lib-book-meta">
+            <span class="lib-book-tag">{{ book.display_subject }}</span>
+            <span class="lib-book-stats-mini">
+              <span title="Mutolaalar">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                {{ book.view_count }}
+              </span>
+              <span title="Yuklab olishlar">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                {{ book.download_count }}
+              </span>
+            </span>
+          </div>
+
+          <h3 class="lib-book-title" title="{{ book.title }}">
+            <a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a>
+          </h3>
+          <p class="lib-book-author" title="{{ book.author }}">{{ book.author }}</p>
+
+          <div class="lib-book-actions">
+            {% if book.pdf_file or book.external_url %}
+              {% if user.is_authenticated %}
+                <button type="button" class="lib-btn-read" onclick="openLibModalReader('{{ book.title|escapejs }}', '{% url 'book_pdf' book.pk %}', '{% url 'download_book_file' book.pk %}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Mutolaa qilish</span>
+                </button>
+              {% else %}
+                <a href="{% url 'login' %}?next={% url 'book_pdf' book.pk %}" class="lib-btn-read">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  <span>Mutolaa qilish</span>
+                </a>
+              {% endif %}
+              <a href="{% url 'download_book_file' book.pk %}" class="lib-btn-icon" title="PDF yuklab olish" download>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </a>
+            {% else %}
+              <a href="{% url 'book_detail' book.pk %}" class="lib-btn-read">
+                <span>Batafsil ko‘rish</span>
+              </a>
+            {% endif %}
+            <a href="{% url 'book_qrcode' book.pk %}" target="_blank" class="lib-btn-icon" title="QR-kod" style="font-size:0.72rem;font-weight:800;">QR</a>
+          </div>
+        </div>
+      </article>
+    {% empty %}
+      <div style="grid-column:1/-1;text-align:center;padding:48px 20px;background:var(--bg-surface);border:1px dashed var(--border-main);border-radius:12px;">
+        <h3 style="margin:0 0 6px;">Hozircha ustozlar kitoblari yuklanmagan</h3>
+        <p style="color:var(--text-secondary);margin:0 0 14px;">O‘qituvchi kabineti orqali yangi qo‘llanma yuklashingiz mumkin.</p>
+        {% if user.is_authenticated and user.role == 'teacher' or user.is_authenticated and user.role == 'librarian' or user.is_staff %}
+          <a href="{% url 'upload_book' %}" class="lib-btn-primary-sm">+ Yangi qo‘llanma qo‘shish</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

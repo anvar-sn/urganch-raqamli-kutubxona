@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: urganch-raqamli-kutubxona
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: "bash build.sh"
+    startCommand: "bash start.sh"
+    healthCheckPath: /healthz/
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_ADMIN_PASSWORD
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: "2"

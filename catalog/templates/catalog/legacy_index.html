@@ -1,0 +1,1474 @@
+{% load static %}<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://cdn.tailwindcss.com https://cdn.jsdelivr.net; worker-src 'self' blob: https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com; img-src 'self' data: https: http:; connect-src 'self' https: http:; frame-src 'self' https: http: data: blob:; object-src 'self' https: data: blob:; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urganch Davlat Universiteti Akademik Litseyi - Raqamli Kutubxona</title>
+  <link rel="icon" type="image/png" href="{% static 'catalog/images/favicon.png' %}">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('uzedu_theme') || localStorage.getItem('litsey_theme') || 'light';
+        if (saved === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-prime-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.setAttribute('data-prime-theme', 'light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#064e3b',
+              greenDark: '#022c22',
+              greenLight: '#047857',
+              gold: '#f59e0b',
+              goldDark: '#d97706',
+              goldLight: '#fbbf24'
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes sp{to{--a:360deg}}
+@keyframes rise{from{opacity:0;transform:translateY(26px) scale(.96)}}
+@keyframes tabin{from{opacity:0;transform:translateY(14px)}}
+@keyframes fl{50%{transform:translate(30px,-26px) scale(1.15)}}
+@keyframes bob{50%{transform:translateY(-16px) rotate(8deg)}}
+@keyframes op{0%,15%{transform:rotateY(0)}45%,70%{transform:rotateY(-150deg)}100%{transform:rotateY(0)}}
+@keyframes fp{0%,20%{transform:rotateY(0)}50%,70%{transform:rotateY(-140deg)}100%{transform:rotateY(0)}}
+@keyframes sheen{to{transform:translateX(220%)}}
+.rgb{--rb:#fff;border:2px solid transparent!important;background:linear-gradient(var(--rb),var(--rb)) padding-box,conic-gradient(from var(--a),#d97706,#059669,#2563eb,#fbbf24,#10b981,#d97706) border-box!important;animation:sp 8s linear infinite}
+.rgb-dark{--rb:#0f172a}.rgb-mid{--rb:#1e293b}
+html.dark .rgb{--rb:#131d31!important}
+.rgb.rise{animation:sp 8s linear infinite,rise .5s calc(var(--i,0)*70ms) both}
+.tab-content:not(.hidden){animation:tabin .45s ease both}
+.orb{position:absolute;width:220px;height:220px;border-radius:50%;filter:blur(60px);opacity:.25;animation:fl 9s ease-in-out infinite}
+.o1{background:#10b981;left:-40px;top:-20px}.o2{background:#f59e0b;right:20%;bottom:-60px;animation-delay:-4s}
+.book{width:120px;height:168px;position:relative;perspective:700px;margin:0 40px}
+.book i{position:absolute;inset:0;border-radius:4px 10px 10px 4px}
+.book .pg{background:#fffdf5;box-shadow:inset 0 0 0 1px #ddd}
+.book .pg2{transform-origin:left;animation:fp 6s ease-in-out .25s infinite}
+.book .cv{background:linear-gradient(135deg,#E2B866,#9E7B32);transform-origin:left;animation:op 6s ease-in-out infinite;display:grid;place-items:center;color:#062C1E;font:700 14px Georgia,serif;text-align:center;padding:8px}
+.fb{position:absolute;width:32px;height:44px;border-radius:3px 6px 6px 3px;opacity:.85;animation:bob 5s ease-in-out infinite}
+.cv-img{transition:transform .35s}.rise:hover .cv-img{transform:perspective(500px) rotateY(-14deg) scale(1.06)}
+.rise{transition:transform .25s,box-shadow .25s}.rise:hover{transform:translateY(-4px)}
+.shine{position:relative;overflow:hidden}
+.shine::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.55),transparent);animation:sheen 3s ease-in-out infinite}
+button,a{transition:transform .15s}button:active{transform:scale(.95)}
+
+/* Modern Dark Mode Harmony */
+html.dark body { background-color: #0b1120 !important; color: #f8fafc !important; }
+html.dark .bg-slate-50 { background-color: #0b1120 !important; }
+html.dark .bg-white { background-color: #131d31 !important; border-color: #22324b !important; color: #f8fafc !important; }
+html.dark .text-slate-800, html.dark .text-slate-900 { color: #f8fafc !important; }
+html.dark .text-slate-700 { color: #e2e8f0 !important; }
+html.dark .text-slate-600 { color: #cbd5e1 !important; }
+html.dark .text-slate-500, html.dark .text-slate-400 { color: #94a3b8 !important; }
+html.dark .border-slate-200, html.dark .border-slate-300 { border-color: #22324b !important; }
+html.dark input[type="text"], html.dark input[type="search"], html.dark input[type="password"], html.dark input[type="email"], html.dark select, html.dark textarea {
+  background-color: #0b1322 !important;
+  color: #f8fafc !important;
+  border-color: #2e4363 !important;
+}
+html.dark .shadow-md, html.dark .shadow-xl {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-brand-gold selection:text-white">
+
+  <!-- NAVIGATION HEADER -->
+  <header class="bg-brand-green text-white shadow-xl sticky top-0 z-40 border-b-2 border-brand-gold">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+      
+      <!-- LOGO & HEADING -->
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('search-tab')">
+        <div class="h-16 w-16 rounded-full bg-white p-0.5 overflow-hidden border-2 border-brand-gold shadow flex items-center justify-center font-bold text-brand-green">
+          <img src="{% static 'catalog/images/litsey_logo.png' %}" alt="Akademik litsey logotipi" class="w-full h-full rounded-full object-contain">
+        </div>
+        <div>
+          <h1 class="font-bold text-lg sm:text-xl text-white leading-tight">Urganch Davlat Universiteti</h1>
+          <p class="text-xs sm:text-sm text-brand-gold font-semibold uppercase tracking-wider">Akademik Litseyi Raqamli Kutubxonasi</p>
+        </div>
+      </div>
+
+      <!-- NAVIGATION LINKS -->
+      <nav class="flex items-center space-x-1 sm:space-x-3 text-sm font-medium">
+        <button onclick="switchTab('search-tab')" id="nav-search" class="nav-btn px-3 py-2 rounded-lg transition bg-brand-gold text-brand-greenDark font-bold flex items-center space-x-1 shadow">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span class="hidden sm:inline">Qidiruv</span>
+        </button>
+        <button onclick="switchTab('teachers-tab')" id="nav-teachers" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-brand-greenLight text-slate-100 flex items-center space-x-1">
+          <i class="fa-solid fa-chalkboard-user"></i>
+          <span class="hidden sm:inline">O'qituvchilar kitoblari</span>
+        </button>
+        <button onclick="switchTab('contact-tab')" id="nav-contact" class="nav-btn px-3 py-2 rounded-lg transition hover:bg-brand-greenLight text-slate-100 flex items-center space-x-1">
+          <i class="fa-solid fa-comments"></i>
+          <span class="hidden sm:inline">Murojaat</span>
+        </button>
+        <button onclick="openAdminModal()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-900 text-brand-gold border border-brand-gold/40 transition flex items-center space-x-1">
+          <i class="fa-solid fa-user-shield"></i>
+          <span class="hidden sm:inline">Admin</span>
+        </button>
+        <button type="button" onclick="togglePageTheme()" class="px-2.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-brand-gold border border-brand-gold/40 transition flex items-center justify-center" aria-label="Mavzu" title="Kun / Tun">
+          <i id="theme-icon" class="fa-solid fa-moon text-amber-300"></i>
+        </button>
+
+        <!-- USER PROFILE / LOGIN -->
+        <div id="auth-container" class="ml-2 pl-2 border-l border-brand-greenLight">
+          <button id="login-btn" onclick="openLoginModal()" class="px-3 py-1.5 rounded-lg border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-greenDark transition font-semibold text-xs sm:text-sm">
+            <i class="fa-solid fa-right-to-bracket mr-1"></i> Kirish
+          </button>
+          <div id="user-profile" class="hidden flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-full bg-brand-gold text-brand-green font-bold flex items-center justify-center border border-white" id="user-avatar">U</div>
+            <span class="text-xs text-slate-200 hidden md:inline font-medium" id="user-name">O'quvchi</span>
+            <button onclick="logoutUser()" class="text-xs text-red-300 hover:text-red-100 ml-1" title="Chiqish"><i class="fa-solid fa-power-off"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+    <!-- 1. BOOK SEARCH TAB -->
+    <section id="search-tab" class="tab-content space-y-8">
+      <div class="bg-gradient-to-r from-brand-green to-brand-greenDark rounded-2xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden border border-brand-gold/30">
+        <b class="orb o1"></b><b class="orb o2"></b>
+        <div class="hidden md:block absolute right-16 top-1/2 -translate-y-1/2"><div class="book"><b class="fb" style="left:-50px;top:8px;background:#f0f"></b><b class="fb" style="right:-48px;top:60px;background:#0cf;animation-delay:-2s"></b><b class="fb" style="left:-26px;bottom:-18px;background:#3d6;animation-delay:-3.5s"></b><i class="pg"></i><i class="pg pg2"></i><i class="cv">Online<br>kutubxona</i></div></div>
+        <div class="max-w-2xl relative z-10 space-y-4">
+          <span class="bg-brand-gold/20 text-brand-gold text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-brand-gold/30">QR-Kutubxona Tizimi</span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight">Istalgan kitobingizni toping va onlayn mutolaa qiling</h2>
+          <p class="text-slate-200 text-sm sm:text-base">Jahon elektron kutubxona bazasidan va litsey resurslaridan real-vaqt rejimida qidirish.</p>
+          
+          <!-- SEARCH INPUT FORM -->
+          <form onsubmit="handleSearch(event)" class="flex flex-col sm:flex-row gap-2 pt-2">
+            <div class="relative flex-grow">
+              <i class="fa-solid fa-book-open absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+              <input type="text" id="search-input" placeholder="Kitob nomi, muallif yoki kalit so'z kiriting..." required
+                class="rgb w-full pl-11 pr-4 py-3.5 rounded-xl bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-gold shadow-inner font-medium">
+            </div>
+            <button type="submit" class="shine bg-brand-gold hover:bg-brand-goldDark text-brand-greenDark font-bold px-8 py-3.5 rounded-xl transition shadow-lg flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Qidirish</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- RESULTS SECTION -->
+      <div id="search-results-section" class="space-y-4">
+        <div class="flex justify-between items-center border-b pb-3 border-slate-200">
+          <h3 class="text-xl font-bold text-slate-800 flex items-center space-x-2">
+            <i class="fa-solid fa-list-check text-brand-green"></i>
+            <span>Qidiruv natijalari</span>
+          </h3>
+          <div class="flex items-center gap-4 flex-wrap justify-end"><label class="text-xs text-slate-600 font-medium flex items-center gap-1 cursor-pointer"><input type="checkbox" id="only-readable" onchange="lbApplyFilter()"> Faqat onlayn o‘qiladiganlar</label><span id="results-count" class="text-xs text-slate-500 font-medium"></span></div>
+        </div>
+
+        <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="col-span-full text-center py-12 text-slate-400 bg-white rounded-2xl border border-dashed border-slate-300">
+            <i class="fa-solid fa-book text-5xl mb-3 text-slate-300"></i>
+            <p class="text-base font-medium">Kitob izlash uchun yuqoridagi qidiruv maydoniga nomini yozing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. TEACHERS' BOOKS TAB -->
+    <section id="teachers-tab" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200">
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-4">
+          <div>
+            <h2 class="text-2xl font-bold text-brand-green flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-brand-gold"></i>
+              Litsey O'qituvchilarining Kitoblari va Darsliklari
+            </h2>
+            <p class="text-sm text-slate-500">Urganch davlat akademik litseyi o'qituvchilari tomonidan yaratilgan uslubiy qo'llanmalar va darsliklar</p>
+          </div>
+        </div>
+
+        <div id="teachers-books-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Dynamic Content loaded via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CONTACT & FEEDBACK TAB -->
+    <section id="contact-tab" class="tab-content hidden space-y-6">
+      <div class="max-w-3xl mx-auto bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-slate-200 rgb">
+        <div class="text-center space-y-2 mb-8">
+          <div class="inline-block p-3 bg-brand-gold/10 text-brand-green rounded-full mb-2">
+            <i class="fa-solid fa-paper-plane text-2xl"></i>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-800">Taklif va Murojaatlar</h2>
+          <p class="text-slate-500 text-sm">Savollaringiz yoki takliflaringiz bo'lsa, bizga murojaat qiling!</p>
+        </div>
+
+        <!-- TELEGRAM DIRECT LINK CARD -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center space-x-4">
+            <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-2xl flex-shrink-0">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-800">Telegram orqali bog'lanish</h4>
+              <p class="text-xs text-slate-600">Administrator: <span class="font-semibold text-blue-600">@mrbekii</span></p>
+            </div>
+          </div>
+          <a href="https://t.me/mrbekii" target="_blank" class="w-full sm:w-auto text-center px-6 py-2.5 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-xl transition shadow">
+            Shaxsiy yozish
+          </a>
+        </div>
+
+        <!-- FEEDBACK FORM -->
+        <form onsubmit="handleFeedbackSubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ism va Familiyangiz</label>
+            <input type="text" id="feedback-name" required placeholder="Masalan: Ali Valiyev" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Xabar / Taklifingiz</label>
+            <textarea id="feedback-message" rows="4" required placeholder="Murojaatingiz matnini kiriting..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-brand-green hover:bg-brand-greenDark text-white font-bold py-3 rounded-xl transition shadow">
+            Murojaatni yuborish
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 4. ADMIN PANEL SECTION (HIDDEN BY DEFAULT) -->
+    <section id="admin-tab" class="tab-content hidden space-y-8">
+      <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-2xl border border-brand-gold rgb rgb-dark">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
+          <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-chart-line text-brand-gold text-2xl"></i>
+            <div>
+              <h2 class="text-2xl font-bold">Admin Tizimi va Statistika</h2>
+              <p class="text-xs text-slate-400">Urganch Davlat Universiteti Akademik Litseyi Tahlil Paneli</p>
+            </div>
+          </div>
+          <button onclick="lockAdmin()" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300">
+            Chiqish
+          </button>
+        </div>
+
+        <!-- STATS CARDS GRID -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid">
+            <span class="text-xs font-semibold text-slate-400 uppercase">Jami Tashriflar (Bu Yil)</span>
+            <div class="text-3xl font-extrabold text-brand-gold mt-1" id="stat-total-visits">0</div>
+            <span id="growth" class="text-xs text-emerald-400 mt-2 inline-block">—</span>
+          </div>
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid">
+            <span class="text-xs font-semibold text-slate-400 uppercase">Jami Tashriflar (O'tgan Yil)</span>
+            <div class="text-3xl font-extrabold text-slate-300 mt-1" id="prev-visits">0</div>
+            <span class="text-xs text-slate-500 mt-2 inline-block">Oldingi yil</span>
+          </div>
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid">
+            <span class="text-xs font-semibold text-slate-400 uppercase">O'qilgan Kitoblar (Bu Yil)</span>
+            <div class="text-3xl font-extrabold text-emerald-400 mt-1" id="stat-total-reads">0</div>
+            <span class="text-xs text-emerald-400 mt-2 inline-block"><i class="fa-solid fa-book-reader mr-1"></i> Bepul mutolaalar</span>
+          </div>
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid">
+            <span class="text-xs font-semibold text-slate-400 uppercase">O'qilgan Kitoblar (O'tgan Yil)</span>
+            <div class="text-3xl font-extrabold text-slate-300 mt-1" id="prev-reads">0</div>
+            <span class="text-xs text-slate-500 mt-2 inline-block">Oldingi yil</span>
+          </div>
+        </div>
+
+        <!-- RANGE STATS -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid mb-8 space-y-4">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-calendar-days text-brand-gold"></i> Davr boʻyicha statistika</h3>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="preset('today')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Bugun</button>
+            <button onclick="preset('yest')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Kecha</button>
+            <button onclick="preset('7')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">7 kun</button>
+            <button onclick="preset('30')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">30 kun</button>
+            <button onclick="preset('month')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Shu oy</button>
+            <button onclick="preset('pmonth')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Oʻtgan oy</button>
+            <button onclick="preset('year')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Shu yil</button>
+            <button onclick="preset('pyear')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Oʻtgan yil</button>
+            <button onclick="preset('all')" class="text-xs px-3 py-1.5 bg-slate-700 hover:bg-brand-gold hover:text-slate-900 rounded-lg">Hammasi</button>
+          </div>
+          <div class="flex flex-wrap gap-3 items-end">
+            <label class="text-xs text-slate-400">Boshlanish sanasi<input type="date" id="r-from" class="block mt-1 bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm [color-scheme:dark]"></label>
+            <label class="text-xs text-slate-400">Tugash sanasi<input type="date" id="r-to" class="block mt-1 bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm [color-scheme:dark]"></label>
+            <button onclick="applyRange()" class="px-4 py-2 bg-brand-gold text-slate-950 font-bold rounded-lg text-sm">Koʻrsatish</button>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="bg-slate-900 rounded-lg p-3"><span class="text-xs text-slate-400">Tashriflar</span><div id="r-v" class="text-2xl font-extrabold text-brand-goldLight">0</div></div>
+            <div class="bg-slate-900 rounded-lg p-3"><span class="text-xs text-slate-400">Oʻqilgan kitoblar</span><div id="r-r" class="text-2xl font-extrabold text-emerald-300">0</div></div>
+            <div class="bg-slate-900 rounded-lg p-3"><span class="text-xs text-slate-400">Qidiruvlar</span><div id="r-q" class="text-2xl font-extrabold text-cyan-300">0</div></div>
+          </div>
+          <p id="r-cmp" class="text-xs text-slate-400"></p>
+          <div class="h-56"><canvas id="rangeChart"></canvas></div>
+        </div>
+        <!-- COMPARISON CHART -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid mb-8">
+          <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-chart-column text-brand-gold"></i>
+            O'tgan Yil va Bu Yilgi Foydalanish Ko'rsatkichlari Solishtiruvi
+          </h3>
+          <div class="h-64">
+            <canvas id="comparisonChart"></canvas>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid"><span class="text-xs text-slate-400">Bugungi tashriflar</span><div id="stat-today" class="text-3xl font-extrabold text-cyan-300">0</div></div>
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid"><span class="text-xs text-slate-400">Yangi murojaatlar</span><div id="stat-msgs" class="text-3xl font-extrabold text-fuchsia-300">0</div></div>
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid"><span class="text-xs text-slate-400">Oʻqituvchi kitoblari</span><div id="stat-tbooks" class="text-3xl font-extrabold text-brand-goldLight">0</div></div>
+          <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 rgb rgb-mid"><span class="text-xs text-slate-400">Jami qidiruvlar</span><div id="stat-queries" class="text-3xl font-extrabold text-emerald-300">0</div></div>
+        </div>
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid mb-8"><h3 class="text-lg font-bold text-white mb-4">Oxirgi 7 kunlik tashriflar</h3><div class="h-56"><canvas id="weekChart"></canvas></div></div>
+        <div class="grid lg:grid-cols-2 gap-4 mb-8">
+          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid space-y-2"><h3 class="text-lg font-bold text-white">Eng koʻp qidirilganlar</h3><div id="top-queries" class="space-y-2"></div></div>
+          <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid space-y-3"><h3 class="text-lg font-bold text-white">Murojaatlar</h3><div id="msgs-list" class="space-y-2 max-h-80 overflow-y-auto"></div></div>
+        </div>
+        <!-- ADD TEACHER BOOK FORM -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid mb-8 space-y-4">
+          <h3 class="text-lg font-bold text-brand-gold flex items-center gap-2">
+            <i class="fa-solid fa-plus-circle"></i>
+            Yangi O'qituvchi Kitobini Qo'shish
+          </h3>
+          <form onsubmit="handleAddTeacherBook(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <input type="text" id="add-book-title" placeholder="Kitob sarlavhasi" required class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm">
+            <input type="text" id="add-book-author" placeholder="Muallif (O'qituvchi)" required class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm">
+            <input type="text" id="add-book-subject" placeholder="Fan nomi" required class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm">
+            <input type="url" id="add-book-url" placeholder="PDF havolasi (https://... yoki Google Drive)" required class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm">
+            <button type="submit" class="sm:col-span-2 lg:col-span-4 bg-brand-gold hover:bg-brand-goldDark text-slate-950 font-bold py-2 rounded-lg transition text-sm">
+              Kitobni Bazaga Qo'shish
+            </button>
+          </form>
+        </div>
+
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid mb-8 space-y-2"><h3 class="text-lg font-bold text-white">Oʻqituvchi kitoblarini boshqarish</h3><div id="tbooks-admin" class="space-y-2"></div></div>
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid mb-8 space-y-3">
+          <h3 class="text-lg font-bold text-white"><i class="fa-solid fa-key text-brand-gold mr-2"></i>Admin parolini almashtirish</h3>
+          <form onsubmit="changePass(event)" class="grid sm:grid-cols-3 gap-3">
+            <input type="password" id="pw-old" required autocomplete="off" placeholder="Joriy parol" class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm [color-scheme:dark]">
+            <input type="password" id="pw-new" required minlength="12" autocomplete="off" placeholder="Yangi parol (kamida 12 belgi)" class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm [color-scheme:dark]">
+            <input type="password" id="pw-new2" required autocomplete="off" placeholder="Yangi parolni takrorlang" class="bg-slate-900 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm [color-scheme:dark]">
+            <button class="sm:col-span-3 bg-brand-gold text-slate-950 font-bold py-2 rounded-lg text-sm">Yangi parol kodini yaratish</button>
+          </form>
+          <div id="pw-out" class="text-xs break-all text-emerald-300"></div>
+        </div>
+        <!-- LOGS TABLE -->
+        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 rgb rgb-mid">
+          <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-list-ul text-brand-gold"></i>
+            Foydalanuvchilar Harakatlari Jurnali (Logs)
+          </h3>
+          <div class="flex gap-2 mb-3"><button onclick="exportLogs()" class="text-xs px-3 py-1.5 bg-emerald-700 rounded-lg">CSV yuklab olish</button><button onclick="clearLogs()" class="text-xs px-3 py-1.5 bg-red-700 rounded-lg">Jurnalni tozalash</button></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-slate-900 text-slate-400 uppercase">
+                <tr>
+                  <th class="p-3">Vaqt</th>
+                  <th class="p-3">Foydalanuvchi</th>
+                  <th class="p-3">Harakat</th>
+                  <th class="p-3">Tafsilot</th>
+                </tr>
+              </thead>
+              <tbody id="logs-table-body" class="divide-y divide-slate-700">
+                <!-- Dynamic Logs -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LOGIN MODAL -->
+  <div id="login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative rgb rise">
+      <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+      
+      <div class="text-center mb-6">
+        <h3 class="text-xl font-bold text-slate-800">O'quvchi Tizimiga Kirish</h3>
+        <p class="text-xs text-slate-500 mt-1">Ismingiz va parolingizni kiriting</p>
+      </div>
+
+      <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Login / Ism</label>
+          <input type="text" id="login-username" required placeholder="Masalan: Behruzbek" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Parol</label>
+          <input type="password" id="login-password" required placeholder="******" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold">
+        </div>
+        <button type="submit" class="w-full bg-brand-green hover:bg-brand-greenDark text-white font-bold py-3 rounded-xl transition shadow">
+          Kirish
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div id="admin-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative rgb rise">
+      <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+      <h3 class="text-lg font-bold text-slate-800 mb-1"><i class="fa-solid fa-user-shield text-brand-gold mr-2"></i>Admin kirishi</h3>
+      <p class="text-xs text-slate-500 mb-4">Admin parolini kiriting</p>
+      <form onsubmit="adminLogin(event)" class="space-y-3">
+        <input type="password" id="admin-pass" required autocomplete="off" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-gold">
+        <div id="admin-err" class="text-xs text-red-600 min-h-[1rem]"></div>
+        <button class="w-full bg-brand-green hover:bg-brand-greenDark text-white font-bold py-2.5 rounded-xl">Kirish</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-greenDark text-slate-300 text-xs py-6 border-t border-brand-gold/30 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+      <p class="font-medium">© Urganch Davlat Universiteti Akademik Litseyi Raqamli Kutubxonasi.</p>
+      <p class="text-slate-400">QR-kod orqali 24/7 tezkor va bepul mutolaa tizimi.</p>
+    </div>
+  </footer>
+
+  <!-- KITOB O'QISH OYNASI (PDF ko'rgazma) -->
+  <div id="reader-modal" class="hidden fixed inset-0 bg-black/80 flex flex-col" style="z-index:9999">
+    <div class="bg-brand-greenDark text-white flex items-center gap-3 px-4 py-2 text-sm">
+      <i class="fa-solid fa-file-pdf text-brand-gold"></i>
+      <span id="reader-title" class="font-bold truncate flex-1"></span>
+      <a id="reader-ext" href="#" target="_blank" rel="noopener" class="underline text-brand-gold whitespace-nowrap text-xs">Yangi oynada ochish</a>
+      <button type="button" onclick="closeReader()" class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 font-bold whitespace-nowrap">&#10005; Yopish</button>
+    </div>
+    <div id="pdf-toolbar" style="display:none;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center" class="bg-brand-green text-white px-3 py-1 text-sm">
+      <button type="button" id="pv-prev" class="px-3 py-1 rounded bg-white/15 hover:bg-white/25 font-bold" aria-label="Oldingi sahifa">&#8249;</button>
+      <span><input id="pv-page" type="number" min="1" value="1" aria-label="Sahifa raqami" class="w-16 text-center rounded text-slate-900 px-1 py-0.5"> <span id="pv-total">/ …</span></span>
+      <button type="button" id="pv-next" class="px-3 py-1 rounded bg-white/15 hover:bg-white/25 font-bold" aria-label="Keyingi sahifa">&#8250;</button>
+      <span style="width:16px"></span>
+      <button type="button" id="pv-zoom-out" class="px-3 py-1 rounded bg-white/15 hover:bg-white/25 font-bold" aria-label="Kichraytirish">&minus;</button>
+      <span id="pv-zoom" class="w-12 text-center">100%</span>
+      <button type="button" id="pv-zoom-in" class="px-3 py-1 rounded bg-white/15 hover:bg-white/25 font-bold" aria-label="Kattalashtirish">+</button>
+    </div>
+    <p id="reader-note" style="display:none" class="bg-amber-100 text-amber-900 text-xs px-4 py-1">Kitob ko&#8216;rinmasa, yuqoridagi &laquo;Yangi oynada ochish&raquo; havolasini bosing.</p>
+    <div id="pdf-status" style="display:none;flex:1;align-items:center;justify-content:center;flex-direction:column;gap:12px" class="text-white text-center px-6">
+      <i id="pdf-status-icon" class="fa-solid fa-spinner fa-spin text-4xl text-brand-gold"></i>
+      <p id="pdf-status-text" class="font-medium">Kitob yuklanmoqda…</p>
+    </div>
+    <div id="pdf-scroll" style="display:none;flex:1;min-height:0;overflow:auto;background:#475569"><div id="pdf-pages" style="position:relative;min-width:100%;width:max-content;box-sizing:border-box;padding:12px;display:flex;flex-direction:column;align-items:center;gap:12px"></div></div>
+    <iframe id="reader-frame" title="Kitob" style="display:none" class="flex-1 w-full bg-white" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // INITIAL APP STATE
+    let currentUser = JSON.parse(localStorage.getItem('lib_user')) || null;
+    let totalVisits = parseInt(localStorage.getItem('lib_visits')) || 142;
+    let totalReads = parseInt(localStorage.getItem('lib_reads')) || 68;
+    let logs = JSON.parse(localStorage.getItem('lib_logs')) || [
+      { time: new Date().toLocaleTimeString(), user: "Tizim", action: "Tashrif", detail: "Saytga kirildi" }
+    ];
+
+    let teacherBooks = JSON.parse(localStorage.getItem('lib_teacher_books')) || [
+      { id: 1, title: "Oliy Matematika Asoslari", author: "M. Ahmedov (Litsey o'qituvchisi)", subject: "Matematika", url: "#" },
+      { id: 2, title: "Fizikadan Masalalar To'plami", author: "S. Karimov", subject: "Fizika", url: "#" }
+    ];
+
+    const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const safeUrl=u=>/^(https?:\/\/|#)/i.test(u)?u:'#';
+    const jget=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+    let msgs=jget('lib_msgs',[]),qs=jget('lib_qs',{}),daily=jget('lib_daily',{});
+    const ymd=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const today=()=>ymd(new Date());
+    const G=id=>document.getElementById(id);
+    let stats=jget('lib_stats',null);
+    if(!stats){stats={};for(const k in daily)stats[k]={v:daily[k],r:0,q:0}}
+    const sv=()=>localStorage.setItem('lib_stats',JSON.stringify(stats));
+    const bump=f=>{const t=today();(stats[t]=stats[t]||{v:0,r:0,q:0})[f]++;sv()};
+    const sumR=(a,b)=>{const o={v:0,r:0,q:0};for(const k in stats)if(k>=a&&k<=b){o.v+=stats[k].v;o.r+=stats[k].r;o.q+=stats[k].q}return o};
+    const yr=y=>sumR(y+'-01-01',y+'-12-31');
+    let adminOK=false,adminT;
+    const touch=()=>{clearTimeout(adminT);adminT=setTimeout(lockAdmin,15*60000)};
+    ['click','keydown'].forEach(e=>document.addEventListener(e,()=>{if(adminOK)touch()}));
+    function lockAdmin(){adminOK=false;clearTimeout(adminT);if(!G('admin-tab').classList.contains('hidden'))switchTab('search-tab')}
+    const pbk=async(p,sh,it)=>{const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);const salt=Uint8Array.from(sh.match(/../g).map(h=>parseInt(h,16)));const b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt,iterations:it},k,256);return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')};
+    // ADMIN PASSWORD (REQUESTED VALUE)
+    const ADM={salt:'dbf8016b5707846f5f7afe5665b2e912',hash:'a9a42a34155d9745f546f9909655e2663405b7f58b1b8fbfdc2fe2dd8ec73d06',it:200000};
+
+    // INIT
+    document.addEventListener("DOMContentLoaded", () => {
+      totalVisits++;
+      localStorage.setItem('lib_visits', totalVisits);
+      bump('v');
+      updateAuthUI();
+      renderTeacherBooks();
+      renderLogs();
+    });
+
+    // NAVIGATION SYSTEM
+    function switchTab(tabId) {
+      if(tabId==='admin-tab'&&!adminOK){openAdminModal();return}
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-gold', 'text-brand-greenDark', 'font-bold');
+        btn.classList.add('hover:bg-brand-greenLight', 'text-slate-100');
+      });
+
+      const activeNav = document.getElementById('nav-' + tabId.replace('-tab', ''));
+      if(activeNav) {
+        activeNav.classList.add('bg-brand-gold', 'text-brand-greenDark', 'font-bold');
+        activeNav.classList.remove('hover:bg-brand-greenLight', 'text-slate-100');
+      }
+    }
+
+    // AUTH SYSTEM
+    function openLoginModal() { document.getElementById('login-modal').classList.remove('hidden'); }
+    function closeLoginModal() { document.getElementById('login-modal').classList.add('hidden'); }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value;
+      currentUser = { name: username };
+      localStorage.setItem('lib_user', JSON.stringify(currentUser));
+      addLog(username, "Tizimga kirish", "O'quvchi profiliga kirdi");
+      updateAuthUI();
+      closeLoginModal();
+    }
+
+    function logoutUser() {
+      addLog(currentUser ? currentUser.name : "O'quvchi", "Tizimdan chiqish", "Profil yopildi");
+      currentUser = null;
+      localStorage.removeItem('lib_user');
+      updateAuthUI();
+    }
+
+    function updateAuthUI() {
+      const loginBtn = document.getElementById('login-btn');
+      const userProfile = document.getElementById('user-profile');
+      if (currentUser) {
+        loginBtn.classList.add('hidden');
+        userProfile.classList.remove('hidden');
+        document.getElementById('user-name').innerText = currentUser.name;
+        document.getElementById('user-avatar').innerText = currentUser.name.charAt(0).toUpperCase();
+      } else {
+        loginBtn.classList.remove('hidden');
+        userProfile.classList.add('hidden');
+      }
+    }
+
+    // ONLINE API SEARCH SYSTEM (ZIYOUZ.COM, N.ZIYOUZ.COM, GOOGLE BOOKS & OPEN LIBRARY)
+    // ===================== QIDIRUV (kirill/lotin, harf registri, imlo xatolari) =====================
+    const GOOGLE_BOOKS_KEY = '';
+
+    // <<LB-SEARCH-HELPERS
+    const LB_CYR={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'j','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'x','ц':'s','ч':'ch','ш':'sh','щ':'sh','ъ':'','ь':'','ы':'i','э':'e','ю':'yu','я':'ya','ў':"o'",'қ':'q','ғ':"g'",'ҳ':'h','ң':'ng','ҷ':'j'};
+    const LB_L2C={a:'а',b:'б',d:'д',e:'е',f:'ф',g:'г',h:'ҳ',i:'и',j:'ж',k:'к',l:'л',m:'м',n:'н',o:'о',p:'п',q:'қ',r:'р',s:'с',t:'т',u:'у',v:'в',w:'в',x:'х',y:'й',z:'з'};
+    // kirill -> lotin, kichik harf, apostrof turlari bitta ko'rinishga
+    const lbToLat=s=>String(s||'').toLowerCase().replace(/[ʻʼ’‘`´′ʹ]/g,"'").replace(/[\u0400-\u04FF]/g,c=>LB_CYR[c]!==undefined?LB_CYR[c]:c);
+    // apostrofsiz (o', g' -> o, g) va "otgan" -> "otkan"
+    const lbFold=s=>lbToLat(s).replace(/'/g,'').replace(/\botgan\b/g,'otkan');
+    const lbTokens=s=>lbFold(s).match(/[a-z0-9]+/g)||[];
+    function lbLatToCyr(s){
+      let t=lbToLat(s);
+      if(!/[a-z]/.test(t))return '';
+      t=t.replace(/o'/g,'ў').replace(/g'/g,'ғ').replace(/sh/g,'ш').replace(/ch/g,'ч').replace(/yo/g,'ё').replace(/yu/g,'ю').replace(/ya/g,'я')
+         .replace(/(^|[\s\-])e/g,'$1э').replace(/[a-z]/g,c=>LB_L2C[c]||c).replace(/'/g,'');
+      return t;
+    }
+    function lbLev(a,b){
+      const m=a.length,n=b.length;if(!m)return n;if(!n)return m;
+      let p=Array.from({length:n+1},(_,j)=>j);
+      for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}
+      return p[n];
+    }
+    const lbSim=(a,b)=>{const m=Math.max(a.length,b.length);return m?1-lbLev(a,b)/m:1};
+    // so'rov so'zi q ning kitob so'zi w ga o'xshashligi (0..1)
+    function lbTokenScore(q,w){
+      if(q===w)return 1;
+      const lq=q.length;
+      if(lq>=2&&w.startsWith(q))return .9;
+      if(lq>=3&&w.includes(q))return .75;
+      if(lq<3||Math.abs(w.length-lq)>Math.max(3,lq))return 0;
+      const thr=lq<=4?.8:.72;
+      const s=Math.max(lbSim(q,w),lbSim(q,w.slice(0,lq+1)));
+      return s>=thr?s*.85:0;
+    }
+    function lbScore(qTokens,fields){
+      let total=0,matched=0;
+      for(const q of qTokens){
+        let best=0;
+        for(const [wt,words] of fields)for(const w of words){const s=lbTokenScore(q,w);if(s)best=Math.max(best,s*wt)}
+        if(best){matched++;total++;total+=best-1}
+      }
+      return {total,matched};
+    }
+
+    const LB_BASE_VOCAB=("matematika algebra geometriya fizika kimyo biologiya adabiyot tarix geografiya informatika ingliz tili rus ona ozbek ozbekiston navoiy alisher qodiriy abdulla otkan kunlar mehrobdan chayon kecha kunduz yulduzli tunlar humoyun akbar avlodlar dovoni ulugbek xazinasi ikki eshik orasi dunyoning ishlari daftar hoshiyasidagi bitiklar tushda kechgan umrlar shaytanat shum bola sariq devni minib ufq jimjitlik otamdan qolgan dalalar alpomish boburnoma bobur temur tuzuklari xamsa farhod shirin layli majnun cholpon fitrat oybek qutlug qon sarob hamza furqat muqimiy tohir malik pirimqul qodirov odil yoqubov otkir hoshimov said ahmad gafur gulom xudoyberdi toxtaboyev togay murod erkin vohidov abdulla oripov muhammad yusuf chingiz aytmatov asrga tatigulik kun jamila oq kema pushkin gogol chexov sholoxov darslik masalalar toplami oliy asoslari kitob hikoyalar sherlar roman qissa dostonlar jahon dunyo tarixi iqtisodiyot huquq falsafa psixologiya pedagogika astronomiya texnologiya ekologiya anatomiya mantiq grammatika lugat ensiklopediya sinf olimpiada qomus ilmiy badiiy fantastika bolalar ertaklar xalq maqollar").split(' ');
+
+    // Ziyouz.com (n.ziyouz.com) tasdiqlangan to'g'ridan-to'g'ri PDF kitoblar bazasi
+    const ZIYOUZ_BOOKS = [
+      { title: "O'tkan kunlar (roman)", author: "Abdulla Qodiriy", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Abdulla%20Qodiriy.%20O'tkan%20kunlar%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Mehrobdan chayon (roman)", author: "Abdulla Qodiriy", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Abdulla%20Qodiriy.%20Mehrobdan%20chayon%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Kecha va kunduz (roman)", author: "Abdulhamid Cho'lpon", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Cho'lpon.%20Kecha%20va%20kunduz%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Navoiy (roman)", author: "Oybek", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Oybek.%20Navoiy%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Qutlug' qon (roman)", author: "Oybek", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Oybek.%20Qutlug'%20qon%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Yulduzli tunlar (Bobur) (roman)", author: "Pirimqul Qodirov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Pirimqul%20Qodirov.%20Yulduzli%20tunlar%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Avlodlar dovoni (Humoyun va Akbar)", author: "Pirimqul Qodirov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Pirimqul%20Qodirov.%20Avlodlar%20dovoni%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Ulug'bek xazinasi (roman)", author: "Odil Yoqubov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Odil%20Yoqubov.%20Ulug'bek%20xazinasi%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Dunyoning ishlari (qissa)", author: "O'tkir Hoshimov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/O'tkir%20Hoshimov.%20Dunyoning%20ishlari%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Ikki eshik orasi (roman)", author: "O'tkir Hoshimov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/O'tkir%20Hoshimov.%20Ikki%20eshik%20orasi%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Daftar hoshiyasidagi bitiklar", author: "O'tkir Hoshimov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/O'tkir%20Hoshimov.%20Daftar%20hoshiyasidagi%20bitiklar.pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Tushda kechgan umrlar (roman)", author: "O'tkir Hoshimov", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/O'tkir%20Hoshimov.%20Tushda%20kechgan%20umrlar%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Ufq (trilogiya)", author: "Said Ahmad", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Said%20Ahmad.%20Ufq%20(trilogiya).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Jimjitlik (roman)", author: "Said Ahmad", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Said%20Ahmad.%20Jimjitlik%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Shum bola (qissa)", author: "G'afur G'ulom", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/G'afur%20G'ulom.%20Shum%20bola%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Yodgor (qissa)", author: "G'afur G'ulom", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/G'afur%20G'ulom.%20Yodgor%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Sariq devni minib (roman)", author: "Xudoyberdi To'xtaboyev", subject: "Bolalar adabiyoti", pdf: "https://n.ziyouz.com/books/bolalar_adabiyoti/Xudoyberdi%20To'xtaboyev.%20Sariq%20devni%20minib%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/2-bolalar-adabiyoti" },
+      { title: "Shirin qovunlar mamlakati", author: "Xudoyberdi To'xtaboyev", subject: "Bolalar adabiyoti", pdf: "https://n.ziyouz.com/books/bolalar_adabiyoti/Xudoyberdi%20To'xtaboyev.%20Shirin%20qovunlar%20mamlakati%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/2-bolalar-adabiyoti" },
+      { title: "Shaytanat (1-kitob)", author: "Tohir Malik", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Tohir%20Malik.%20Shaytanat%20(1-kitob).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Alvido, bolalik (qissa)", author: "Tohir Malik", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Tohir%20Malik.%20Alvido,%20bolalik%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Otamdan qolgan dalalar (roman)", author: "Tog'ay Murod", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Tog'ay%20Murod.%20Otamdan%20qolgan%20dalalar%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Yulduzlar mangu yonadi (qissa)", author: "Tog'ay Murod", subject: "O'zbek adabiyoti", pdf: "https://n.ziyouz.com/books/uzbek_nasri/Tog'ay%20Murod.%20Yulduzlar%20mangu%20yonadi%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/11-o-zbek-zamonaviy-nasri" },
+      { title: "Boburnoma", author: "Zahiriddin Muhammad Bobur", subject: "Mumtoz adabiyot / Tarix", pdf: "https://n.ziyouz.com/books/uzbek_mumtoz_adabiyoti/Zahiriddin%20Muhammad%20Bobur.%20Boburnoma.pdf", page: "https://n.ziyouz.com/kutubxona/category/4-o-zbek-mumtoz-adabiyoti" },
+      { title: "Xamsa: Farhod va Shirin", author: "Alisher Navoiy", subject: "Mumtoz adabiyot", pdf: "https://n.ziyouz.com/books/uzbek_mumtoz_adabiyoti/Alisher%20Navoiy.%20Xamsa.%20Farhod%20va%20Shirin%20(nasriy%20bayoni).pdf", page: "https://n.ziyouz.com/kutubxona/category/4-o-zbek-mumtoz-adabiyoti" },
+      { title: "Xamsa: Layli va Majnun", author: "Alisher Navoiy", subject: "Mumtoz adabiyot", pdf: "https://n.ziyouz.com/books/uzbek_mumtoz_adabiyoti/Alisher%20Navoiy.%20Xamsa.%20Layli%20va%20Majnun%20(nasriy%20bayoni).pdf", page: "https://n.ziyouz.com/kutubxona/category/4-o-zbek-mumtoz-adabiyoti" },
+      { title: "Temur tuzuklari", author: "Amir Temur", subject: "Tarix", pdf: "https://n.ziyouz.com/books/tarixiy/Amir%20Temur.%20Temur%20tuzuklari.pdf", page: "https://n.ziyouz.com/kutubxona/category/9-tarixiy-kitoblar" },
+      { title: "Alpomish (o'zbek xalq dostoni)", author: "Xalq og'zaki ijodi", subject: "Folklor", pdf: "https://n.ziyouz.com/books/xalq_ogzaki_ijodi/Alpomish%20(doston).pdf", page: "https://n.ziyouz.com/kutubxona/category/14-xalq-og-zaki-ijodi" },
+      { title: "Ruhlar isyoni (doston)", author: "Erkin Vohidov", subject: "O'zbek she'riyati", pdf: "https://n.ziyouz.com/books/uzbek_zam_sheriyati/Erkin%20Vohidov.%20Ruhlar%20isyoni.pdf", page: "https://n.ziyouz.com/kutubxona/category/12-o-zbek-zamonaviy-she-riyati" },
+      { title: "Tanlangan asarlar (Jannatga yo'l)", author: "Abdulla Oripov", subject: "O'zbek she'riyati", pdf: "https://n.ziyouz.com/books/uzbek_zam_sheriyati/Abdulla%20Oripov.%20Tanlangan%20asarlar.%201-jild.pdf", page: "https://n.ziyouz.com/kutubxona/category/12-o-zbek-zamonaviy-she-riyati" },
+      { title: "Saylanma (She'rlar)", author: "Muhammad Yusuf", subject: "O'zbek she'riyati", pdf: "https://n.ziyouz.com/books/uzbek_zam_sheriyati/Muhammad%20Yusuf.%20Saylanma.pdf", page: "https://n.ziyouz.com/kutubxona/category/12-o-zbek-zamonaviy-she-riyati" },
+      { title: "Asrga tatigulik kun (roman)", author: "Chingiz Aytmatov", subject: "Jahon adabiyoti", pdf: "https://n.ziyouz.com/books/jahon_nasri/Chingiz%20Aytmatov.%20Asrga%20tatigulik%20kun%20(roman).pdf", page: "https://n.ziyouz.com/kutubxona/category/6-jahon-adabiyoti" },
+      { title: "Jamila (qissa)", author: "Chingiz Aytmatov", subject: "Jahon adabiyoti", pdf: "https://n.ziyouz.com/books/jahon_nasri/Chingiz%20Aytmatov.%20Jamila%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/6-jahon-adabiyoti" },
+      { title: "Oq kema (qissa)", author: "Chingiz Aytmatov", subject: "Jahon adabiyoti", pdf: "https://n.ziyouz.com/books/jahon_nasri/Chingiz%20Aytmatov.%20Oq%20kema%20(qissa).pdf", page: "https://n.ziyouz.com/kutubxona/category/6-jahon-adabiyoti" }
+    ];
+
+    function lbVocab(){
+      const v=new Set(LB_BASE_VOCAB);
+      try{ZIYOUZ_BOOKS.forEach(b=>lbTokens(b.title+' '+b.author+' '+b.subject).forEach(w=>v.add(w)))}catch(e){}
+      try{teacherBooks.forEach(b=>lbTokens(b.title+' '+b.author+' '+b.subject).forEach(w=>v.add(w)))}catch(e){}
+      try{(JSON.parse(localStorage.getItem('lib_vocab'))||[]).forEach(w=>v.add(w))}catch(e){}
+      return v;
+    }
+    // Imlo tuzatish: "otgan kinlar" -> "otkan kunlar", "matematka" -> "matematika"
+    function lbCorrect(raw){
+      const toks=lbTokens(raw);if(!toks.length)return null;
+      const vocab=lbVocab();let changed=false;
+      const rawLower=lbToLat(raw).replace(/'/g,'');
+      const out=toks.map(t=>{
+        if(t.length<4||vocab.has(t)||/\d/.test(t))return t;
+        let best=t,bs=0;const thr=t.length<=5?.8:.75;
+        for(const w of vocab){if(Math.abs(w.length-t.length)>2)continue;const s=lbSim(t,w);if(s>bs){bs=s;best=w}}
+        if(bs>=thr&&best!==t){changed=true;return best}
+        return t;
+      });
+      const res=out.join(' ');
+      if(!changed && res!==rawLower && /\botkan\b/.test(res)) changed=true;
+      return changed?res:null;
+    }
+    function lbLearn(books){
+      try{
+        const cur=new Set(JSON.parse(localStorage.getItem('lib_vocab'))||[]);
+        books.forEach(b=>lbTokens(b.title+' '+b.author).forEach(w=>{if(w.length>=4&&w.length<=20)cur.add(w)}));
+        localStorage.setItem('lib_vocab',JSON.stringify([...cur].slice(-4000)));
+      }catch(e){}
+    }
+    function lbVariants(raw,corrected){
+      const out=[];const add=v=>{v=(v||'').trim();if(v&&!out.some(x=>x.toLowerCase()===v.toLowerCase()))out.push(v)};
+      add(corrected||raw);add(raw);
+      if(/[\u0400-\u04FF]/.test(raw))add(lbToLat(raw));else add(lbLatToCyr(corrected||raw));
+      return out.slice(0,3);
+    }
+    // PDF va Google Drive / Docs havolalarini o'qish (preview/embed) formatiga aylantirish
+    function lbEmbedUrl(u){
+      u=String(u||'');
+      let m=u.match(/drive\.google\.com\/file\/d\/([\w-]+)/)||u.match(/drive\.google\.com\/(?:open|uc)\?(?:[^#]*&)?id=([\w-]+)/);
+      if(m)return 'https://drive.google.com/file/d/'+m[1]+'/preview';
+      m=u.match(/docs\.google\.com\/(document|presentation|spreadsheets)\/d\/([\w-]+)/);
+      if(m)return 'https://docs.google.com/'+m[1]+'/d/'+m[2]+'/preview';
+      if(/\.pdf($|\?)/i.test(u))return 'https://docs.google.com/viewer?url='+encodeURIComponent(u)+'&embedded=true';
+      return u;
+    }
+    const lbIsUrl=u=>/^https?:\/\//i.test(String(u||''));
+    // LB-SEARCH-HELPERS>>
+
+    const LB_NOCOVER='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="150" height="200" viewBox="0 0 150 200"><rect width="150" height="200" fill="#123b2c"/><rect x="14" y="18" width="122" height="164" rx="6" fill="#1b4d3b" stroke="#E2B866" stroke-width="2"/><text x="75" y="95" font-size="13" font-weight="bold" text-anchor="middle" fill="#E2B866" font-family="sans-serif">ZIYOUZ.COM</text><text x="75" y="118" font-size="11" text-anchor="middle" fill="#cbd5e1" font-family="sans-serif">Elektron kitob</text></svg>');
+    const LB_ACC={
+      full:['To\u2018liq o\u2018qish','bg-emerald-100 text-emerald-700'],
+      preview:['Qisman ko\u2018rish','bg-amber-100 text-amber-700'],
+      borrow:['Qarzga olinadi','bg-sky-100 text-sky-700'],
+      none:['Faqat ma\u2019lumot','bg-slate-100 text-slate-500'],
+      file:['Litsey kitobi','bg-brand-gold/20 text-brand-goldDark'],
+      ziyouz:['Ziyouz PDF','bg-emerald-100 text-emerald-800']
+    };
+    let lbAll=[],lbShown=[],lbNote='';
+
+    async function lbGet(url,errs,label,timeoutMs=10000){
+      const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),timeoutMs);
+      try{
+        const r=await fetch(url,{signal:ctl.signal});
+        const d=await r.json().catch(()=>null);
+        if(!r.ok||(d&&d.error)){if(errs&&label)errs.add(label+(r.status?' ('+r.status+')':''));return null}
+        return d;
+      }catch(e){if(errs&&label)errs.add(label+' \u2014 ulanib bo\u2018lmadi');return null}
+      finally{clearTimeout(t)}
+    }
+
+    async function lbGetText(url,timeoutMs=8500){
+      const proxies=[
+        u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u),
+        u=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u),
+        u=>'https://corsproxy.io/?'+encodeURIComponent(u)
+      ];
+      for(const makeUrl of proxies){
+        const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),timeoutMs);
+        try{
+          const r=await fetch(makeUrl(url),{signal:ctl.signal});
+          if(r.ok){const txt=await r.text();if(txt&&txt.length>100)return txt}
+        }catch(e){}finally{clearTimeout(t)}
+      }
+      return null;
+    }
+
+    const stripHtml=h=>{const d=document.createElement('div');d.innerHTML=String(h||'');return (d.textContent||d.innerText||'').replace(/\s+/g,' ').trim()};
+
+    // 1) Ziyouz.com tasdiqlangan PDF katalogidan qidirish
+    function lbSearchZiyouzCatalog(tokens){
+      if(!tokens.length)return [];
+      const need=Math.max(1,Math.ceil(tokens.length*0.6));
+      const out=[];
+      ZIYOUZ_BOOKS.forEach(b=>{
+        const s=lbScore(tokens,[[3.5,lbTokens(b.title)],[2.5,lbTokens(b.author)],[1.5,lbTokens(b.subject)]]);
+        if(s.matched>=need){
+          out.push({
+            title:b.title,
+            author:b.author,
+            cover:'',
+            openUrl:b.pdf||b.page,
+            readUrl:lbEmbedUrl(b.pdf),
+            pdfUrl:b.pdf,
+            access:'ziyouz',
+            source:'Ziyouz.com \u00B7 '+b.subject,
+            _s:s.total+50
+          });
+        }
+      });
+      return out;
+    }
+
+    // 2) Ziyouz.com / Ziyouz.uz WordPress REST API + Django backend + n.ziyouz.com jonli qidiruv
+    async function lbFetchZiyouzLive(q){
+      const cacheKey='ziyouz_v1_'+lbFold(q);
+      try{const c=sessionStorage.getItem(cacheKey);if(c)return JSON.parse(c)}catch(e){}
+      const results=[];
+
+      // A: Agar Django serveri ishlayotgan bo'lsa (/api/ziyouz/?q=...)
+      const backendData=await lbGet('/api/ziyouz/?q='+encodeURIComponent(q),null,'',4000).catch(()=>null);
+      if(backendData&&Array.isArray(backendData.results)){
+        backendData.results.forEach(item=>{
+          const pdfUrl=item.pdf||'';
+          const openUrl=pdfUrl||item.url||'https://n.ziyouz.com';
+          results.push({
+            title:item.title||"Noma'lum asar",
+            author:item.author||"Ziyouz.com kutubxonasi",
+            cover:item.cover||'',
+            openUrl,
+            readUrl:pdfUrl?lbEmbedUrl(pdfUrl):openUrl,
+            pdfUrl,
+            access:pdfUrl?'ziyouz':'full',
+            source:item.source||'Ziyouz.com API'
+          });
+        });
+      }
+
+      // B: WordPress REST API (ziyouz.uz va ziyouz.com) — Live Server (127.0.0.1:5500) da ham bevosita ishlaydi
+      const wpEndpoints=[
+        'https://ziyouz.uz/wp-json/wp/v2/posts?search='+encodeURIComponent(q)+'&per_page=12&_embed=1',
+        'https://ziyouz.com/wp-json/wp/v2/posts?search='+encodeURIComponent(q)+'&per_page=12&_embed=1'
+      ];
+      const wpResponses=await Promise.all(wpEndpoints.map(u=>lbGet(u,null,'',8000).catch(()=>null)));
+      wpResponses.forEach(arr=>{
+        if(!Array.isArray(arr))return;
+        arr.forEach(post=>{
+          const rawTitle=stripHtml(post.title&&post.title.rendered);
+          if(!rawTitle)return;
+          const contentHtml=(post.content&&post.content.rendered)||'';
+          const pdfMatch=contentHtml.match(/https?:\/\/[^\s"'<>]+\.pdf/i);
+          const pdfUrl=pdfMatch?pdfMatch[0]:'';
+          const link=post.link||'https://ziyouz.uz';
+          let cover='';
+          try{
+            const media=post._embedded&&post._embedded['wp:featuredmedia']&&post._embedded['wp:featuredmedia'][0];
+            if(media&&media.source_url)cover=media.source_url;
+          }catch(e){}
+          let author="Ziyouz.com kutubxonasi",title=rawTitle;
+          if(rawTitle.includes('. ')){
+            const parts=rawTitle.split('. ');
+            if(parts[0].split(' ').length<=4){author=parts[0];title=parts.slice(1).join('. ')}
+          }
+          results.push({
+            title,
+            author,
+            cover,
+            openUrl:pdfUrl||link,
+            readUrl:pdfUrl?lbEmbedUrl(pdfUrl):link,
+            pdfUrl,
+            access:pdfUrl?'ziyouz':'full',
+            source:'Ziyouz.com API'
+          });
+        });
+      });
+
+      // C: n.ziyouz.com qidiruvi (CORS proxy orqali)
+      const searchUrl='https://n.ziyouz.com/index.php?option=com_search&searchword='+encodeURIComponent(q)+'&searchphrase=all&ordering=newest';
+      const html=await lbGetText(searchUrl,8000);
+      if(html){
+        const doc=new DOMParser().parseFromString(html,'text/html');
+        doc.querySelectorAll('a[href$=".pdf"], a[href*="/books/"]').forEach(a=>{
+          let href=a.getAttribute('href')||'';
+          if(href.startsWith('/'))href='https://n.ziyouz.com'+href;
+          if(!/^https?:\/\//i.test(href))return;
+          const text=stripHtml(a.textContent)||decodeURIComponent(href.split('/').pop().replace(/\.pdf$/i,''));
+          if(text.length<3)return;
+          const isPdf=/\.pdf($|\?)/i.test(href);
+          results.push({
+            title:text,
+            author:"n.ziyouz.com fondidan",
+            cover:'',
+            openUrl:href,
+            readUrl:isPdf?lbEmbedUrl(href):href,
+            pdfUrl:isPdf?href:'',
+            access:isPdf?'ziyouz':'full',
+            source:'n.ziyouz.com'
+          });
+        });
+        doc.querySelectorAll('.result-title a, .search-results dt a, article h2 a, h3.item-title a').forEach(a=>{
+          let href=a.getAttribute('href')||'';
+          if(!href)return;
+          if(href.startsWith('/'))href='https://n.ziyouz.com'+href;
+          const text=stripHtml(a.textContent);
+          if(!text||text.length<3)return;
+          const isPdf=/\.pdf($|\?)/i.test(href);
+          results.push({
+            title:text,
+            author:"Ziyouz.com",
+            cover:'',
+            openUrl:href,
+            readUrl:isPdf?lbEmbedUrl(href):href,
+            pdfUrl:isPdf?href:'',
+            access:isPdf?'ziyouz':'full',
+            source:'n.ziyouz.com'
+          });
+        });
+      }
+
+      try{if(results.length)sessionStorage.setItem(cacheKey,JSON.stringify(results))}catch(e){}
+      return results;
+    }
+
+    function lbParseGoogle(d){
+      return ((d&&d.items)||[]).map(it=>{
+        const i=it.volumeInfo||{},a=it.accessInfo||{};
+        let access='none',readUrl='';
+        if(a.embeddable&&a.viewability&&a.viewability!=='NO_PAGES'){
+          readUrl='https://books.google.com/books?id='+encodeURIComponent(it.id)+'&printsec=frontcover&output=embed';
+          access=a.viewability==='ALL_PAGES'?'full':'preview';
+        }
+        const img=i.imageLinks&&(i.imageLinks.thumbnail||i.imageLinks.smallThumbnail);
+        return {title:i.title||"Noma'lum nom",author:i.authors?i.authors.join(', '):"Muallif ko'rsatilmagan",
+          cover:img?img.replace(/^http:/,'https:'):'',openUrl:i.previewLink||i.infoLink||'',readUrl,access,source:'Google Books'};
+      });
+    }
+    function lbParseOL(d){
+      return ((d&&d.docs)||[]).map(x=>{
+        const ia=Array.isArray(x.ia)?x.ia[0]:'';
+        let access='none',readUrl='',openUrl='https://openlibrary.org'+x.key;
+        if(ia&&x.ebook_access==='public'){readUrl='https://archive.org/embed/'+encodeURIComponent(ia);access='full'}
+        else if(ia&&x.ebook_access==='borrowable'){access='borrow';openUrl='https://archive.org/details/'+encodeURIComponent(ia)}
+        return {title:x.title||"Noma'lum nom",author:x.author_name?x.author_name.join(', '):"Muallif ko'rsatilmagan",
+          cover:x.cover_i?'https://covers.openlibrary.org/b/id/'+x.cover_i+'-M.jpg':'',openUrl,readUrl,access,source:'Open Library'};
+      });
+    }
+    const lbFetchGoogle=(q,errs)=>lbGet('https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent(q)+'&maxResults=15&printType=books'+(GOOGLE_BOOKS_KEY?'&key='+encodeURIComponent(GOOGLE_BOOKS_KEY):''),errs,'Google Books').then(lbParseGoogle);
+    const lbFetchOL=(q,errs)=>lbGet('https://openlibrary.org/search.json?q='+encodeURIComponent(q)+'&limit=15&fields=key,title,author_name,cover_i,ia,ebook_access',errs,'Open Library').then(lbParseOL);
+
+    // Litsey (o'qituvchi) kitoblaridan qidirish
+    function lbSearchLocal(tokens){
+      if(!tokens.length)return [];
+      const need=Math.max(1,Math.ceil(tokens.length*.6));
+      const out=[];
+      teacherBooks.forEach(b=>{
+        const s=lbScore(tokens,[[3,lbTokens(b.title)],[2,lbTokens(b.author)],[2,lbTokens(b.subject)]]);
+        if(s.matched>=need){
+          const ok=lbIsUrl(b.url);
+          out.push({title:b.title,author:b.author,cover:'',openUrl:ok?b.url:'',readUrl:ok?lbEmbedUrl(b.url):'',pdfUrl:ok&&lbIsPdfUrl(b.url)?b.url:'',access:ok?'file':'none',
+            source:'Litsey \u00B7 '+b.subject,local:true,_s:s.total+100});
+        }
+      });
+      return out;
+    }
+
+    async function handleSearch(e) {
+      e.preventDefault();
+      const raw = document.getElementById('search-input').value.trim();
+      if (!raw) return;
+
+      const grid = document.getElementById('books-grid');
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <i class="fa-solid fa-spinner fa-spin text-4xl text-brand-gold mb-3"></i>
+          <p class="text-slate-600 font-medium">Ziyouz.com va elektron kutubxona bazalaridan qidirilmoqda...</p>
+        </div>
+      `;
+
+      addLog(currentUser ? currentUser.name : "Mehmon", "Qidiruv", `Qidirildi: "${raw}"`);
+      const qk=raw.toLowerCase();bump('q');qs[qk]=(qs[qk]||0)+1;localStorage.setItem('lib_qs',JSON.stringify(qs));
+
+      try {
+        const corrected = lbCorrect(raw);
+        const mainQuery = corrected || raw;
+        const tokens = [...new Set([...lbTokens(raw), ...(corrected ? lbTokens(corrected) : [])])];
+        const errs = new Set();
+
+        const local = lbSearchLocal(tokens).sort((a, b) => b._s - a._s);
+        const ziyouzCatalog = lbSearchZiyouzCatalog(tokens).sort((a, b) => b._s - a._s);
+
+        const [ziyouzLive, olBooks, gBooks] = await Promise.all([
+          lbFetchZiyouzLive(mainQuery).catch(() => []),
+          lbFetchOL(mainQuery, errs).catch(() => []),
+          lbFetchGoogle(mainQuery, errs).catch(() => [])
+        ]);
+
+        // takrorlarni olib tashlash (o'qiladiganini afzal ko'rish)
+        const seen = new Map();
+        [...ziyouzCatalog, ...ziyouzLive, ...olBooks, ...gBooks].forEach(b => {
+          const key = lbFold(b.title) + '|' + lbFold(b.author).slice(0, 20);
+          const old = seen.get(key);
+          if (!old || (!old.readUrl && b.readUrl)) seen.set(key, b);
+        });
+        const remote = [...seen.values()];
+        lbLearn(remote);
+
+        remote.forEach(b => {
+          if (typeof b._s !== 'number') {
+            const s = lbScore(tokens, [[3, lbTokens(b.title)], [2, lbTokens(b.author)]]);
+            const isZiyouz = String(b.source || '').toLowerCase().includes('ziyouz');
+            b._s = s.total + (b.readUrl ? 2.5 : 0) + (isZiyouz ? 5.0 : 0) + (s.matched ? 0 : -1);
+          }
+        });
+        remote.sort((a, b) => b._s - a._s);
+
+        lbAll = [...local, ...remote];
+        lbNote = corrected ? ` \u00B7 \u00AB${corrected}\u00BB bo\u2018yicha ham qidirildi` : '';
+        if (lbAll.length === 0 && errs.size) lbNote += ' \u00B7 \u26A0 ' + [...errs].join(', ') + ' javob bermadi';
+        lbApplyFilter(errs);
+      } catch (err) {
+        grid.innerHTML = `<div class="col-span-full text-center py-8 text-red-500 font-medium">Qidiruvda xatolik yuz berdi. Qayta urinib ko'ring.</div>`;
+      }
+    }
+
+    function lbApplyFilter(errs) {
+      const only = G('only-readable') && G('only-readable').checked;
+      lbShown = lbAll.filter(b => !only || b.readUrl);
+      renderSearchResults(lbShown, errs);
+    }
+
+    function renderSearchResults(books, errs) {
+      const grid = document.getElementById('books-grid');
+      document.getElementById('results-count').textContent = `Topildi: ${books.length} ta kitob${lbNote}`;
+      if (books.length === 0) {
+        const only = G('only-readable') && G('only-readable').checked;
+        let msg = 'Afsuski, hech narsa topilmadi. Boshqacha yozib ko\u2018ring (lotin yoki kirill, qisqaroq so\u2018z).';
+        if (only && lbAll.length) msg = 'Onlayn o\u2018qiladigan kitob topilmadi. \u00ABFaqat onlayn o\u2018qiladiganlar\u00BB belgisini olib tashlab ko\u2018ring.';
+        else if (errs && errs.size) msg = 'Tashqi kutubxonalarga ulanib bo\u2018lmadi: ' + [...errs].join(', ') + '. Internetni tekshiring yoki birozdan keyin qayta urinib ko\u2018ring.';
+        grid.innerHTML = `<div class="col-span-full text-center py-8 text-slate-500">${esc(msg)}</div>`;
+        return;
+      }
+      grid.innerHTML = books.map((b,i) => {
+        const acc = LB_ACC[b.access] || LB_ACC.none;
+        let btn;
+        if (b.readUrl) {
+          btn = `<div class="flex gap-2">
+            <button type="button" onclick="openBook(${i})" class="flex-1 py-2 bg-brand-green hover:bg-brand-greenDark text-white text-xs font-bold rounded-lg text-center block shadow"><i class="fa-solid fa-file-pdf mr-1"></i> ${b.pdfUrl||lbIsPdfUrl(b.openUrl)?"PDF o'qish":"Onlayn O'qish"}</button>
+            ${b.openUrl ? `<a href="${esc(safeUrl(b.openUrl))}" target="_blank" rel="noopener" title="Yangi oynada ochish / PDF yuklab olish" class="px-3 py-2 bg-brand-gold/20 hover:bg-brand-gold/40 text-brand-greenDark text-xs font-bold rounded-lg"><i class="fa-solid fa-download"></i></a>` : ''}
+          </div>`;
+        } else if (b.openUrl) {
+          btn = `<a href="${esc(safeUrl(b.openUrl))}" target="_blank" rel="noopener" data-t="${esc(b.title)}" onclick="registerRead(this.dataset.t)" class="w-full py-2 bg-slate-600 hover:bg-slate-700 text-white text-xs font-bold rounded-lg text-center block shadow"><i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> ${b.access==='borrow'?'Internet Archive\u2019da ochish':'Kitob sahifasini ochish'}</a>`;
+        } else {
+          btn = `<button type="button" disabled class="w-full py-2 bg-slate-200 text-slate-500 text-xs font-bold rounded-lg cursor-not-allowed">Fayl biriktirilmagan</button>`;
+        }
+        return `
+        <div class="bg-white rounded-xl shadow overflow-hidden flex flex-col justify-between rgb rise" style="--i:${i}">
+          <div class="p-4 flex gap-4">
+            <img src="${b.cover ? esc(safeUrl(b.cover)) : LB_NOCOVER}" onerror="this.onerror=null;this.src=LB_NOCOVER" class="cv-img w-20 h-28 object-cover rounded shadow-sm flex-shrink-0" alt="Muqova">
+            <div class="space-y-1 min-w-0">
+              <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-600">${esc(b.source)}</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded ${acc[1]}">${acc[0]}</span>
+              <h4 class="font-bold text-slate-800 text-sm line-clamp-2">${esc(b.title)}</h4>
+              <p class="text-xs text-slate-500 line-clamp-1">${esc(b.author)}</p>
+            </div>
+          </div>
+          <div class="p-3 bg-slate-50 border-t border-slate-100">${btn}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function registerRead(title) {
+      totalReads++;bump('r');
+      localStorage.setItem('lib_reads', totalReads);
+      addLog(currentUser ? currentUser.name : "O'quvchi", "Kitob Mutolaasi", `O'qildi: "${title}"`);
+    }
+
+    // ===================== SAYT ICHIDA O'QISH OYNASI (PDF.js) =====================
+    const PDFJS_BASE='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/';
+    let pdfjsReady=null;
+    function lbLoadPdfJs(){
+      if(window.pdfjsLib)return Promise.resolve(window.pdfjsLib);
+      if(pdfjsReady)return pdfjsReady;
+      pdfjsReady=new Promise((res,rej)=>{
+        const sc=document.createElement('script');
+        sc.src=PDFJS_BASE+'pdf.min.js';
+        sc.onload=()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS_BASE+'pdf.worker.min.js';res(window.pdfjsLib)};
+        sc.onerror=()=>{pdfjsReady=null;rej(new Error('PDF.js yuklanmadi'))};
+        document.head.appendChild(sc);
+      });
+      return pdfjsReady;
+    }
+
+    const PV={doc:null,gen:0,zoom:1,scale:1,page:1,key:'',io:null,tasks:new Map(),ticking:false};
+    const lbIsPdfUrl=u=>/\.pdf($|[?#])/i.test(String(u||''));
+
+    function pvShow(mode){ // 'pdf' | 'frame' | 'status'
+      G('pdf-scroll').style.display=mode==='pdf'?'block':'none';
+      G('pdf-toolbar').style.display=mode==='pdf'?'flex':'none';
+      G('pdf-status').style.display=mode==='status'?'flex':'none';
+      G('reader-frame').style.display=mode==='frame'?'block':'none';
+      G('reader-note').style.display=mode==='frame'?'block':'none';
+    }
+    function pvStatus(text,busy){
+      pvShow('status');
+      G('pdf-status-text').textContent=text;
+      G('pdf-status-icon').className=busy===false?'fa-solid fa-triangle-exclamation text-4xl text-brand-gold':'fa-solid fa-spinner fa-spin text-4xl text-brand-gold';
+    }
+    function pvReset(){
+      PV.gen++;
+      if(PV.io){PV.io.disconnect();PV.io=null}
+      PV.tasks.forEach(t=>{try{t.cancel()}catch(e){}});PV.tasks.clear();
+      if(PV.doc){try{PV.doc.destroy()}catch(e){}PV.doc=null}
+      G('pdf-pages').innerHTML='';
+      G('pdf-scroll').scrollTop=0;
+      PV.page=1;PV.zoom=1;
+    }
+    function pvOpenShell(title,extUrl){
+      G('reader-title').textContent=title||'Kitob';
+      G('reader-ext').href=safeUrl(extUrl||'#');
+      G('reader-modal').classList.remove('hidden');
+      document.body.style.overflow='hidden';
+    }
+    function pvIsOpen(){return !G('reader-modal').classList.contains('hidden')}
+
+    // PDF ni sahifa-sahifa (kerak bo'lganda) chizadi
+    async function pvBuild(){
+      const gen=PV.gen,doc=PV.doc,box=G('pdf-pages'),scroller=G('pdf-scroll');
+      if(!doc)return;
+      if(PV.io){PV.io.disconnect();PV.io=null}
+      PV.tasks.forEach(t=>{try{t.cancel()}catch(e){}});PV.tasks.clear();
+      box.innerHTML='';
+      const p1=await doc.getPage(1);
+      if(gen!==PV.gen)return;
+      const v1=p1.getViewport({scale:1});
+      const avail=Math.max(200,Math.min(scroller.clientWidth-24,980));
+      PV.scale=(avail/v1.width)*PV.zoom;
+      const w=Math.floor(v1.width*PV.scale),h=Math.floor(v1.height*PV.scale);
+      const frag=document.createDocumentFragment();
+      for(let n=1;n<=doc.numPages;n++){
+        const d=document.createElement('div');
+        d.className='pv-page';d.dataset.n=n;
+        d.style.cssText='width:'+w+'px;height:'+h+'px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.45);position:relative;flex:none';
+        frag.appendChild(d);
+      }
+      box.appendChild(frag);
+      G('pv-total').textContent='/ '+doc.numPages;
+      G('pv-zoom').textContent=Math.round(PV.zoom*100)+'%';
+      PV.io=new IntersectionObserver(entries=>{
+        entries.forEach(en=>{
+          const d=en.target;
+          if(en.isIntersecting)pvRenderPage(d);
+          else if(d.dataset.done){const c=d.querySelector('canvas');if(c)c.remove();d.dataset.done=''}
+        });
+      },{root:scroller,rootMargin:'1200px 0px'});
+      box.querySelectorAll('.pv-page').forEach(d=>PV.io.observe(d));
+    }
+    async function pvRenderPage(d){
+      if(d.dataset.done)return;
+      d.dataset.done='1';
+      const n=Number(d.dataset.n),gen=PV.gen,doc=PV.doc;
+      try{
+        const page=await doc.getPage(n);
+        if(gen!==PV.gen)return;
+        const vp=page.getViewport({scale:PV.scale}),dpr=Math.min(window.devicePixelRatio||1,2);
+        const c=document.createElement('canvas');
+        c.width=Math.floor(vp.width*dpr);c.height=Math.floor(vp.height*dpr);
+        c.style.width=Math.floor(vp.width)+'px';c.style.height=Math.floor(vp.height)+'px';c.style.display='block';
+        d.style.width=c.style.width;d.style.height=c.style.height;
+        const task=page.render({canvasContext:c.getContext('2d'),viewport:vp,transform:dpr!==1?[dpr,0,0,dpr,0,0]:null});
+        PV.tasks.set(n,task);
+        await task.promise;
+        PV.tasks.delete(n);
+        if(gen!==PV.gen||!d.dataset.done)return;
+        d.appendChild(c);
+      }catch(e){
+        if(e&&e.name==='RenderingCancelledException')return;
+        d.dataset.done='';
+      }
+    }
+    function pvGo(n,smooth){
+      if(!PV.doc)return;
+      n=Math.max(1,Math.min(PV.doc.numPages,Number(n)||1));
+      const d=G('pdf-pages').children[n-1];if(!d)return;
+      G('pdf-scroll').scrollTo({top:d.offsetTop-8,behavior:smooth?'smooth':'auto'});
+      PV.page=n;G('pv-page').value=n;
+    }
+    function pvCurrentPage(){
+      const kids=G('pdf-pages').children,top=G('pdf-scroll').scrollTop+G('pdf-scroll').clientHeight/3;
+      let lo=0,hi=kids.length-1;
+      while(lo<hi){const mid=(lo+hi+1)>>1;if(kids[mid].offsetTop<=top)lo=mid;else hi=mid-1}
+      return lo+1;
+    }
+    function pvOnScroll(){
+      if(PV.ticking||!PV.doc)return;
+      PV.ticking=true;
+      requestAnimationFrame(()=>{
+        PV.ticking=false;
+        if(!PV.doc)return;
+        const n=pvCurrentPage();
+        if(n!==PV.page){PV.page=n;G('pv-page').value=n;try{localStorage.setItem(PV.key,String(n))}catch(e){}}
+      });
+    }
+    async function pvZoom(delta){
+      if(!PV.doc)return;
+      const z=Math.max(.5,Math.min(3,Math.round((PV.zoom+delta)*100)/100));
+      if(z===PV.zoom)return;
+      const keep=PV.page;PV.zoom=z;
+      await pvBuild();pvGo(keep);
+    }
+
+    // Asosiy funksiya: PDF ni sayt ichida ochadi
+    async function openPdfReader(pdfUrl,title,extUrl){
+      pvReset();
+      pvOpenShell(title,extUrl||pdfUrl);
+      pvStatus('Kitob yuklanmoqda…');
+      const gen=PV.gen;
+      try{
+        const lib=await lbLoadPdfJs();
+        if(gen!==PV.gen)return;
+        // 1) o'z serverimiz orqali (CORS yo'q), 2) to'g'ridan-to'g'ri
+        const sources=[];
+        if(/^https?:$/.test(location.protocol))sources.push('/api/pdf/?url='+encodeURIComponent(pdfUrl));
+        sources.push(pdfUrl);
+        let doc=null,lastErr=null;
+        for(const src of sources){
+          try{doc=await lib.getDocument({url:src,withCredentials:false}).promise;break}
+          catch(e){lastErr=e;if(gen!==PV.gen)return}
+        }
+        if(gen!==PV.gen){if(doc)doc.destroy();return}
+        if(!doc)throw lastErr||new Error('PDF ochilmadi');
+        PV.doc=doc;PV.key='lb_pdf_pos_'+pdfUrl;
+        let start=1;try{start=Math.max(1,Math.min(doc.numPages,Number(localStorage.getItem(PV.key))||1))}catch(e){}
+        pvShow('pdf');
+        await pvBuild();
+        if(gen!==PV.gen)return;
+        pvGo(start);
+      }catch(e){
+        if(gen!==PV.gen)return;
+        console.warn('PDF.js ochmadi, zaxira rejim:',e);
+        // Zaxira: brauzerning o'z PDF ko'rgazmasi / Google viewer
+        pvShow('frame');
+        G('reader-frame').src=safeUrl(lbEmbedUrl(pdfUrl));
+      }
+    }
+
+    // PDF bo'lmagan manbalar (Google Books, Archive.org embed, Drive preview) — avvalgidek iframe
+    function openFrameReader(embedUrl,extUrl,title){
+      pvReset();
+      pvOpenShell(title,extUrl||embedUrl);
+      pvShow('frame');
+      G('reader-frame').src=safeUrl(embedUrl);
+    }
+    function closeReader(){
+      pvReset();
+      G('reader-modal').classList.add('hidden');
+      G('reader-frame').src='about:blank';
+      pvShow('status');G('pdf-status').style.display='none';
+      document.body.style.overflow='';
+    }
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&pvIsOpen())closeReader()});
+    G('pdf-scroll').addEventListener('scroll',pvOnScroll,{passive:true});
+    G('pv-prev').addEventListener('click',()=>pvGo(PV.page-1,true));
+    G('pv-next').addEventListener('click',()=>pvGo(PV.page+1,true));
+    G('pv-page').addEventListener('change',e=>pvGo(e.target.value));
+    G('pv-zoom-in').addEventListener('click',()=>pvZoom(.2));
+    G('pv-zoom-out').addEventListener('click',()=>pvZoom(-.2));
+    let pvResizeT=null;
+    window.addEventListener('resize',()=>{if(!PV.doc||!pvIsOpen())return;clearTimeout(pvResizeT);pvResizeT=setTimeout(async()=>{const keep=PV.page;await pvBuild();pvGo(keep)},250)});
+
+    // Kitobni "O'qish" bosilganda: iloji bo'lsa har doim PDF ko'rinishida
+    async function openAny(b){
+      registerRead(b.title);
+      let pdf=b.pdfUrl||'';
+      if(!pdf){const direct=[b.openUrl,b.url,b.readUrl].find(lbIsPdfUrl);if(direct)pdf=direct}
+      // Ziyouz kitob sahifasi bo'lsa — serverdan sahifadagi PDF havolasini topamiz
+      const page=b.openUrl||b.readUrl||'';
+      if(!pdf&&/ziyouz/i.test((b.source||'')+' '+page)&&lbIsUrl(page)){
+        pvReset();pvOpenShell(b.title,page);pvStatus('Kitob sahifasidan PDF qidirilmoqda…');
+        const gen=PV.gen;
+        try{
+          const r=await fetch('/api/pdf-topish/?url='+encodeURIComponent(page));
+          if(r.ok){const d=await r.json();if(d&&d.pdf)pdf=d.pdf}
+        }catch(e){}
+        if(gen!==PV.gen||!pvIsOpen())return;
+        if(!pdf){openFrameReader(b.readUrl||page,page,b.title);return}
+      }
+      if(pdf){openPdfReader(pdf,b.title,b.openUrl||pdf);return}
+      openFrameReader(b.readUrl||lbEmbedUrl(b.url||''),b.openUrl||b.url,b.title);
+    }
+    function openBook(i){const b=lbShown[i];if(!b||!b.readUrl)return;openAny(b)}
+    function openTeacherBook(id){
+      const b=teacherBooks.find(x=>x.id===id);if(!b||!lbIsUrl(b.url))return;
+      openAny({title:b.title,url:b.url,openUrl:b.url,readUrl:lbEmbedUrl(b.url),pdfUrl:lbIsPdfUrl(b.url)?b.url:'',source:'Litsey'});
+    }
+
+    // TEACHER BOOKS RENDER
+    function renderTeacherBooks() {
+      const grid = document.getElementById('teachers-books-grid');
+      grid.innerHTML = teacherBooks.map((b,i) => {
+        const ok = lbIsUrl(b.url);
+        const btn = ok
+          ? `<div class="mt-4 flex gap-2">
+               <button type="button" onclick="openTeacherBook(${Number(b.id)})" class="flex-1 py-2 bg-brand-gold hover:bg-brand-goldDark text-brand-greenDark text-xs font-bold rounded-lg text-center shadow shine"><i class="fa-solid fa-book-open mr-1"></i> O'qish</button>
+               <a href="${esc(safeUrl(b.url))}" target="_blank" rel="noopener" title="Yangi oynada ochish / yuklash" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+             </div>`
+          : `<button type="button" disabled class="mt-4 py-2 bg-slate-200 text-slate-500 text-xs font-bold rounded-lg cursor-not-allowed w-full">Fayl hali biriktirilmagan</button>`;
+        return `
+        <div class="bg-white rounded-xl p-4 shadow flex flex-col justify-between rgb rise" style="--i:${i}">
+          <div class="space-y-2">
+            <span class="text-[10px] bg-brand-gold/20 text-brand-goldDark font-bold px-2 py-0.5 rounded uppercase">${esc(b.subject)}</span>
+            <h4 class="font-bold text-slate-800">${esc(b.title)}</h4>
+            <p class="text-xs text-slate-600"><i class="fa-solid fa-user-tie mr-1"></i>${esc(b.author)}</p>
+          </div>
+          ${btn}
+        </div>`;
+      }).join('');
+    }
+
+    // ADMIN SYSTEM
+    function openAdminModal() { G('admin-err').textContent=''; G('admin-modal').classList.remove('hidden'); setTimeout(()=>G('admin-pass').focus(),50); }
+    function closeAdminModal() { G('admin-modal').classList.add('hidden'); }
+    async function adminLogin(e){
+      e.preventDefault();
+      const er=G('admin-err'),inp=G('admin-pass'),L=jget('lib_lock',{n:0,until:0});
+      if(Date.now()<L.until){er.textContent='Juda koʻp urinish. '+Math.ceil((L.until-Date.now())/60000)+' daqiqadan keyin urining.';inp.value='';return}
+      const A=jget('lib_adm',null)||ADM;
+      await new Promise(r=>setTimeout(r,700));
+      let ok=false;try{ok=(await pbk(inp.value,A.salt,A.it))===A.hash}catch(x){er.textContent='Brauzer xavfsiz rejimni (HTTPS) talab qiladi.';return}
+      inp.value='';
+      if(ok){localStorage.removeItem('lib_lock');adminOK=true;touch();closeAdminModal();switchTab('admin-tab');renderAdmin();addLog('Admin','Admin panelga kirdi','')}
+      else{L.n++;if(L.n>=5){L.until=Date.now()+10*60000;L.n=0}localStorage.setItem('lib_lock',JSON.stringify(L));er.textContent='Parol notoʻgʻri.';addLog('Mehmon','Admin kirish urinishi','muvaffaqiyatsiz')}
+    }
+    async function changePass(e){
+      e.preventDefault();if(!adminOK)return;
+      const o=G('pw-old').value,n=G('pw-new').value,n2=G('pw-new2').value,out=G('pw-out');
+      const A=jget('lib_adm',null)||ADM;
+      if((await pbk(o,A.salt,A.it))!==A.hash){out.className='text-xs text-red-400';out.textContent='Joriy parol notoʻgʻri.';return}
+      if(n!==n2||n.length<12||!/[A-Za-z]/.test(n)||!/\d/.test(n)||n===o){out.className='text-xs text-red-400';out.textContent='Yangi parol mos kelmadi yoki juda oddiy (12+ belgi, harf va raqam, eskisidan farqli).';return}
+      const salt=[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
+      const hash=await pbk(n,salt,200000),line="const ADM={salt:'"+salt+"',hash:'"+hash+"',it:200000};";
+      localStorage.setItem('lib_adm',JSON.stringify({salt,hash,it:200000}));
+      out.className='text-xs break-all text-emerald-300';
+      out.textContent='Parol shu brauzerda almashtirildi. Barcha qurilmalarda amal qilishi uchun index.html dagi "const ADM=" qatorini shu qator bilan almashtiring: '+line;
+      e.target.reset();addLog('Admin','Parol almashtirildi','');
+    }
+    // DATE RANGE STATS
+    let rc;
+    function preset(k){
+      const n=new Date(),d=x=>{const t=new Date(n);t.setDate(t.getDate()+x);return t};let a,b=n;
+      if(k==='today')a=n;else if(k==='yest'){a=b=d(-1)}else if(k==='7')a=d(-6);else if(k==='30')a=d(-29);
+      else if(k==='month')a=new Date(n.getFullYear(),n.getMonth(),1);
+      else if(k==='pmonth'){a=new Date(n.getFullYear(),n.getMonth()-1,1);b=new Date(n.getFullYear(),n.getMonth(),0)}
+      else if(k==='year')a=new Date(n.getFullYear(),0,1);
+      else if(k==='pyear'){a=new Date(n.getFullYear()-1,0,1);b=new Date(n.getFullYear()-1,11,31)}
+      else{const ks=Object.keys(stats).sort();a=ks[0]?new Date(ks[0]+'T00:00:00'):n}
+      G('r-from').value=ymd(a);G('r-to').value=ymd(b);applyRange();
+    }
+    function applyRange(){
+      if(!adminOK)return;
+      const f=G('r-from').value,t=G('r-to').value;
+      if(!f||!t||f>t){alert("Sanalarni toʻgʻri tanlang.");return}
+      const s=sumR(f,t);G('r-v').innerText=s.v;G('r-r').innerText=s.r;G('r-q').innerText=s.q;
+      const a=new Date(f+'T00:00:00'),b=new Date(t+'T00:00:00'),n=Math.round((b-a)/864e5)+1;
+      const pe=new Date(a);pe.setDate(pe.getDate()-1);const ps=new Date(pe);ps.setDate(ps.getDate()-n+1);
+      const p=sumR(ymd(ps),ymd(pe));
+      G('r-cmp').textContent=p.v?'Oldingi '+n+' kunga nisbatan: '+((s.v-p.v)/p.v*100).toFixed(0)+'% (oldingi davrda '+p.v+' tashrif)':'Oldingi '+n+' kunlik davrda maʼlumot yoʻq.';
+      const mon=n>62,B={};
+      for(let i=0,d=new Date(a);i<n&&i<3700;i++,d.setDate(d.getDate()+1)){const k=mon?ymd(d).slice(0,7):ymd(d).slice(5);const x=stats[ymd(d)]||{v:0,r:0,q:0};const o=B[k]=B[k]||{v:0,r:0,q:0};o.v+=x.v;o.r+=x.r;o.q+=x.q}
+      const L=Object.keys(B);
+      if(rc)rc.destroy();
+      rc=new Chart(G('rangeChart'),{type:'bar',data:{labels:L,datasets:[{label:'Tashriflar',data:L.map(k=>B[k].v),backgroundColor:'rgba(226,184,102,.9)'},{label:'Oʻqishlar',data:L.map(k=>B[k].r),backgroundColor:'rgba(52,211,153,.8)'},{label:'Qidiruvlar',data:L.map(k=>B[k].q),backgroundColor:'rgba(103,232,249,.8)'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#fff'}}},scales:{y:{beginAtZero:true,ticks:{color:'#94a3b8',precision:0},grid:{color:'#334155'}},x:{ticks:{color:'#94a3b8',maxTicksLimit:15},grid:{color:'#334155'}}}}});
+    }
+    
+    function handleAddTeacherBook(e) {if(!adminOK){e.preventDefault();return}
+      e.preventDefault();
+      const title = document.getElementById('add-book-title').value;
+      const author = document.getElementById('add-book-author').value;
+      const subject = document.getElementById('add-book-subject').value;
+      const url = document.getElementById('add-book-url').value;
+
+      teacherBooks.push({ id: Date.now(), title, author, subject, url });
+      localStorage.setItem('lib_teacher_books', JSON.stringify(teacherBooks));
+      renderTeacherBooks();
+      addLog("Admin", "Yangi Kitob Qo'shildi", `Qo'shildi: ${title}`);
+      alert("Kitob bazaga muvaffaqiyatli qo'shildi!");
+      e.target.reset();
+    }
+
+    // ADMIN EXTRAS
+    function renderAdmin(){
+      if(!adminOK)return;
+      const $=id=>document.getElementById(id);
+      $('stat-today').innerText=(stats[today()]||{v:0}).v;
+      const Y=new Date().getFullYear(),cy=yr(Y),py=yr(Y-1);
+      G('stat-total-visits').innerText=cy.v;G('stat-total-reads').innerText=cy.r;G('prev-visits').innerText=py.v;G('prev-reads').innerText=py.r;
+      G('growth').textContent=py.v?((cy.v-py.v)/py.v*100).toFixed(0)+'% oʻtgan yilga nisbatan':'Oʻtgan yil maʼlumoti yoʻq';
+      initChart();if(!G('r-from').value)preset('30');
+      $('stat-msgs').innerText=msgs.filter(m=>!m.read).length;
+      $('stat-tbooks').innerText=teacherBooks.length;
+      $('stat-queries').innerText=Object.values(qs).reduce((a,b)=>a+b,0);
+      const top=Object.entries(qs).sort((a,b)=>b[1]-a[1]).slice(0,8),mx=top[0]?top[0][1]:1;
+      $('top-queries').innerHTML=top.map(([q,n])=>`<div class="flex items-center gap-2 text-xs"><span class="w-32 truncate">${esc(q)}</span><span class="h-2 rounded bg-gradient-to-r from-fuchsia-500 via-cyan-400 to-emerald-400" style="width:${n/mx*60}%"></span><b>${n}</b></div>`).join('')||'<p class="text-xs text-slate-400">Hali qidiruv yoʻq.</p>';
+      $('msgs-list').innerHTML=msgs.map(m=>`<div class="p-3 rounded-lg bg-slate-900 border border-slate-700 ${m.read?'opacity-60':''}"><div class="flex justify-between text-xs text-slate-400"><b class="text-brand-gold">${esc(m.name)}</b><span>${esc(m.time)}</span></div><p class="text-sm my-2">${esc(m.text)}</p><div class="flex gap-2"><button onclick="toggleMsg(${m.id})" class="text-xs px-2 py-1 bg-slate-700 rounded">${m.read?'Oʻqilmagan':'Oʻqildi'}</button><button onclick="delMsg(${m.id})" class="text-xs px-2 py-1 bg-red-700 rounded">Oʻchirish</button></div></div>`).join('')||'<p class="text-xs text-slate-400">Murojaat yoʻq.</p>';
+      $('tbooks-admin').innerHTML=teacherBooks.map(b=>`<div class="flex justify-between items-center text-sm p-2 rounded bg-slate-900"><span>${esc(b.title)} <span class="text-slate-400">— ${esc(b.author)}</span></span><button onclick="delTBook(${b.id})" class="text-xs px-2 py-1 bg-red-700 rounded">Oʻchirish</button></div>`).join('');
+      weekChart();
+    }
+    const saveMsgs=()=>{localStorage.setItem('lib_msgs',JSON.stringify(msgs));renderAdmin()};
+    function toggleMsg(id){if(!adminOK){return}const m=msgs.find(m=>m.id===id);m.read=!m.read;saveMsgs()}
+    function delMsg(id){if(!adminOK){return}msgs=msgs.filter(m=>m.id!==id);saveMsgs()}
+    function delTBook(id){if(!adminOK){return}if(!confirm("Kitob oʻchirilsinmi?"))return;teacherBooks=teacherBooks.filter(b=>b.id!==id);localStorage.setItem('lib_teacher_books',JSON.stringify(teacherBooks));renderTeacherBooks();renderAdmin()}
+    function clearLogs(){if(!adminOK){return}if(!confirm("Jurnal tozalansinmi?"))return;logs=[];localStorage.setItem('lib_logs','[]');renderLogs()}
+    function exportLogs(){if(!adminOK){return}const csv='\ufeffVaqt,Foydalanuvchi,Harakat,Tafsilot\n'+logs.map(l=>[l.time,l.user,l.action,l.detail].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='jurnal.csv';a.click()}
+    let wc;
+    function weekChart(){
+      const days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-6+i);return ymd(d)});
+      if(wc)wc.destroy();
+      wc=new Chart(document.getElementById('weekChart'),{type:'line',data:{labels:days.map(d=>d.slice(5)),datasets:[{label:'Tashriflar',data:days.map(d=>(stats[d]||{v:0}).v),borderColor:'#E2B866',backgroundColor:'rgba(226,184,102,.2)',fill:true,tension:.35}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#fff'}}},scales:{y:{beginAtZero:true,ticks:{color:'#94a3b8',precision:0},grid:{color:'#334155'}},x:{ticks:{color:'#94a3b8'},grid:{color:'#334155'}}}}});
+    }
+
+    // LOGS & STATS LOGIC
+    function addLog(user, action, detail) {
+      const log = { time: new Date().toLocaleTimeString(), user, action, detail };
+      logs.unshift(log);
+      if (logs.length > 50) logs.pop();
+      localStorage.setItem('lib_logs', JSON.stringify(logs));
+      renderLogs();
+    }
+
+    function renderLogs() {
+      const tbody = document.getElementById('logs-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = logs.map(l => `
+        <tr>
+          <td class="p-3 text-slate-400">${l.time}</td>
+          <td class="p-3 font-semibold text-brand-gold">${esc(l.user)}</td>
+          <td class="p-3">${esc(l.action)}</td>
+          <td class="p-3 text-slate-300">${esc(l.detail)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function handleFeedbackSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('feedback-name').value;
+      const msg = document.getElementById('feedback-message').value;
+      addLog(name, "Murojaat Qoldirdi", msg.slice(0,60));
+      msgs.unshift({id:Date.now(),name,text:msg,time:new Date().toLocaleString(),read:false});localStorage.setItem('lib_msgs',JSON.stringify(msgs));
+      alert("Murojaatingiz qabul qilindi! Rahmat.");
+      e.target.reset();
+    }
+
+    // CHART.JS INITIALIZATION
+    function initChart() {
+      const ctx = document.getElementById('comparisonChart');
+      if (!ctx) return;
+      if(window.cmpC)cmpC.destroy();window.cmpC=new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Tashriflar Sonida', "O'qilgan Kitoblar"],
+          datasets: [
+            {
+              label: "O'tgan Yil",
+              data: [yr(new Date().getFullYear()-1).v, yr(new Date().getFullYear()-1).r],
+              backgroundColor: 'rgba(148, 163, 184, 0.6)'
+            },
+            {
+              label: 'Bu Yil (Joriy)',
+              data: [yr(new Date().getFullYear()).v, yr(new Date().getFullYear()).r],
+              backgroundColor: 'rgba(192, 152, 72, 0.9)'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { labels: { color: '#ffffff' } }
+          },
+          scales: {
+            y: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } },
+            x: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' } }
+          }
+        }
+      });
+    }
+    function togglePageTheme() {
+      var isDark = document.documentElement.classList.toggle('dark');
+      document.documentElement.setAttribute('data-prime-theme', isDark ? 'dark' : 'light');
+      var icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-amber-300';
+      }
+      try {
+        localStorage.setItem('uzedu_theme', isDark ? 'dark' : 'light');
+        localStorage.setItem('litsey_theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
+    }
+    (function() {
+      var isDark = document.documentElement.classList.contains('dark');
+      var icon = document.getElementById('theme-icon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-amber-300';
+      }
+    })();
+  </script>
+</body>
+</html>
