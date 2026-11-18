@@ -24,6 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* 3. Navigation & Responsive Controls */
+  const libNavbar = document.getElementById('lib-navbar');
+  const libMenuToggle = document.getElementById('lib-menu-toggle');
+  const libNavBackdrop = document.getElementById('lib-nav-backdrop');
+  const setLibMenu = (open) => {
+    if (!libNavbar || !libMenuToggle) return;
+    libNavbar.classList.toggle('is-menu-open', open);
+    libMenuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    libMenuToggle.setAttribute('aria-label', open ? 'Menyuni yopish' : 'Menyuni ochish');
+    document.body.classList.toggle('lib-menu-locked', open);
+  };
+  if (libNavbar && libMenuToggle) {
+    libMenuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setLibMenu(!libNavbar.classList.contains('is-menu-open'));
+    });
+    if (libNavBackdrop) libNavBackdrop.addEventListener('click', () => setLibMenu(false));
+    libNavbar.querySelectorAll('.lib-nav-links a').forEach((a) => {
+      a.addEventListener('click', () => setLibMenu(false));
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) setLibMenu(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setLibMenu(false);
+    });
+  }
+
+  /* Keng jadvallarni telefonda gorizontal suriladigan qilish */
+  document.querySelectorAll('main table').forEach((tbl) => {
+    const parent = tbl.parentElement;
+    if (!parent) return;
+    const cs = window.getComputedStyle(parent);
+    if (cs.overflowX === 'auto' || cs.overflowX === 'scroll') return;
+    const wrap = document.createElement('div');
+    wrap.className = 'lib-table-scroll';
+    parent.insertBefore(wrap, tbl);
+    wrap.appendChild(tbl);
+  });
+
   const appLayout = document.getElementById('uzedu-app-layout');
   const sidebarToggle = document.getElementById('sidebar-toggle-btn');
   const mobileClose = document.getElementById('uzedu-mobile-close');

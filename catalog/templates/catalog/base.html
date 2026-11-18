@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'catalog/site.css' %}?v=lib_navbar_polish_v26">
+  <link rel="stylesheet" href="{% static 'catalog/site.css' %}?v=responsive_v27">
   {% block extra_head %}{% endblock %}
 </head>
 <body class="modern-body {% if show_auth_portal %}auth-mode{% endif %}" style="{% if show_auth_portal %}overflow-x:hidden;margin:0;padding:0;{% endif %}">
@@ -64,7 +64,7 @@
         </a>
 
         <!-- Navigation Links -->
-        <nav class="lib-nav-links" aria-label="Asosiy menyu">
+        <nav class="lib-nav-links" id="lib-nav-links" aria-label="Asosiy menyu">
           <a href="{% url 'home' %}" class="lib-nav-link {% if request.resolver_match.url_name == 'home' and not request.GET.category %}active{% endif %}">
             <svg class="lib-nav-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
@@ -99,6 +99,25 @@
             </svg>
             <span>Reyting</span>
           </a>
+          <!-- Faqat telefon / planshet menyusida ko'rinadi -->
+          <div class="lib-nav-mobile-extra">
+            {% if user.is_authenticated %}
+              <a href="{% url 'profile' %}" class="lib-nav-link {% if request.resolver_match.url_name == 'profile' or request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                <svg class="lib-nav-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>{% if user.is_superuser or user.role == 'librarian' %}Boshqaruv paneli{% else %}Mening profilim{% endif %}</span>
+                <em class="lib-nav-mobile-points">{{ user.points }} ball</em>
+              </a>
+              <a href="{% url 'logout' %}" class="lib-nav-link lib-nav-link-danger">
+                <svg class="lib-nav-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Chiqish</span>
+              </a>
+            {% else %}
+              <a href="{% url 'login' %}" class="lib-nav-link">
+                <svg class="lib-nav-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                <span>Kirish / Ro‘yxatdan o‘tish</span>
+              </a>
+            {% endif %}
+          </div>
         </nav>
 
         <!-- Right Controls -->
@@ -152,15 +171,22 @@
               <span>Kirish / Ro‘yxatdan o‘tish</span>
             </a>
           {% endif %}
+
+          <!-- Telefon / planshet uchun menyu tugmasi -->
+          <button type="button" class="lib-menu-toggle" id="lib-menu-toggle" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="lib-nav-links">
+            <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+            <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
         </div>
 
       </div>
+      <div class="lib-nav-backdrop" id="lib-nav-backdrop"></div>
     </header>
   {% endif %}
 
   <!-- Flash Messages -->
   {% if messages and not show_auth_portal %}
-    <div style="max-width:1280px;margin:16px auto 0;padding:0 20px;">
+    <div class="lib-flash-wrap" style="max-width:1280px;margin:16px auto 0;padding:0 20px;">
       {% for message in messages %}
         <div style="padding:12px 16px;border-radius:8px;background:{% if message.tags == 'error' %}#fef2f2;color:#b91c1c;border:1px solid #fecaca{% elif message.tags == 'success' %}#f0fdf4;color:#15803d;border:1px solid #bbf7d0{% else %}#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe{% endif %};font-size:0.9rem;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
           <span>{{ message }}</span>
@@ -244,7 +270,7 @@
     </footer>
   {% endif %}
 
-  <script src="{% static 'catalog/site.js' %}?v=lib_uzedu_theme_fix_v6" defer></script>
+  <script src="{% static 'catalog/site.js' %}?v=responsive_v7" defer></script>
   {% block extra_scripts %}{% endblock %}
 </body>
 </html>

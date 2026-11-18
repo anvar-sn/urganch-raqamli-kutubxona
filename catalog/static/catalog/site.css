@@ -5100,7 +5100,7 @@ html.dark .lib-user-pill {
     gap: 6px;
   }
 }
-}
+
 .lib-logout-icon:hover { color: #ef4444; }
 
 .lib-btn-primary-sm {
@@ -9052,3 +9052,285 @@ html.dark .adm-status-pill.is-active { color: #6ee7b7; }
 
 
 
+
+/* ==========================================================================
+   RESPONSIVE LAYER: TELEFON (≤600px), PLANSHET (601–1024px), KOMPYUTER
+   Barcha qurilmalarga moslashuvchan qo'shimcha qatlam
+   ========================================================================== */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+img,
+video,
+iframe,
+canvas {
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+
+/* Menyu tugmasi va mobil qo'shimchalar (kompyuterda yashirin) */
+.lib-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--border-main);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.lib-menu-toggle:hover {
+  background: var(--bg-subtle);
+  border-color: var(--primary);
+}
+.lib-menu-toggle .icon-close { display: none; }
+.lib-navbar.is-menu-open .lib-menu-toggle .icon-open { display: none; }
+.lib-navbar.is-menu-open .lib-menu-toggle .icon-close { display: block; }
+.lib-nav-mobile-extra { display: none; }
+.lib-nav-backdrop { display: none; }
+.lib-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- PLANSHET VA TELEFON: ≤ 900px ---------- */
+@media (max-width: 900px) {
+  .lib-nav-container {
+    height: 58px;
+    padding: 0 14px;
+    gap: 10px;
+  }
+  .lib-menu-toggle { display: inline-flex; }
+
+  .lib-navbar .lib-nav-links {
+    display: flex;
+    position: fixed;
+    top: 58px;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 12px 14px 18px;
+    max-height: calc(100vh - 58px);
+    max-height: calc(100dvh - 58px);
+    overflow-y: auto;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-main);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .lib-navbar.is-menu-open .lib-nav-links {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .lib-navbar .lib-nav-link {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    font-size: 0.98rem;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+  .lib-nav-mobile-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-main);
+  }
+  .lib-nav-mobile-points {
+    margin-left: auto;
+    font-style: normal;
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #b45309;
+    background: rgba(245, 158, 11, 0.14);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .lib-nav-link-danger { color: #ef4444 !important; }
+
+  .lib-nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 58px 0 0 0;
+    z-index: 999;
+    background: rgba(15, 23, 42, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+  }
+  .lib-navbar.is-menu-open .lib-nav-backdrop {
+    opacity: 1;
+    visibility: visible;
+  }
+  body.lib-menu-locked { overflow: hidden; }
+
+  /* Admin / profil panellari */
+  .adm-wrap { padding-left: 14px !important; padding-right: 14px !important; }
+  .adm-panel { padding: 16px; }
+  .adm-profile-card { padding: 16px; }
+  .adm-table { min-width: 640px; }
+  .adm-search-sm { min-width: 0; width: 100%; }
+  .adm-books-toolbar { flex-direction: column; align-items: stretch; }
+}
+
+/* ---------- TELEFON: ≤ 600px ---------- */
+@media (max-width: 600px) {
+  .lib-nav-container { padding: 0 12px; gap: 8px; }
+  .lib-brand { gap: 8px; min-width: 0; flex-shrink: 1; }
+  .lib-brand-logo { width: 36px; height: 36px; }
+  .lib-brand-text { min-width: 0; overflow: hidden; }
+  .lib-brand-name {
+    font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .lib-brand-sub { font-size: 0.58rem; letter-spacing: 0.05em; }
+  .lib-nav-actions { gap: 6px; flex-shrink: 0; }
+  .lib-points-chip,
+  .lib-user-name,
+  .lib-logout-icon { display: none !important; }
+  .lib-user-pill { padding: 3px !important; }
+  .lib-nav-actions .lib-btn-primary-sm span { display: none; }
+  .lib-nav-actions .lib-btn-primary-sm { padding: 8px 10px; }
+  .lib-theme-toggle { width: 38px; height: 38px; }
+
+  .lib-flash-wrap { padding: 0 12px !important; margin-top: 10px !important; }
+
+  /* PDF o'quvchi oynasi to'liq ekranda */
+  .lib-modal-overlay { padding: 0; }
+  .lib-modal-box {
+    height: 100vh;
+    height: 100dvh;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  .lib-modal-header { padding: 0 10px; gap: 8px; }
+  .lib-modal-title { max-width: 52vw; font-size: 0.9rem; }
+  .lib-modal-header .lib-btn-primary-sm span { display: none; }
+  .lib-modal-backdrop { padding: 10px; align-items: flex-end; }
+  .lib-modal {
+    padding: 20px 16px;
+    border-radius: 18px 18px 0 0;
+    max-height: 92vh;
+    max-height: 92dvh;
+    overflow-y: auto;
+  }
+  .adm-modal { padding: 18px 16px !important; }
+
+  /* Footer */
+  .lib-footer { padding: 20px 14px; }
+  .lib-footer-inner { flex-direction: column; text-align: center; gap: 8px; }
+
+  /* iOS Safari kiritishda ekranni kattalashtirib yubormasligi uchun */
+  input[type="text"],
+  input[type="search"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="url"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Admin / profil */
+  .adm-profile-card { flex-direction: column; align-items: stretch; }
+  .adm-profile-left { align-items: flex-start; }
+  .adm-profile-right { justify-content: space-between; }
+  .adm-panel-head { flex-direction: column; align-items: stretch; }
+  .adm-head-actions > * { flex: 1 1 auto; }
+  .adm-form-actions { flex-direction: column-reverse; }
+  .adm-form-actions > * { width: 100%; }
+  .adm-books-pager { flex-direction: column; align-items: stretch; text-align: center; }
+  .adm-pager-btns { justify-content: center; }
+
+  /* Test yaratish */
+  .qz-builder-wrap { padding: 14px 12px 48px; }
+  .qz-panel,
+  .qz-card { padding: 14px; }
+  .qz-submit-bar { flex-direction: column; align-items: stretch; }
+  .qz-btn-submit { width: 100%; }
+  .qz-option-row { flex-wrap: wrap; }
+}
+
+/* ---------- KICHIK TELEFON: ≤ 380px ---------- */
+@media (max-width: 380px) {
+  .lib-brand-sub { display: none; }
+  .lib-brand-name { font-size: 0.74rem; }
+  .lib-brand-logo { width: 32px; height: 32px; }
+  .lib-theme-toggle { width: 34px; height: 34px; }
+  .lib-menu-toggle { width: 36px; height: 36px; }
+}
+
+/* Barmoq bilan bosiladigan qurilmalarda qulay tugma o'lchami */
+@media (pointer: coarse) {
+  .adm-btn-xs { height: 34px; padding: 0 12px; }
+  .adm-page-btn { min-width: 36px; height: 36px; }
+}
+
+/* Test savollari: legend kartaning chegarasiga chiqib ketmasligi uchun */
+.question-card legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+.question-card .answer-options,
+.question-card legend + * {
+  clear: both;
+}
+
+@media (max-width: 600px) {
+  /* Qidiruv paneli */
+  .lib-search-card { padding: 14px; }
+  .lib-search-form { gap: 8px; }
+  .lib-search-input { min-width: 0; padding: 0 12px; }
+  .lib-search-btn { padding: 0 16px; flex-shrink: 0; }
+  .lib-search-top { flex-wrap: wrap; }
+
+  /* Fan toifalari: telefonda bitta qatorda barmoq bilan suriladi */
+  .lib-category-bar {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+  .lib-category-bar::-webkit-scrollbar { display: none; }
+  .lib-cat-pill { flex-shrink: 0; white-space: nowrap; }
+
+  /* Statistik kartalar telefonda 2 ustunli */
+  .adm-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px; }
+  .adm-kpi-card { padding: 12px 14px; }
+  .adm-kpi-card strong { font-size: 1.25rem; }
+
+  /* Test sahifasi */
+  .question-card { padding: 16px; border-radius: 16px; }
+  .question-card legend { font-size: 15px; }
+  .answer-options label { padding: 12px 14px; }
+}
